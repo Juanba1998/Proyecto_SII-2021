@@ -9,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 
+
 public class Asignaturas_Matricula implements Serializable {
 
 	
