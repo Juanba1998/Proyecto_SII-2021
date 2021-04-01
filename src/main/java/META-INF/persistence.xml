@@ -3,6 +3,8 @@
 	<persistence-unit name="trabajo" transaction-type="RESOURCE_LOCAL">
 		<class>es.uma.informatica.jpa.tarea1.Asignaturas_Matricula</class>
 		<class>es.uma.informatica.jpa.tarea1.Asignaturas_Matricula</class>
+		<class>es.uma.informatica.jpa.tarea1.Titulacion</class>
+		<class>es.uma.informatica.jpa.tarea1.Expedientes</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>
 			<property name="javax.persistence.jdbc.user" value="siiuser"/>
