@@ -3,6 +3,8 @@ package es.uma.informatica.jpa.tarea1;
 import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
