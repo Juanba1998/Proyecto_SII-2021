@@ -55,7 +55,7 @@ public class Grupo implements Serializable{
 	
 	
 	public Grupo(Integer iD, String curso, String letra, String turno_Manana_Tarde, Boolean ingles, Boolean visible,
-			String asignar, Integer plazas, Titulacion titulacion, List<Clase> clase, List<Clase> grupo_por_asignatura,
+			String asignar, Integer plazas, Titulacion titulacion, List<Clase> clase, List<Grupo_por_asignatura> grupo_por_asignatura,
 			List<Asignaturas_Matricula> asignaturas_matricula, List<Grupo> agrupa_grupos) {
 		super();
 		ID = iD;
@@ -161,11 +161,11 @@ public class Grupo implements Serializable{
 		this.clase = clase;
 	}
 
-	public List<Clase> getGrupo_por_asignatura() {
+	public List<Grupo_por_asignatura> getGrupo_por_asignatura() {
 		return grupo_por_asignatura;
 	}
 
-	public void setGrupo_por_asignatura(List<Clase> grupo_por_asignatura) {
+	public void setGrupo_por_asignatura(List<Grupo_por_asignatura> grupo_por_asignatura) {
 		this.grupo_por_asignatura = grupo_por_asignatura;
 	}
 
