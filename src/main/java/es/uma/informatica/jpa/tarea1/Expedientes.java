@@ -46,8 +46,11 @@ public class Expedientes implements Serializable {
 	@ManyToOne
 	private Alumno alumno;
 	
-	@OneToMany (mappedBy = "")
+	@OneToMany (mappedBy = "expediente")
 	private List<Encuesta> encuestas_expediente;
+	
+	@OneToMany (mappedBy="expediente")
+	private List<Matricula> matriculas;
 	
 	private static final long serialVersionUID = 1L;
 	

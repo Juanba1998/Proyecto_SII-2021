@@ -17,6 +17,11 @@ public class Encuesta implements Serializable {
 	private Date Fecha_de_envio;
 	private static final long serialVersionUID = 1L;
 
+	@ManyToOne
+	private Expedientes expediente;
+	
+	@ManyToMany(mappedBy="")
+	private List<Grupo_por_Asignatura> grupo_por_asignatura;
 	
 	public Encuesta(Date fecha_de_envio) {
 		super();

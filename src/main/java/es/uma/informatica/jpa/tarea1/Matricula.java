@@ -5,6 +5,8 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.sql.Date;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -12,9 +14,13 @@ import javax.persistence.*;
  *
  */
 @Entity
-
+@IdClass(Matricula.MatriculaId.class)
 public class Matricula implements Serializable {
 
+	public static class MatriculaId implements Serializable{
+		private String Curso_academico;
+		private Integer expediente;
+	}
 	   
 	@Id
 	private String Curso_academico;
@@ -32,6 +38,13 @@ public class Matricula implements Serializable {
 	private Integer Num_Expediente;
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@ManyToOne
+	private Expedientes expediente;
+	
+	@OneToMany
+	private List<Asignaturas_Matricula> asignatura_matricula;
+	
 	public Matricula(String curso_academico, String estado, Integer num_Archivo, String turno_Preferente,
 			Date fecha_de_matricula, Boolean nuevo_Ingreso, String listado_Asignaturas, Integer num_Expediente) {
 		super();
