@@ -16,40 +16,24 @@ public class Alumno implements Serializable{
 	@Column(unique = true)
 	private String DNI;
 	
-	@Column
+	@Column(nullable = false)
 	private String Nombre_completo;
 	
-	@Column
+	@Column(nullable = false)
 	private String Email_Institucional;
 	
-	@Column(nullable = true)
 	private String Email_Personal;
-	
-	@Column(nullable = true)
 	private Integer Telefono;
-	
-	@Column(nullable = true)
 	private Integer Movil;
-	
-	@Column(nullable = true)
 	private String Direccion;
-	
-	@Column(nullable = true)
 	private String Localidad;
-	
-	@Column(nullable = true)
 	private String Provincia;
-	
-	@Column(nullable = true)
 	private Integer CodigoPostal;
-	
-	@Column(nullable = true)
 	private Boolean AlumnoMovilidad;
 	
-	@OneToMany (mappedBy = "")
+	@OneToMany (mappedBy = "alumno")
 	private List<Expedientes> lista_expedientes;
 
-	
 	public Alumno(Integer iD, String dNI, String nombre_completo, String email_Institucional, String email_Personal,
 			Integer telefono, Integer movil, String direccion, String localidad, String provincia, Integer codigoPostal,
 			Boolean alumnoMovilidad, List<Expedientes> lista_expedientes) {
@@ -66,142 +50,120 @@ public class Alumno implements Serializable{
 		Provincia = provincia;
 		CodigoPostal = codigoPostal;
 		AlumnoMovilidad = alumnoMovilidad;
-	}
-	
-	public Alumno() {
-		
+		this.lista_expedientes = lista_expedientes;
 	}
 
+	public Alumno() {
+		super();
+	}
 
 	public Integer getID() {
 		return ID;
 	}
 
-
 	public void setID(Integer iD) {
 		ID = iD;
 	}
-
 
 	public String getDNI() {
 		return DNI;
 	}
 
-
 	public void setDNI(String dNI) {
 		DNI = dNI;
 	}
-
 
 	public String getNombre_completo() {
 		return Nombre_completo;
 	}
 
-
 	public void setNombre_completo(String nombre_completo) {
 		Nombre_completo = nombre_completo;
 	}
-
 
 	public String getEmail_Institucional() {
 		return Email_Institucional;
 	}
 
-
 	public void setEmail_Institucional(String email_Institucional) {
 		Email_Institucional = email_Institucional;
 	}
-
 
 	public String getEmail_Personal() {
 		return Email_Personal;
 	}
 
-
 	public void setEmail_Personal(String email_Personal) {
 		Email_Personal = email_Personal;
 	}
-
 
 	public Integer getTelefono() {
 		return Telefono;
 	}
 
-
 	public void setTelefono(Integer telefono) {
 		Telefono = telefono;
 	}
-
 
 	public Integer getMovil() {
 		return Movil;
 	}
 
-
 	public void setMovil(Integer movil) {
 		Movil = movil;
 	}
-
 
 	public String getDireccion() {
 		return Direccion;
 	}
 
-
 	public void setDireccion(String direccion) {
 		Direccion = direccion;
 	}
-
 
 	public String getLocalidad() {
 		return Localidad;
 	}
 
-
 	public void setLocalidad(String localidad) {
 		Localidad = localidad;
 	}
-
 
 	public String getProvincia() {
 		return Provincia;
 	}
 
-
 	public void setProvincia(String provincia) {
 		Provincia = provincia;
 	}
-
 
 	public Integer getCodigoPostal() {
 		return CodigoPostal;
 	}
 
-
 	public void setCodigoPostal(Integer codigoPostal) {
 		CodigoPostal = codigoPostal;
 	}
-
 
 	public Boolean getAlumnoMovilidad() {
 		return AlumnoMovilidad;
 	}
 
-
 	public void setAlumnoMovilidad(Boolean alumnoMovilidad) {
 		AlumnoMovilidad = alumnoMovilidad;
 	}
-
 
 	public List<Expedientes> getLista_expedientes() {
 		return lista_expedientes;
 	}
 
-
 	public void setLista_expedientes(List<Expedientes> lista_expedientes) {
 		this.lista_expedientes = lista_expedientes;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	@Override
 	public int hashCode() {
@@ -222,7 +184,6 @@ public class Alumno implements Serializable{
 		result = prime * result + ((lista_expedientes == null) ? 0 : lista_expedientes.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -301,7 +262,6 @@ public class Alumno implements Serializable{
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Alumno [ID=" + ID + ", DNI=" + DNI + ", Nombre_completo=" + Nombre_completo + ", Email_Institucional="
@@ -310,5 +270,7 @@ public class Alumno implements Serializable{
 				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", lista_expedientes="
 				+ lista_expedientes + "]";
 	}
+
+	
 	
 }

@@ -13,31 +13,14 @@ public class Expedientes implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Num_Expediente;
 
-	@Column(nullable = true)
 	private Boolean Activo;
-	
-	@Column(nullable = true)
 	private Double Nota_Media_Provisional;
-	
-	@Column(nullable = true)
 	private Integer Creditos_superados;
-	
-	@Column(nullable = true)
 	private Integer Creditos_FB;
-	
-	@Column(nullable = true)
 	private Integer Creditos_OB;
-	
-	@Column(nullable = true)
 	private Integer Creditos_OP;
-	
-	@Column(nullable = true)
 	private Integer Creditos_CF;
-	
-	@Column(nullable = true)
 	private Integer Creditos_PE;
-	
-	@Column(nullable = true)
 	private Integer Creditos_TF;
 	
 	@ManyToOne
@@ -71,7 +54,7 @@ public class Expedientes implements Serializable {
 	}
 	
 	public Expedientes() {
-		
+		super();
 	}   
 	public Integer getNumExpediente() {
 		return this.Num_Expediente;
@@ -181,7 +164,7 @@ public class Expedientes implements Serializable {
 		result = prime * result + ((Creditos_TF == null) ? 0 : Creditos_TF.hashCode());
 		result = prime * result + ((Creditos_superados == null) ? 0 : Creditos_superados.hashCode());
 		result = prime * result + ((Nota_Media_Provisional == null) ? 0 : Nota_Media_Provisional.hashCode());
-		result = prime * result + ((NumExpediente == null) ? 0 : NumExpediente.hashCode());
+		result = prime * result + ((Num_Expediente == null) ? 0 : Num_Expediente.hashCode());
 		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
 		return result;
 	}
@@ -240,10 +223,10 @@ public class Expedientes implements Serializable {
 				return false;
 		} else if (!Nota_Media_Provisional.equals(other.Nota_Media_Provisional))
 			return false;
-		if (NumExpediente == null) {
-			if (other.NumExpediente != null)
+		if (Num_Expediente == null) {
+			if (other.Num_Expediente != null)
 				return false;
-		} else if (!NumExpediente.equals(other.NumExpediente))
+		} else if (!Num_Expediente.equals(other.Num_Expediente))
 			return false;
 		if (titulacion == null) {
 			if (other.titulacion != null)
@@ -255,7 +238,7 @@ public class Expedientes implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Expedientes [NumExpediente=" + NumExpediente + ", Activo=" + Activo + ", Nota_Media_Provisional="
+		return "Expedientes [Num_Expediente=" + Num_Expediente + ", Activo=" + Activo + ", Nota_Media_Provisional="
 				+ Nota_Media_Provisional + ", Creditos_superados=" + Creditos_superados + ", Creditos_FB=" + Creditos_FB
 				+ ", Creditos_OB=" + Creditos_OB + ", Creditos_OP=" + Creditos_OP + ", Creditos_CF=" + Creditos_CF
 				+ ", Creditos_PE=" + Creditos_PE + ", Creditos_TF=" + Creditos_TF + ", titulacion=" + titulacion + "]";
