@@ -29,7 +29,6 @@ public class Grupo_por_asignatura implements Serializable{
 	})
 	private List<Encuesta> encuesta;
 	
-	@SuppressWarnings("serial")
 	public static class Grupo_por_asignaturaID implements Serializable{
 		
 		private String Curso_Academico;
