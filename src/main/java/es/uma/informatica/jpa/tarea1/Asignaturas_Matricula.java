@@ -5,24 +5,28 @@ import javax.persistence.*;
 
 @Entity
 @IdClass(Asignaturas_Matricula.Asignatura_MatriculaID.class)
+@SuppressWarnings("serial")
 public class Asignaturas_Matricula implements Serializable {
 	
 	
 	@Id @ManyToOne
 	private Asignatura asignatura;
 	
-	@ManyToOne
-	private Grupo grupo;
-	
 	@Id @ManyToOne
 	private Matricula matricula;
 	
-	private static final long serialVersionUID = 1L;
+	@ManyToOne
+	private Grupo grupo;
 
 	public static class Asignatura_MatriculaID implements Serializable{
 		
-		private String matricula;
+		private Matricula.MatriculaId matricula;
 		private Integer asignatura;
+		
+	}
+
+	public Asignaturas_Matricula() {
+		super();
 	}
 
 	public Asignaturas_Matricula(Asignatura asignatura, Grupo grupo, Matricula matricula) {
@@ -30,10 +34,6 @@ public class Asignaturas_Matricula implements Serializable {
 		this.asignatura = asignatura;
 		this.grupo = grupo;
 		this.matricula = matricula;
-	}
-
-	public Asignaturas_Matricula() {
-		super();
 	}
 
 	public Asignatura getAsignatura() {
@@ -58,10 +58,6 @@ public class Asignaturas_Matricula implements Serializable {
 
 	public void setMatricula(Matricula matricula) {
 		this.matricula = matricula;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override

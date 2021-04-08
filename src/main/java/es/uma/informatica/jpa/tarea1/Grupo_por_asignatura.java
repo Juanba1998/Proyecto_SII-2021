@@ -23,14 +23,16 @@ public class Grupo_por_asignatura implements Serializable{
 	private Asignatura Asignatura;
 
 	@ManyToMany
-	@JoinTable(name = "jnd_gruasi_encu",
-	joinColumns = @JoinColumn(name = "gruasi_fk"),
-	inverseJoinColumns = @JoinColumn(name = "encu_fk"))
+	@JoinColumns({
+		@JoinColumn(name="fk_ca", referencedColumnName="Curso_Academico"),
+		@JoinColumn(name="fk_grupo", referencedColumnName="grupo"),
+		@JoinColumn(name="fk_asig", referencedColumnName="Asignatura")
+	})
 	private List<Encuesta> encuesta;
 	
+	@SuppressWarnings("serial")
 	public static class Grupo_por_asignaturaID implements Serializable{
 		
-		private static final long serialVersionUID = 1L;
 		private String Curso_Academico;
 		private Integer grupo;
 		private Integer Asignatura;

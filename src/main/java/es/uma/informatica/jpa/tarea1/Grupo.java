@@ -2,7 +2,6 @@ package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +10,6 @@ public class Grupo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	@ManyToOne
 	private Integer ID;
 	
 	@Column(unique = true)
@@ -42,7 +40,7 @@ public class Grupo implements Serializable{
 	@OneToMany(mappedBy = "grupo")
 	private List<Asignaturas_Matricula> asignaturas_matricula;
 	
-	@OneToMany(mappedBy = "ID")
+	//@OneToMany(mappedBy = "ID")
 	private List<Grupo> agrupa_grupos;
 
 	public Grupo(Integer iD, String curso, String letra, String turno_Manana_Tarde, Boolean ingles, Boolean visible,

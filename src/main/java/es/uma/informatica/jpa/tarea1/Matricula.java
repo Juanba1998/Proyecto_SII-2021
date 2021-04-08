@@ -13,9 +13,9 @@ import javax.persistence.*;
 @IdClass(Matricula.MatriculaId.class)
 public class Matricula implements Serializable {
 
+	@SuppressWarnings("serial")
 	public static class MatriculaId implements Serializable{
 		
-		private static final long serialVersionUID = 1L;
 		private String Curso_academico;
 		private Integer expediente;
 	}
@@ -40,7 +40,7 @@ public class Matricula implements Serializable {
 	@Id @ManyToOne
 	private Expedientes expediente;
 	
-	@OneToMany (mappedBy = "matriculas")
+	@OneToMany (mappedBy = "matricula")
 	private List<Asignaturas_Matricula> asignatura_matricula;
 	
 	public Matricula(String curso_academico, String estado, Integer num_Archivo, String turno_Preferente,
