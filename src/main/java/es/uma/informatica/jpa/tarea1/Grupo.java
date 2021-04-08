@@ -9,11 +9,9 @@ import javax.persistence.*;
 public class Grupo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
 	
-
-	@ManyToOne
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@ManyToOne
 	private Integer ID;
 	
 	@Column(unique = true)
@@ -31,8 +29,6 @@ public class Grupo implements Serializable{
 	private Boolean Visible;
 	private String Asignar;
 	private Integer Plazas;
-	
-	
 
 	@ManyToOne
 	private Titulacion titulacion;
@@ -49,11 +45,6 @@ public class Grupo implements Serializable{
 	@OneToMany(mappedBy = "ID")
 	private List<Grupo> agrupa_grupos;
 
-	
-	
-	
-	
-	
 	public Grupo(Integer iD, String curso, String letra, String turno_Manana_Tarde, Boolean ingles, Boolean visible,
 			String asignar, Integer plazas, Titulacion titulacion, List<Clase> clase, List<Grupo_por_asignatura> grupo_por_asignatura,
 			List<Asignaturas_Matricula> asignaturas_matricula, List<Grupo> agrupa_grupos) {
@@ -73,14 +64,10 @@ public class Grupo implements Serializable{
 		this.agrupa_grupos = agrupa_grupos;
 	}
 
-	
-	
 	public Grupo() {
 		super();
 	}
-
-
-
+	
 	public Integer getID() {
 		return ID;
 	}
@@ -189,8 +176,6 @@ public class Grupo implements Serializable{
 		return serialVersionUID;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -210,8 +195,6 @@ public class Grupo implements Serializable{
 		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -290,8 +273,6 @@ public class Grupo implements Serializable{
 		return true;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "Grupo [ID=" + ID + ", Curso=" + Curso + ", Letra=" + Letra + ", Turno_Manana_Tarde="
@@ -300,6 +281,4 @@ public class Grupo implements Serializable{
 				+ grupo_por_asignatura + ", asignaturas_matricula=" + asignaturas_matricula + ", agrupa_grupos="
 				+ agrupa_grupos + "]";
 	}
-	
-	
 }

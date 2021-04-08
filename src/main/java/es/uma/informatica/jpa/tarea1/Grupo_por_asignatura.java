@@ -11,37 +11,30 @@ public class Grupo_por_asignatura implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
-
-
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private String Curso_Academico;
 	
-	@Column
 	private String Oferta;
 	
-	@Id 
-	@ManyToOne
+	@Id @ManyToOne
 	private Grupo grupo;
 	
-	@Id 
-	@ManyToOne
+	@Id @ManyToOne
 	private Asignatura Asignatura;
-	
 
 	@ManyToMany
-	@JoinTable(name = "jnd_gruasi_encu"
-	, joinColumns = @JoinColumn(name = "gruasi_fk"),
+	@JoinTable(name = "jnd_gruasi_encu",
+	joinColumns = @JoinColumn(name = "gruasi_fk"),
 	inverseJoinColumns = @JoinColumn(name = "encu_fk"))
 	private List<Encuesta> encuesta;
 	
-	
 	public static class Grupo_por_asignaturaID implements Serializable{
+		
+		private static final long serialVersionUID = 1L;
 		private String Curso_Academico;
 		private Integer grupo;
 		private Integer Asignatura;
 	}
-	
-	
 	
 	public Grupo_por_asignatura(String curso_academico, String oferta ,List<Expedientes> lista_expedientes) {
 		super();
@@ -53,16 +46,13 @@ public class Grupo_por_asignatura implements Serializable{
 		super();
 	}
 
-
 	public String getCurso_Academico() {
 		return Curso_Academico;
 	}
 
-
 	public void setCurso_Academico(String curso_academico) {
 		Curso_Academico = curso_academico;
 	}
-
 
 	public Asignatura getAsignatura() {
 		return Asignatura;
@@ -84,12 +74,9 @@ public class Grupo_por_asignatura implements Serializable{
 		return Oferta;
 	}
 
-
 	public void setOferta(String oferta) {
 		Oferta = oferta;
 	}
-
-
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -105,7 +92,6 @@ public class Grupo_por_asignatura implements Serializable{
 		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -139,11 +125,9 @@ public class Grupo_por_asignatura implements Serializable{
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Grupo_por_asignatura [Curso_Academico=" + Curso_Academico + ", Oferta=" + Oferta + ", grupo=" + grupo
 				+ ", Asignatura=" + Asignatura + "]";
 	}
-	
 }

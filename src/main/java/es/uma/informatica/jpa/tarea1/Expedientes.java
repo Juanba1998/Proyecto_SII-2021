@@ -55,70 +55,80 @@ public class Expedientes implements Serializable {
 	
 	public Expedientes() {
 		super();
-	}   
+	}
+	
 	public Integer getNumExpediente() {
 		return this.Num_Expediente;
 	}
 
 	public void setNumExpediente(Integer Num_Expediente) {
 		this.Num_Expediente = Num_Expediente;
-	}   
+	} 
+	
 	public Boolean getActivo() {
 		return this.Activo;
 	}
 
 	public void setActivo(Boolean Activo) {
 		this.Activo = Activo;
-	}   
+	}  
+	
 	public Double getNota_Media_Provisional() {
 		return this.Nota_Media_Provisional;
 	}
 
 	public void setNota_Media_Provisional(Double Nota_Media_Provisional) {
 		this.Nota_Media_Provisional = Nota_Media_Provisional;
-	}   
+	} 
+	
 	public Integer getCreditos_superados() {
 		return this.Creditos_superados;
 	}
 
 	public void setCreditos_superados(Integer Creditos_superados) {
 		this.Creditos_superados = Creditos_superados;
-	}   
+	}  
+	
 	public Integer getCreditos_FB() {
 		return this.Creditos_FB;
 	}
 
 	public void setCreditos_FB(Integer Creditos_FB) {
 		this.Creditos_FB = Creditos_FB;
-	}   
+	} 
+	
 	public Integer getCreditos_OB() {
 		return this.Creditos_OB;
 	}
 
 	public void setCreditos_OB(Integer Creditos_OB) {
 		this.Creditos_OB = Creditos_OB;
-	}   
+	}  
+	
 	public Integer getCreditos_OP() {
 		return this.Creditos_OP;
 	}
 
 	public void setCreditos_OP(Integer Creditos_OP) {
 		this.Creditos_OP = Creditos_OP;
-	}   
+	}  
+	
 	public Integer getCreditos_CF() {
 		return this.Creditos_CF;
 	}
 
 	public void setCreditos_CF(Integer Creditos_CF) {
 		this.Creditos_CF = Creditos_CF;
-	}   
+	} 
+	
 	public Integer getCreditos_PE() {
 		return this.Creditos_PE;
 	}
 
 	public void setCreditos_PE(Integer Creditos_PE) {
 		this.Creditos_PE = Creditos_PE;
-	}   
+	} 
+	
 	public Integer getCreditos_TF() {
 		return this.Creditos_TF;
 	}

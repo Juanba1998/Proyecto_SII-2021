@@ -5,15 +5,13 @@ import java.util.Date;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Clase
- *
- */
 @Entity
 @IdClass(Clase.ClaseId.class)
 public class Clase implements Serializable {
 	
 	public static class ClaseId implements Serializable{
+		
+		private static final long serialVersionUID = 1L;
 		private Date dia;
 		private Date horaInicio;
 		private int grupo;
@@ -21,6 +19,7 @@ public class Clase implements Serializable {
 	
 	@Id
 	private Date dia;
+	
 	@Id
 	private Date horaInicio;
 	
@@ -29,8 +28,7 @@ public class Clase implements Serializable {
 	@ManyToOne
 	private Asignatura asignatura;
 	
-	@Id 
-	@ManyToOne
+	@Id @ManyToOne
 	private Grupo grupo;
 	
 	private static final long serialVersionUID = 1L;
@@ -91,12 +89,6 @@ public class Clase implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		return "Clase [dia=" + dia + ", horaInicio=" + horaInicio + ", HoraFin=" + HoraFin + ", asignatura="
-				+ asignatura + ", grupo=" + grupo + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -145,9 +137,9 @@ public class Clase implements Serializable {
 		return true;
 	}
 	
-	
-  
-	
-	
-	
+	@Override
+	public String toString() {
+		return "Clase [dia=" + dia + ", horaInicio=" + horaInicio + ", HoraFin=" + HoraFin + ", asignatura="
+				+ asignatura + ", grupo=" + grupo + "]";
+	}
 }

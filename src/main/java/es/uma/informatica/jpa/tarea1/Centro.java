@@ -19,13 +19,11 @@ public class Centro implements Serializable{
 	@Column(nullable = false)
 	private String Direccion;
 	
-
 	private Integer TLF_Conserjeria;
 	
 	@ManyToMany(mappedBy = "titulacion_centros")
 	private List<Titulacion> centro_titulaciones;
 
-	
 	public Centro(Integer iD, String nombre, String direccion, Integer tLF_Conserjeria) {
 		super();
 		ID = iD;
@@ -132,8 +130,4 @@ public class Centro implements Serializable{
 		return "Centro [ID=" + ID + ", Nombre=" + Nombre + ", Direccion=" + Direccion + ", TLF_Conserjeria="
 				+ TLF_Conserjeria + ", centro_titulaciones=" + centro_titulaciones + "]";
 	}
-	
-	
-	
-	
 }

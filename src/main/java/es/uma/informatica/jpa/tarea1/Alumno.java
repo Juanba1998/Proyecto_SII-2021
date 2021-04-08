@@ -270,7 +270,4 @@ public class Alumno implements Serializable{
 				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", lista_expedientes="
 				+ lista_expedientes + "]";
 	}
-
-	
-	
 }

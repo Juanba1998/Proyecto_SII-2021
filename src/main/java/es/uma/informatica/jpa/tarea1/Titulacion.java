@@ -19,11 +19,9 @@ public class Titulacion implements Serializable {
 	@Column(nullable = false)
 	private Integer Creditos;
 	
-	
-	
 	@ManyToMany
-	@JoinTable(name = "jnd_titu_cen"
-	, joinColumns = @JoinColumn(name = "titu_fk"),
+	@JoinTable(name = "jnd_titu_cen",
+	joinColumns = @JoinColumn(name = "titu_fk"),
 	inverseJoinColumns = @JoinColumn(name = "cen_fk"))
 	private List<Centro> titulacion_centros;
 	
@@ -36,9 +34,7 @@ public class Titulacion implements Serializable {
 	@OneToMany(mappedBy = "titulacion")
 	private List<Grupo> grupos;
 
-	
 	private static final long serialVersionUID = 1L;
-
 
 	public Titulacion(Integer codigo, String nombre, Integer creditos, List<Centro> titulacion_centros,
 			List<Asignatura> asignaturas, List<Expedientes> expedientes_titulacion, List<Grupo> grupos) {
@@ -52,86 +48,69 @@ public class Titulacion implements Serializable {
 		this.grupos = grupos;
 	}
 
-
 	public Titulacion() {
 		super();
 	}
-
 
 	public Integer getCodigo() {
 		return Codigo;
 	}
 
-
 	public void setCodigo(Integer codigo) {
 		Codigo = codigo;
 	}
-
 
 	public String getNombre() {
 		return Nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
-
 
 	public Integer getCreditos() {
 		return Creditos;
 	}
 
-
 	public void setCreditos(Integer creditos) {
 		Creditos = creditos;
 	}
-
 
 	public List<Centro> getTitulacion_centros() {
 		return titulacion_centros;
 	}
 
-
 	public void setTitulacion_centros(List<Centro> titulacion_centros) {
 		this.titulacion_centros = titulacion_centros;
 	}
-
 
 	public List<Asignatura> getAsignaturas() {
 		return asignaturas;
 	}
 
-
 	public void setAsignaturas(List<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
-
 
 	public List<Expedientes> getExpedientes_titulacion() {
 		return expedientes_titulacion;
 	}
 
-
 	public void setExpedientes_titulacion(List<Expedientes> expedientes_titulacion) {
 		this.expedientes_titulacion = expedientes_titulacion;
 	}
-
 
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
 
-
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -146,7 +125,6 @@ public class Titulacion implements Serializable {
 		result = prime * result + ((titulacion_centros == null) ? 0 : titulacion_centros.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -195,13 +173,10 @@ public class Titulacion implements Serializable {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Titulacion [Codigo=" + Codigo + ", Nombre=" + Nombre + ", Creditos=" + Creditos
 				+ ", titulacion_centros=" + titulacion_centros + ", asignaturas=" + asignaturas
 				+ ", expedientes_titulacion=" + expedientes_titulacion + ", grupos=" + grupos + "]";
 	}
-	
-	
 }

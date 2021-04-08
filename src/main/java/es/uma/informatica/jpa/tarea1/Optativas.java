@@ -3,10 +3,6 @@ package es.uma.informatica.jpa.tarea1;
 import java.io.Serializable;
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Optativas
- *
- */
 @Entity
 public class Optativas extends Asignatura implements Serializable{
 
@@ -82,8 +78,4 @@ public class Optativas extends Asignatura implements Serializable{
 	public String toString() {
 		return "Optativas [plazas=" + plazas + ", Mencion=" + Mencion + "]";
 	}
-
-	
-	
-   
 }

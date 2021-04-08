@@ -6,25 +6,21 @@ import javax.persistence.*;
 @Entity
 public class Asignaturas_Matricula implements Serializable {
 	
-	@Id
-	@ManyToOne
+	@Id @ManyToOne
 	private Asignatura asignatura;
 	
 	@ManyToOne
 	private Grupo grupo;
 	
-	@Id
-	@ManyToOne
+	@Id @ManyToOne
 	private Matricula matricula;
 	
 	private static final long serialVersionUID = 1L;
-
 
 	public static class Asignatura_matriculaID implements Serializable{
 		private String matricula;
 		private Integer asignatura;
 	}
-
 
 	public Asignaturas_Matricula(Asignatura asignatura, Grupo grupo, Matricula matricula) {
 		super();
@@ -33,46 +29,37 @@ public class Asignaturas_Matricula implements Serializable {
 		this.matricula = matricula;
 	}
 
-
 	public Asignaturas_Matricula() {
 		super();
 	}
-
 
 	public Asignatura getAsignatura() {
 		return asignatura;
 	}
 
-
 	public void setAsignatura(Asignatura asignatura) {
 		this.asignatura = asignatura;
 	}
-
 
 	public Grupo getGrupo() {
 		return grupo;
 	}
 
-
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
 	}
-
 
 	public Matricula getMatricula() {
 		return matricula;
 	}
 
-
 	public void setMatricula(Matricula matricula) {
 		this.matricula = matricula;
 	}
 
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -83,7 +70,6 @@ public class Asignaturas_Matricula implements Serializable {
 		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -112,12 +98,9 @@ public class Asignaturas_Matricula implements Serializable {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Asignaturas_Matricula [asignatura=" + asignatura + ", grupo=" + grupo + ", matricula=" + matricula
 				+ "]";
 	}
-	
-	
 }

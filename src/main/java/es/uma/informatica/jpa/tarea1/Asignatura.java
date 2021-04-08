@@ -5,28 +5,23 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Asignatura
- *
- */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 
-
 public class Asignatura implements Serializable {
-
-	
-	
 	
 	@Id
 	private Integer Referencia; 
 	
 	@Column(nullable=false)
 	private Integer Codigo;
+	
 	@Column(nullable=false)
 	private Integer Creditos;
+	
 	@Column(nullable=false)
 	private Integer Ofertados;
+	
 	@Column(nullable=false)
 	private String Nombre;
 	
@@ -40,13 +35,9 @@ public class Asignatura implements Serializable {
 	
 	@OneToMany (mappedBy="asignatura")
 	private List <Clase> clase;
+	
 	@OneToMany (mappedBy="Asignatura") 
 	private List <Asignaturas_Matricula> asignaturas_matricula;
-	
-	
-	
-	
-	
 	
 	private static final long serialVersionUID = 1L;
 
@@ -267,8 +258,4 @@ public class Asignatura implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-   
 }

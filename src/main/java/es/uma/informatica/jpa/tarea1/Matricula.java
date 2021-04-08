@@ -9,15 +9,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Matricula
- *
- */
 @Entity
 @IdClass(Matricula.MatriculaId.class)
 public class Matricula implements Serializable {
 
 	public static class MatriculaId implements Serializable{
+		
+		private static final long serialVersionUID = 1L;
 		private String Curso_academico;
 		private Integer expediente;
 	}
@@ -33,19 +31,18 @@ public class Matricula implements Serializable {
 	
 	@Column(nullable = false)
 	private Date Fecha_de_matricula;
+	
 	private Boolean Nuevo_Ingreso;
 	private String Listado_Asignaturas;
 	private Integer Num_Expediente;
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@ManyToOne
+	@Id @ManyToOne
 	private Expedientes expediente;
 	
 	@OneToMany (mappedBy = "matriculas")
 	private List<Asignaturas_Matricula> asignatura_matricula;
 	
-
 	public Matricula(String curso_academico, String estado, Integer num_Archivo, String turno_Preferente,
 			Date fecha_de_matricula, Boolean nuevo_Ingreso, String listado_Asignaturas, Integer num_Expediente,
 			Expedientes expediente, List<Asignaturas_Matricula> asignatura_matricula) {
@@ -61,72 +58,95 @@ public class Matricula implements Serializable {
 		this.expediente = expediente;
 		this.asignatura_matricula = asignatura_matricula;
 	}
+	
 	public Matricula() {
 		super();
 	}
+	
 	public String getCurso_academico() {
 		return Curso_academico;
 	}
+	
 	public void setCurso_academico(String curso_academico) {
 		Curso_academico = curso_academico;
 	}
+	
 	public String getEstado() {
 		return Estado;
 	}
+	
 	public void setEstado(String estado) {
 		Estado = estado;
 	}
+	
 	public Integer getNum_Archivo() {
 		return Num_Archivo;
 	}
+	
 	public void setNum_Archivo(Integer num_Archivo) {
 		Num_Archivo = num_Archivo;
 	}
+	
 	public String getTurno_Preferente() {
 		return Turno_Preferente;
 	}
+	
 	public void setTurno_Preferente(String turno_Preferente) {
 		Turno_Preferente = turno_Preferente;
 	}
+	
 	public Date getFecha_de_matricula() {
 		return Fecha_de_matricula;
 	}
+	
 	public void setFecha_de_matricula(Date fecha_de_matricula) {
 		Fecha_de_matricula = fecha_de_matricula;
 	}
+	
 	public Boolean getNuevo_Ingreso() {
 		return Nuevo_Ingreso;
 	}
+	
 	public void setNuevo_Ingreso(Boolean nuevo_Ingreso) {
 		Nuevo_Ingreso = nuevo_Ingreso;
 	}
+	
 	public String getListado_Asignaturas() {
 		return Listado_Asignaturas;
 	}
+	
 	public void setListado_Asignaturas(String listado_Asignaturas) {
 		Listado_Asignaturas = listado_Asignaturas;
 	}
+	
 	public Integer getNum_Expediente() {
 		return Num_Expediente;
 	}
+	
 	public void setNum_Expediente(Integer num_Expediente) {
 		Num_Expediente = num_Expediente;
 	}
+	
 	public Expedientes getExpediente() {
 		return expediente;
 	}
+	
 	public void setExpediente(Expedientes expediente) {
 		this.expediente = expediente;
 	}
+	
 	public List<Asignaturas_Matricula> getAsignatura_matricula() {
 		return asignatura_matricula;
 	}
+	
 	public void setAsignatura_matricula(List<Asignaturas_Matricula> asignatura_matricula) {
 		this.asignatura_matricula = asignatura_matricula;
 	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -143,6 +163,7 @@ public class Matricula implements Serializable {
 		result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -204,6 +225,7 @@ public class Matricula implements Serializable {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Matricula [Curso_academico=" + Curso_academico + ", Estado=" + Estado + ", Num_Archivo=" + Num_Archivo
@@ -211,8 +233,5 @@ public class Matricula implements Serializable {
 				+ ", Nuevo_Ingreso=" + Nuevo_Ingreso + ", Listado_Asignaturas=" + Listado_Asignaturas
 				+ ", Num_Expediente=" + Num_Expediente + ", expediente=" + expediente + ", asignatura_matricula="
 				+ asignatura_matricula + "]";
-	}   
-	
-	
-   
+	}
 }

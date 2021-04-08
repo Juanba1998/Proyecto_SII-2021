@@ -6,18 +6,13 @@ import java.util.List;
 
 import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: Encuesta
- *
- */
 @Entity
-
 public class Encuesta implements Serializable {
-
-	   
+  
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	private Date Fecha_de_envio;
-	private static final long serialVersionUID = 1L;
 
 	@ManyToOne
 	private Expedientes expediente;
@@ -106,11 +101,4 @@ public class Encuesta implements Serializable {
 		return "Encuesta [Fecha_de_envio=" + Fecha_de_envio + ", expediente=" + expediente + ", grupo_por_asignatura="
 				+ grupo_por_asignatura + "]";
 	}
-	
-	
-	
-	
-	
-	
-   
 }
