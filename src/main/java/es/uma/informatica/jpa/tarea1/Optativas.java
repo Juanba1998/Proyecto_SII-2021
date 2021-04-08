@@ -17,11 +17,11 @@ public class Optativas extends Asignatura implements Serializable{
 	}
 
 	public Optativas(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
-			String curso, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
+			String curso, String caracter, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
 			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula,
 			Integer plazas, String mencion) {
-		super(referencia, codigo, creditos, ofertada, nombre, curso, duracion, cuatrimestre, idiomas_de_Imparticion,
-				asignaturas_titulacion, clase, asignaturas_matricula);
+		super(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, cuatrimestre,
+				idiomas_de_Imparticion, asignaturas_titulacion, clase, asignaturas_matricula);
 		this.plazas = plazas;
 		this.mencion = mencion;
 	}

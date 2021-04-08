@@ -25,6 +25,7 @@ public class Asignatura implements Serializable {
 	private String Nombre;
 	
 	private String Curso;
+	private String Caracter;
 	private String Duracion;
 	private String Cuatrimestre; 
 	private String Idiomas_de_Imparticion;
@@ -43,7 +44,7 @@ public class Asignatura implements Serializable {
 	}
 
 	public Asignatura(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
-			String curso, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
+			String curso, String caracter, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
 			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula) {
 		super();
 		Referencia = referencia;
@@ -52,6 +53,7 @@ public class Asignatura implements Serializable {
 		Ofertada = ofertada;
 		Nombre = nombre;
 		Curso = curso;
+		Caracter = caracter;
 		Duracion = duracion;
 		Cuatrimestre = cuatrimestre;
 		Idiomas_de_Imparticion = idiomas_de_Imparticion;
@@ -108,6 +110,14 @@ public class Asignatura implements Serializable {
 		Curso = curso;
 	}
 
+	public String getCaracter() {
+		return Caracter;
+	}
+
+	public void setCaracter(String caracter) {
+		Caracter = caracter;
+	}
+
 	public String getDuracion() {
 		return Duracion;
 	}
@@ -160,6 +170,7 @@ public class Asignatura implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((Caracter == null) ? 0 : Caracter.hashCode());
 		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
 		result = prime * result + ((Creditos == null) ? 0 : Creditos.hashCode());
 		result = prime * result + ((Cuatrimestre == null) ? 0 : Cuatrimestre.hashCode());
@@ -184,6 +195,11 @@ public class Asignatura implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Asignatura other = (Asignatura) obj;
+		if (Caracter == null) {
+			if (other.Caracter != null)
+				return false;
+		} else if (!Caracter.equals(other.Caracter))
+			return false;
 		if (Codigo == null) {
 			if (other.Codigo != null)
 				return false;
@@ -250,9 +266,10 @@ public class Asignatura implements Serializable {
 	@Override
 	public String toString() {
 		return "Asignatura [Referencia=" + Referencia + ", Codigo=" + Codigo + ", Creditos=" + Creditos + ", Ofertada="
-				+ Ofertada + ", Nombre=" + Nombre + ", Curso=" + Curso + ", Duracion=" + Duracion + ", Cuatrimestre="
-				+ Cuatrimestre + ", Idiomas_de_Imparticion=" + Idiomas_de_Imparticion + ", asignaturas_titulacion="
-				+ asignaturas_titulacion + ", clase=" + clase + ", asignaturas_matricula=" + asignaturas_matricula
-				+ "]";
+				+ Ofertada + ", Nombre=" + Nombre + ", Curso=" + Curso + ", Caracter=" + Caracter + ", Duracion="
+				+ Duracion + ", Cuatrimestre=" + Cuatrimestre + ", Idiomas_de_Imparticion=" + Idiomas_de_Imparticion
+				+ ", asignaturas_titulacion=" + asignaturas_titulacion + ", clase=" + clase + ", asignaturas_matricula="
+				+ asignaturas_matricula + "]";
 	}
+
 }

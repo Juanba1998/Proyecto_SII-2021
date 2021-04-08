@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Titulacion implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer Codigo;
+	private Integer CodigoTitulacion;
 	
 	@Column(nullable = false)
 	private String Nombre;
@@ -39,10 +39,10 @@ public class Titulacion implements Serializable {
 		super();
 	}
 
-	public Titulacion(Integer codigo, String nombre, Integer creditos, List<Centro> titulacion_centros,
+	public Titulacion(Integer codigoTitulacion, String nombre, Integer creditos, List<Centro> titulacion_centros,
 			List<Asignatura> asignaturas, List<Expedientes> expedientes_titulacion, List<Grupo> grupos) {
 		super();
-		Codigo = codigo;
+		CodigoTitulacion = codigoTitulacion;
 		Nombre = nombre;
 		Creditos = creditos;
 		this.titulacion_centros = titulacion_centros;
@@ -51,12 +51,12 @@ public class Titulacion implements Serializable {
 		this.grupos = grupos;
 	}
 
-	public Integer getCodigo() {
-		return Codigo;
+	public Integer getCodigoTitulacion() {
+		return CodigoTitulacion;
 	}
 
-	public void setCodigo(Integer codigo) {
-		Codigo = codigo;
+	public void setCodigoTitulacion(Integer codigoTitulacion) {
+		CodigoTitulacion = codigoTitulacion;
 	}
 
 	public String getNombre() {
@@ -111,7 +111,7 @@ public class Titulacion implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
+		result = prime * result + ((CodigoTitulacion == null) ? 0 : CodigoTitulacion.hashCode());
 		result = prime * result + ((Creditos == null) ? 0 : Creditos.hashCode());
 		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
 		result = prime * result + ((asignaturas == null) ? 0 : asignaturas.hashCode());
@@ -130,10 +130,10 @@ public class Titulacion implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Titulacion other = (Titulacion) obj;
-		if (Codigo == null) {
-			if (other.Codigo != null)
+		if (CodigoTitulacion == null) {
+			if (other.CodigoTitulacion != null)
 				return false;
-		} else if (!Codigo.equals(other.Codigo))
+		} else if (!CodigoTitulacion.equals(other.CodigoTitulacion))
 			return false;
 		if (Creditos == null) {
 			if (other.Creditos != null)
@@ -170,8 +170,10 @@ public class Titulacion implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Titulacion [Codigo=" + Codigo + ", Nombre=" + Nombre + ", Creditos=" + Creditos
+		return "Titulacion [CodigoTitulacion=" + CodigoTitulacion + ", Nombre=" + Nombre + ", Creditos=" + Creditos
 				+ ", titulacion_centros=" + titulacion_centros + ", asignaturas=" + asignaturas
 				+ ", expedientes_titulacion=" + expedientes_titulacion + ", grupos=" + grupos + "]";
 	}
+
+	
 }
