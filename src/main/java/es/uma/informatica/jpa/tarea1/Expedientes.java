@@ -1,12 +1,11 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Expedientes implements Serializable {
 	   
@@ -23,10 +22,10 @@ public class Expedientes implements Serializable {
 	private Integer Creditos_PE;
 	private Integer Creditos_TF;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Titulacion titulacion;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Alumno alumno;
 	
 	@OneToMany (mappedBy = "expediente")
@@ -34,14 +33,17 @@ public class Expedientes implements Serializable {
 	
 	@OneToMany (mappedBy="expediente")
 	private List<Matricula> matriculas;
-	
-	private static final long serialVersionUID = 1L;
-	
-	public Expedientes(Integer numExpediente, Boolean activo, Double nota_Media_Provisional,
-			Integer creditos_superados, Integer creditos_FB, Integer creditos_OB, Integer creditos_OP,
-			Integer creditos_CF, Integer creditos_PE, Integer creditos_TF) {
+
+	public Expedientes() {
 		super();
-		Num_Expediente = numExpediente;
+	}
+
+	public Expedientes(Integer num_Expediente, Boolean activo, Double nota_Media_Provisional,
+			Integer creditos_superados, Integer creditos_FB, Integer creditos_OB, Integer creditos_OP,
+			Integer creditos_CF, Integer creditos_PE, Integer creditos_TF, Titulacion titulacion, Alumno alumno,
+			List<Encuesta> encuestas_expediente, List<Matricula> matriculas) {
+		super();
+		Num_Expediente = num_Expediente;
 		Activo = activo;
 		Nota_Media_Provisional = nota_Media_Provisional;
 		Creditos_superados = creditos_superados;
@@ -51,92 +53,92 @@ public class Expedientes implements Serializable {
 		Creditos_CF = creditos_CF;
 		Creditos_PE = creditos_PE;
 		Creditos_TF = creditos_TF;
-	}
-	
-	public Expedientes() {
-		super();
-	}
-	
-	public Integer getNumExpediente() {
-		return this.Num_Expediente;
+		this.titulacion = titulacion;
+		this.alumno = alumno;
+		this.encuestas_expediente = encuestas_expediente;
+		this.matriculas = matriculas;
 	}
 
-	public void setNumExpediente(Integer Num_Expediente) {
-		this.Num_Expediente = Num_Expediente;
-	} 
-	
+	public Integer getNum_Expediente() {
+		return Num_Expediente;
+	}
+
+	public void setNum_Expediente(Integer num_Expediente) {
+		Num_Expediente = num_Expediente;
+	}
+
 	public Boolean getActivo() {
-		return this.Activo;
+		return Activo;
 	}
 
-	public void setActivo(Boolean Activo) {
-		this.Activo = Activo;
-	}  
-	
+	public void setActivo(Boolean activo) {
+		Activo = activo;
+	}
+
 	public Double getNota_Media_Provisional() {
-		return this.Nota_Media_Provisional;
+		return Nota_Media_Provisional;
 	}
 
-	public void setNota_Media_Provisional(Double Nota_Media_Provisional) {
-		this.Nota_Media_Provisional = Nota_Media_Provisional;
-	} 
-	
+	public void setNota_Media_Provisional(Double nota_Media_Provisional) {
+		Nota_Media_Provisional = nota_Media_Provisional;
+	}
+
 	public Integer getCreditos_superados() {
-		return this.Creditos_superados;
+		return Creditos_superados;
 	}
 
-	public void setCreditos_superados(Integer Creditos_superados) {
-		this.Creditos_superados = Creditos_superados;
-	}  
-	
+	public void setCreditos_superados(Integer creditos_superados) {
+		Creditos_superados = creditos_superados;
+	}
+
 	public Integer getCreditos_FB() {
-		return this.Creditos_FB;
+		return Creditos_FB;
 	}
 
-	public void setCreditos_FB(Integer Creditos_FB) {
-		this.Creditos_FB = Creditos_FB;
-	} 
-	
+	public void setCreditos_FB(Integer creditos_FB) {
+		Creditos_FB = creditos_FB;
+	}
+
 	public Integer getCreditos_OB() {
-		return this.Creditos_OB;
+		return Creditos_OB;
 	}
 
-	public void setCreditos_OB(Integer Creditos_OB) {
-		this.Creditos_OB = Creditos_OB;
-	}  
-	
+	public void setCreditos_OB(Integer creditos_OB) {
+		Creditos_OB = creditos_OB;
+	}
+
 	public Integer getCreditos_OP() {
-		return this.Creditos_OP;
+		return Creditos_OP;
 	}
 
-	public void setCreditos_OP(Integer Creditos_OP) {
-		this.Creditos_OP = Creditos_OP;
-	}  
-	
+	public void setCreditos_OP(Integer creditos_OP) {
+		Creditos_OP = creditos_OP;
+	}
+
 	public Integer getCreditos_CF() {
-		return this.Creditos_CF;
+		return Creditos_CF;
 	}
 
-	public void setCreditos_CF(Integer Creditos_CF) {
-		this.Creditos_CF = Creditos_CF;
-	} 
-	
+	public void setCreditos_CF(Integer creditos_CF) {
+		Creditos_CF = creditos_CF;
+	}
+
 	public Integer getCreditos_PE() {
-		return this.Creditos_PE;
+		return Creditos_PE;
 	}
 
-	public void setCreditos_PE(Integer Creditos_PE) {
-		this.Creditos_PE = Creditos_PE;
-	} 
-	
+	public void setCreditos_PE(Integer creditos_PE) {
+		Creditos_PE = creditos_PE;
+	}
+
 	public Integer getCreditos_TF() {
-		return this.Creditos_TF;
+		return Creditos_TF;
 	}
 
-	public void setCreditos_TF(Integer Creditos_TF) {
-		this.Creditos_TF = Creditos_TF;
+	public void setCreditos_TF(Integer creditos_TF) {
+		Creditos_TF = creditos_TF;
 	}
-	
+
 	public Titulacion getTitulacion() {
 		return titulacion;
 	}
@@ -160,7 +162,15 @@ public class Expedientes implements Serializable {
 	public void setEncuestas_expediente(List<Encuesta> encuestas_expediente) {
 		this.encuestas_expediente = encuestas_expediente;
 	}
-	
+
+	public List<Matricula> getMatriculas() {
+		return matriculas;
+	}
+
+	public void setMatriculas(List<Matricula> matriculas) {
+		this.matriculas = matriculas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,10 +185,13 @@ public class Expedientes implements Serializable {
 		result = prime * result + ((Creditos_superados == null) ? 0 : Creditos_superados.hashCode());
 		result = prime * result + ((Nota_Media_Provisional == null) ? 0 : Nota_Media_Provisional.hashCode());
 		result = prime * result + ((Num_Expediente == null) ? 0 : Num_Expediente.hashCode());
+		result = prime * result + ((alumno == null) ? 0 : alumno.hashCode());
+		result = prime * result + ((encuestas_expediente == null) ? 0 : encuestas_expediente.hashCode());
+		result = prime * result + ((matriculas == null) ? 0 : matriculas.hashCode());
 		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -238,6 +251,21 @@ public class Expedientes implements Serializable {
 				return false;
 		} else if (!Num_Expediente.equals(other.Num_Expediente))
 			return false;
+		if (alumno == null) {
+			if (other.alumno != null)
+				return false;
+		} else if (!alumno.equals(other.alumno))
+			return false;
+		if (encuestas_expediente == null) {
+			if (other.encuestas_expediente != null)
+				return false;
+		} else if (!encuestas_expediente.equals(other.encuestas_expediente))
+			return false;
+		if (matriculas == null) {
+			if (other.matriculas != null)
+				return false;
+		} else if (!matriculas.equals(other.matriculas))
+			return false;
 		if (titulacion == null) {
 			if (other.titulacion != null)
 				return false;
@@ -245,12 +273,14 @@ public class Expedientes implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Expedientes [Num_Expediente=" + Num_Expediente + ", Activo=" + Activo + ", Nota_Media_Provisional="
 				+ Nota_Media_Provisional + ", Creditos_superados=" + Creditos_superados + ", Creditos_FB=" + Creditos_FB
 				+ ", Creditos_OB=" + Creditos_OB + ", Creditos_OP=" + Creditos_OP + ", Creditos_CF=" + Creditos_CF
-				+ ", Creditos_PE=" + Creditos_PE + ", Creditos_TF=" + Creditos_TF + ", titulacion=" + titulacion + "]";
+				+ ", Creditos_PE=" + Creditos_PE + ", Creditos_TF=" + Creditos_TF + ", titulacion=" + titulacion
+				+ ", alumno=" + alumno + ", encuestas_expediente=" + encuestas_expediente + ", matriculas=" + matriculas
+				+ "]";
 	}
 }

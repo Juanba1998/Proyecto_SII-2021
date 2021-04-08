@@ -2,13 +2,11 @@ package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
 import java.util.List;
-
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Alumno implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ID;
@@ -34,6 +32,10 @@ public class Alumno implements Serializable{
 	@OneToMany (mappedBy = "alumno")
 	private List<Expedientes> lista_expedientes;
 
+	public Alumno() {
+		super();
+	}
+
 	public Alumno(Integer iD, String dNI, String nombre_completo, String email_Institucional, String email_Personal,
 			Integer telefono, Integer movil, String direccion, String localidad, String provincia, Integer codigoPostal,
 			Boolean alumnoMovilidad, List<Expedientes> lista_expedientes) {
@@ -51,10 +53,6 @@ public class Alumno implements Serializable{
 		CodigoPostal = codigoPostal;
 		AlumnoMovilidad = alumnoMovilidad;
 		this.lista_expedientes = lista_expedientes;
-	}
-
-	public Alumno() {
-		super();
 	}
 
 	public Integer getID() {
@@ -159,10 +157,6 @@ public class Alumno implements Serializable{
 
 	public void setLista_expedientes(List<Expedientes> lista_expedientes) {
 		this.lista_expedientes = lista_expedientes;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
@@ -270,4 +264,5 @@ public class Alumno implements Serializable{
 				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", lista_expedientes="
 				+ lista_expedientes + "]";
 	}
+
 }

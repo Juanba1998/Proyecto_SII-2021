@@ -8,11 +8,10 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 public class Asignaturas_Matricula implements Serializable {
 	
-	
-	@Id @ManyToOne
+	@Id @ManyToOne(optional=false)
 	private Asignatura asignatura;
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(optional=false)
 	private Matricula matricula;
 	
 	@ManyToOne

@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Grupo implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ID;
@@ -28,7 +27,7 @@ public class Grupo implements Serializable{
 	private String Asignar;
 	private Integer Plazas;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Titulacion titulacion;
 	
 	@OneToMany(mappedBy="grupo")
@@ -40,12 +39,20 @@ public class Grupo implements Serializable{
 	@OneToMany(mappedBy = "grupo")
 	private List<Asignaturas_Matricula> asignaturas_matricula;
 	
-	//@OneToMany(mappedBy = "ID")
-	private List<Grupo> agrupa_grupos;
+	@OneToMany(mappedBy = "id_grupo")
+	private List<Grupo> grupos_grupo;
+	
+	@ManyToOne
+	private Grupo id_grupo;
+
+	public Grupo() {
+		super();
+	}
 
 	public Grupo(Integer iD, String curso, String letra, String turno_Manana_Tarde, Boolean ingles, Boolean visible,
-			String asignar, Integer plazas, Titulacion titulacion, List<Clase> clase, List<Grupo_por_asignatura> grupo_por_asignatura,
-			List<Asignaturas_Matricula> asignaturas_matricula, List<Grupo> agrupa_grupos) {
+			String asignar, Integer plazas, Titulacion titulacion, List<Clase> clase,
+			List<Grupo_por_asignatura> grupo_por_asignatura, List<Asignaturas_Matricula> asignaturas_matricula,
+			List<Grupo> grupos_grupo, Grupo id_grupo) {
 		super();
 		ID = iD;
 		Curso = curso;
@@ -59,13 +66,10 @@ public class Grupo implements Serializable{
 		this.clase = clase;
 		this.grupo_por_asignatura = grupo_por_asignatura;
 		this.asignaturas_matricula = asignaturas_matricula;
-		this.agrupa_grupos = agrupa_grupos;
+		this.grupos_grupo = grupos_grupo;
+		this.id_grupo = id_grupo;
 	}
 
-	public Grupo() {
-		super();
-	}
-	
 	public Integer getID() {
 		return ID;
 	}
@@ -162,16 +166,20 @@ public class Grupo implements Serializable{
 		this.asignaturas_matricula = asignaturas_matricula;
 	}
 
-	public List<Grupo> getAgrupa_grupos() {
-		return agrupa_grupos;
+	public List<Grupo> getGrupos_grupo() {
+		return grupos_grupo;
 	}
 
-	public void setAgrupa_grupos(List<Grupo> agrupa_grupos) {
-		this.agrupa_grupos = agrupa_grupos;
+	public void setGrupos_grupo(List<Grupo> grupos_grupo) {
+		this.grupos_grupo = grupos_grupo;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Grupo getId_grupo() {
+		return id_grupo;
+	}
+
+	public void setId_grupo(Grupo id_grupo) {
+		this.id_grupo = id_grupo;
 	}
 
 	@Override
@@ -186,10 +194,11 @@ public class Grupo implements Serializable{
 		result = prime * result + ((Plazas == null) ? 0 : Plazas.hashCode());
 		result = prime * result + ((Turno_Manana_Tarde == null) ? 0 : Turno_Manana_Tarde.hashCode());
 		result = prime * result + ((Visible == null) ? 0 : Visible.hashCode());
-		result = prime * result + ((agrupa_grupos == null) ? 0 : agrupa_grupos.hashCode());
 		result = prime * result + ((asignaturas_matricula == null) ? 0 : asignaturas_matricula.hashCode());
 		result = prime * result + ((clase == null) ? 0 : clase.hashCode());
 		result = prime * result + ((grupo_por_asignatura == null) ? 0 : grupo_por_asignatura.hashCode());
+		result = prime * result + ((grupos_grupo == null) ? 0 : grupos_grupo.hashCode());
+		result = prime * result + ((id_grupo == null) ? 0 : id_grupo.hashCode());
 		result = prime * result + ((titulacion == null) ? 0 : titulacion.hashCode());
 		return result;
 	}
@@ -243,11 +252,6 @@ public class Grupo implements Serializable{
 				return false;
 		} else if (!Visible.equals(other.Visible))
 			return false;
-		if (agrupa_grupos == null) {
-			if (other.agrupa_grupos != null)
-				return false;
-		} else if (!agrupa_grupos.equals(other.agrupa_grupos))
-			return false;
 		if (asignaturas_matricula == null) {
 			if (other.asignaturas_matricula != null)
 				return false;
@@ -263,6 +267,16 @@ public class Grupo implements Serializable{
 				return false;
 		} else if (!grupo_por_asignatura.equals(other.grupo_por_asignatura))
 			return false;
+		if (grupos_grupo == null) {
+			if (other.grupos_grupo != null)
+				return false;
+		} else if (!grupos_grupo.equals(other.grupos_grupo))
+			return false;
+		if (id_grupo == null) {
+			if (other.id_grupo != null)
+				return false;
+		} else if (!id_grupo.equals(other.id_grupo))
+			return false;
 		if (titulacion == null) {
 			if (other.titulacion != null)
 				return false;
@@ -276,7 +290,7 @@ public class Grupo implements Serializable{
 		return "Grupo [ID=" + ID + ", Curso=" + Curso + ", Letra=" + Letra + ", Turno_Manana_Tarde="
 				+ Turno_Manana_Tarde + ", Ingles=" + Ingles + ", Visible=" + Visible + ", Asignar=" + Asignar
 				+ ", Plazas=" + Plazas + ", titulacion=" + titulacion + ", clase=" + clase + ", grupo_por_asignatura="
-				+ grupo_por_asignatura + ", asignaturas_matricula=" + asignaturas_matricula + ", agrupa_grupos="
-				+ agrupa_grupos + "]";
+				+ grupo_por_asignatura + ", asignaturas_matricula=" + asignaturas_matricula + ", grupos_grupo="
+				+ grupos_grupo + ", id_grupo=" + id_grupo + "]";
 	}
 }

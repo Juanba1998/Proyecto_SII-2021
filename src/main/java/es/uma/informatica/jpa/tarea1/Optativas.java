@@ -1,26 +1,29 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Optativas extends Asignatura implements Serializable{
 
 	private Integer plazas;
-	private String Mencion;
-	
-	private static final long serialVersionUID = 1L;
+	private String mencion;
 
 	public Optativas() {
 		super();
 	}
 
-	public Optativas(Integer referencia, Integer codigo, Integer creditos, Integer ofertados, String nombre,
-			String curso, String duracion, String cuatrimestre, String idiomasDeImparticion, Integer plazas, String mencion) {
-		super(referencia, codigo, creditos, ofertados, nombre, 
-				curso, duracion, cuatrimestre, idiomasDeImparticion);
+	public Optativas(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
+			String curso, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
+			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula,
+			Integer plazas, String mencion) {
+		super(referencia, codigo, creditos, ofertada, nombre, curso, duracion, cuatrimestre, idiomas_de_Imparticion,
+				asignaturas_titulacion, clase, asignaturas_matricula);
 		this.plazas = plazas;
-		Mencion = mencion;
+		this.mencion = mencion;
 	}
 
 	public Integer getPlazas() {
@@ -32,22 +35,18 @@ public class Optativas extends Asignatura implements Serializable{
 	}
 
 	public String getMencion() {
-		return Mencion;
+		return mencion;
 	}
 
 	public void setMencion(String mencion) {
-		Mencion = mencion;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+		this.mencion = mencion;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ((Mencion == null) ? 0 : Mencion.hashCode());
+		result = prime * result + ((mencion == null) ? 0 : mencion.hashCode());
 		result = prime * result + ((plazas == null) ? 0 : plazas.hashCode());
 		return result;
 	}
@@ -61,10 +60,10 @@ public class Optativas extends Asignatura implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Optativas other = (Optativas) obj;
-		if (Mencion == null) {
-			if (other.Mencion != null)
+		if (mencion == null) {
+			if (other.mencion != null)
 				return false;
-		} else if (!Mencion.equals(other.Mencion))
+		} else if (!mencion.equals(other.mencion))
 			return false;
 		if (plazas == null) {
 			if (other.plazas != null)
@@ -76,6 +75,7 @@ public class Optativas extends Asignatura implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Optativas [plazas=" + plazas + ", Mencion=" + Mencion + "]";
+		return "Optativas [plazas=" + plazas + ", mencion=" + mencion + "]";
 	}
+	
 }

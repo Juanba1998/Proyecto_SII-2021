@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Asignatura implements Serializable {
 	
 	@Id
@@ -18,7 +19,7 @@ public class Asignatura implements Serializable {
 	private Integer Creditos;
 	
 	@Column(nullable=false)
-	private Integer Ofertados;
+	private Integer Ofertada;
 	
 	@Column(nullable=false)
 	private String Nombre;
@@ -26,9 +27,9 @@ public class Asignatura implements Serializable {
 	private String Curso;
 	private String Duracion;
 	private String Cuatrimestre; 
-	private String IdiomasDeImparticion;
+	private String Idiomas_de_Imparticion;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Titulacion asignaturas_titulacion;
 	
 	@OneToMany (mappedBy="asignatura")
@@ -36,25 +37,27 @@ public class Asignatura implements Serializable {
 	
 	@OneToMany (mappedBy="asignatura") 
 	private List<Asignaturas_Matricula> asignaturas_matricula;
-	
-	private static final long serialVersionUID = 1L;
 
 	public Asignatura() {
 		super();
 	}
 
-	public Asignatura(Integer referencia, Integer codigo, Integer creditos, Integer ofertados, String nombre,
-			String curso, String duracion, String cuatrimestre, String idiomasDeImparticion) {
+	public Asignatura(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
+			String curso, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
+			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula) {
 		super();
 		Referencia = referencia;
 		Codigo = codigo;
 		Creditos = creditos;
-		Ofertados = ofertados;
+		Ofertada = ofertada;
 		Nombre = nombre;
 		Curso = curso;
 		Duracion = duracion;
 		Cuatrimestre = cuatrimestre;
-		IdiomasDeImparticion = idiomasDeImparticion;
+		Idiomas_de_Imparticion = idiomas_de_Imparticion;
+		this.asignaturas_titulacion = asignaturas_titulacion;
+		this.clase = clase;
+		this.asignaturas_matricula = asignaturas_matricula;
 	}
 
 	public Integer getReferencia() {
@@ -81,12 +84,12 @@ public class Asignatura implements Serializable {
 		Creditos = creditos;
 	}
 
-	public Integer getOfertados() {
-		return Ofertados;
+	public Integer getOfertada() {
+		return Ofertada;
 	}
 
-	public void setOfertdos(Integer ofertados) {
-		Ofertados = ofertados;
+	public void setOfertada(Integer ofertada) {
+		Ofertada = ofertada;
 	}
 
 	public String getNombre() {
@@ -121,12 +124,12 @@ public class Asignatura implements Serializable {
 		Cuatrimestre = cuatrimestre;
 	}
 
-	public String getIdiomasDeImparticion() {
-		return IdiomasDeImparticion;
+	public String getIdiomas_de_Imparticion() {
+		return Idiomas_de_Imparticion;
 	}
 
-	public void setIdiomasDeImparticion(String idiomasDeImparticion) {
-		IdiomasDeImparticion = idiomasDeImparticion;
+	public void setIdiomas_de_Imparticion(String idiomas_de_Imparticion) {
+		Idiomas_de_Imparticion = idiomas_de_Imparticion;
 	}
 
 	public Titulacion getAsignaturas_titulacion() {
@@ -153,19 +156,6 @@ public class Asignatura implements Serializable {
 		this.asignaturas_matricula = asignaturas_matricula;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public String toString() {
-		return "Asignatura [Referencia=" + Referencia + ", Codigo=" + Codigo + ", Creditos=" + Creditos + ", Ofertados="
-				+ Ofertados + ", Nombre=" + Nombre + ", Curso=" + Curso + ", Duracion=" + Duracion + ", Cuatrimestre="
-				+ Cuatrimestre + ", IdiomasDeImparticion=" + IdiomasDeImparticion + ", asignaturas_titulacion="
-				+ asignaturas_titulacion + ", clase=" + clase + ", asignaturas_matricula=" + asignaturas_matricula
-				+ "]";
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,9 +165,9 @@ public class Asignatura implements Serializable {
 		result = prime * result + ((Cuatrimestre == null) ? 0 : Cuatrimestre.hashCode());
 		result = prime * result + ((Curso == null) ? 0 : Curso.hashCode());
 		result = prime * result + ((Duracion == null) ? 0 : Duracion.hashCode());
-		result = prime * result + ((IdiomasDeImparticion == null) ? 0 : IdiomasDeImparticion.hashCode());
+		result = prime * result + ((Idiomas_de_Imparticion == null) ? 0 : Idiomas_de_Imparticion.hashCode());
 		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((Ofertados == null) ? 0 : Ofertados.hashCode());
+		result = prime * result + ((Ofertada == null) ? 0 : Ofertada.hashCode());
 		result = prime * result + ((Referencia == null) ? 0 : Referencia.hashCode());
 		result = prime * result + ((asignaturas_matricula == null) ? 0 : asignaturas_matricula.hashCode());
 		result = prime * result + ((asignaturas_titulacion == null) ? 0 : asignaturas_titulacion.hashCode());
@@ -219,20 +209,20 @@ public class Asignatura implements Serializable {
 				return false;
 		} else if (!Duracion.equals(other.Duracion))
 			return false;
-		if (IdiomasDeImparticion == null) {
-			if (other.IdiomasDeImparticion != null)
+		if (Idiomas_de_Imparticion == null) {
+			if (other.Idiomas_de_Imparticion != null)
 				return false;
-		} else if (!IdiomasDeImparticion.equals(other.IdiomasDeImparticion))
+		} else if (!Idiomas_de_Imparticion.equals(other.Idiomas_de_Imparticion))
 			return false;
 		if (Nombre == null) {
 			if (other.Nombre != null)
 				return false;
 		} else if (!Nombre.equals(other.Nombre))
 			return false;
-		if (Ofertados == null) {
-			if (other.Ofertados != null)
+		if (Ofertada == null) {
+			if (other.Ofertada != null)
 				return false;
-		} else if (!Ofertados.equals(other.Ofertados))
+		} else if (!Ofertada.equals(other.Ofertada))
 			return false;
 		if (Referencia == null) {
 			if (other.Referencia != null)
@@ -255,5 +245,14 @@ public class Asignatura implements Serializable {
 		} else if (!clase.equals(other.clase))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Asignatura [Referencia=" + Referencia + ", Codigo=" + Codigo + ", Creditos=" + Creditos + ", Ofertada="
+				+ Ofertada + ", Nombre=" + Nombre + ", Curso=" + Curso + ", Duracion=" + Duracion + ", Cuatrimestre="
+				+ Cuatrimestre + ", Idiomas_de_Imparticion=" + Idiomas_de_Imparticion + ", asignaturas_titulacion="
+				+ asignaturas_titulacion + ", clase=" + clase + ", asignaturas_matricula=" + asignaturas_matricula
+				+ "]";
 	}
 }

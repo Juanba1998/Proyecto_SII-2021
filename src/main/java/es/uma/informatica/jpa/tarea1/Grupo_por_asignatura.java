@@ -5,21 +5,20 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @IdClass(Grupo_por_asignatura.Grupo_por_asignaturaID.class)
 public class Grupo_por_asignatura implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private String Curso_Academico;
 	
 	private String Oferta;
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(optional=false)
 	private Grupo grupo;
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(optional=false)
 	private Asignatura Asignatura;
 
 	@ManyToMany
@@ -37,39 +36,27 @@ public class Grupo_por_asignatura implements Serializable{
 		private Integer grupo;
 		private Integer Asignatura;
 	}
-	
-	public Grupo_por_asignatura(String curso_academico, String oferta ,List<Expedientes> lista_expedientes) {
-		super();
-		Curso_Academico = curso_academico;
-		Oferta = oferta;
-	}
-	
+
 	public Grupo_por_asignatura() {
 		super();
+	}
+
+	public Grupo_por_asignatura(String curso_Academico, String oferta, Grupo grupo,
+			es.uma.informatica.jpa.tarea1.Asignatura asignatura, List<Encuesta> encuesta) {
+		super();
+		Curso_Academico = curso_Academico;
+		Oferta = oferta;
+		this.grupo = grupo;
+		Asignatura = asignatura;
+		this.encuesta = encuesta;
 	}
 
 	public String getCurso_Academico() {
 		return Curso_Academico;
 	}
 
-	public void setCurso_Academico(String curso_academico) {
-		Curso_Academico = curso_academico;
-	}
-
-	public Asignatura getAsignatura() {
-		return Asignatura;
-	}
-
-	public void setAsignatura(Asignatura asignatura) {
-		Asignatura = asignatura;
-	}
-
-	public Grupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(Grupo grupo) {
-		this.grupo = grupo;
+	public void setCurso_Academico(String curso_Academico) {
+		Curso_Academico = curso_Academico;
 	}
 
 	public String getOferta() {
@@ -80,8 +67,28 @@ public class Grupo_por_asignatura implements Serializable{
 		Oferta = oferta;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Grupo getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(Grupo grupo) {
+		this.grupo = grupo;
+	}
+
+	public Asignatura getAsignatura() {
+		return Asignatura;
+	}
+
+	public void setAsignatura(Asignatura asignatura) {
+		Asignatura = asignatura;
+	}
+
+	public List<Encuesta> getEncuesta() {
+		return encuesta;
+	}
+
+	public void setEncuesta(List<Encuesta> encuesta) {
+		this.encuesta = encuesta;
 	}
 
 	@Override
@@ -91,6 +98,7 @@ public class Grupo_por_asignatura implements Serializable{
 		result = prime * result + ((Asignatura == null) ? 0 : Asignatura.hashCode());
 		result = prime * result + ((Curso_Academico == null) ? 0 : Curso_Academico.hashCode());
 		result = prime * result + ((Oferta == null) ? 0 : Oferta.hashCode());
+		result = prime * result + ((encuesta == null) ? 0 : encuesta.hashCode());
 		result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
 		return result;
 	}
@@ -119,6 +127,11 @@ public class Grupo_por_asignatura implements Serializable{
 				return false;
 		} else if (!Oferta.equals(other.Oferta))
 			return false;
+		if (encuesta == null) {
+			if (other.encuesta != null)
+				return false;
+		} else if (!encuesta.equals(other.encuesta))
+			return false;
 		if (grupo == null) {
 			if (other.grupo != null)
 				return false;
@@ -130,6 +143,6 @@ public class Grupo_por_asignatura implements Serializable{
 	@Override
 	public String toString() {
 		return "Grupo_por_asignatura [Curso_Academico=" + Curso_Academico + ", Oferta=" + Oferta + ", grupo=" + grupo
-				+ ", Asignatura=" + Asignatura + "]";
+				+ ", Asignatura=" + Asignatura + ", encuesta=" + encuesta + "]";
 	}
 }

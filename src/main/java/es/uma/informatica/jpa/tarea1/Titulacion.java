@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Titulacion implements Serializable {
 
@@ -20,7 +21,7 @@ public class Titulacion implements Serializable {
 	private Integer Creditos;
 	
 	@ManyToMany
-	@JoinTable(name = "jnd_titu_cen",
+	@JoinTable(name = "Titulacion_Centro",
 	joinColumns = @JoinColumn(name = "titu_fk"),
 	inverseJoinColumns = @JoinColumn(name = "cen_fk"))
 	private List<Centro> titulacion_centros;
@@ -34,7 +35,9 @@ public class Titulacion implements Serializable {
 	@OneToMany(mappedBy = "titulacion")
 	private List<Grupo> grupos;
 
-	private static final long serialVersionUID = 1L;
+	public Titulacion() {
+		super();
+	}
 
 	public Titulacion(Integer codigo, String nombre, Integer creditos, List<Centro> titulacion_centros,
 			List<Asignatura> asignaturas, List<Expedientes> expedientes_titulacion, List<Grupo> grupos) {
@@ -46,10 +49,6 @@ public class Titulacion implements Serializable {
 		this.asignaturas = asignaturas;
 		this.expedientes_titulacion = expedientes_titulacion;
 		this.grupos = grupos;
-	}
-
-	public Titulacion() {
-		super();
 	}
 
 	public Integer getCodigo() {
@@ -106,10 +105,6 @@ public class Titulacion implements Serializable {
 
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override

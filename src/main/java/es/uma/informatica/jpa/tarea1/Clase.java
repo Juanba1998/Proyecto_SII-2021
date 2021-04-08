@@ -5,13 +5,13 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @IdClass(Clase.ClaseId.class)
 public class Clase implements Serializable {
 	
 	public static class ClaseId implements Serializable{
 		
-		private static final long serialVersionUID = 1L;
 		private Date dia;
 		private Date horaInicio;
 		private int grupo;
@@ -25,23 +25,23 @@ public class Clase implements Serializable {
 	
 	private Date HoraFin;
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Asignatura asignatura;
 	
-	@Id @ManyToOne
+	@Id @ManyToOne(optional=false)
 	private Grupo grupo;
-	
-	private static final long serialVersionUID = 1L;
 
 	public Clase() {
 		super();
 	}
 
-	public Clase(Date dia, Date horaInicio, Date horaFin) {
+	public Clase(Date dia, Date horaInicio, Date horaFin, Asignatura asignatura, Grupo grupo) {
 		super();
 		this.dia = dia;
 		this.horaInicio = horaInicio;
 		HoraFin = horaFin;
+		this.asignatura = asignatura;
+		this.grupo = grupo;
 	}
 
 	public Date getDia() {
@@ -82,10 +82,6 @@ public class Clase implements Serializable {
 
 	public void setGrupo(Grupo grupo) {
 		this.grupo = grupo;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
@@ -136,10 +132,12 @@ public class Clase implements Serializable {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Clase [dia=" + dia + ", horaInicio=" + horaInicio + ", HoraFin=" + HoraFin + ", asignatura="
 				+ asignatura + ", grupo=" + grupo + "]";
 	}
+
+	
 }

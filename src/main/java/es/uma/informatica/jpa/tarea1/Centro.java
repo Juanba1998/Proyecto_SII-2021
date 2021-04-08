@@ -5,10 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Centro implements Serializable{
-
-	private static final long serialVersionUID = 1L;
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ID;
@@ -31,9 +30,19 @@ public class Centro implements Serializable{
 		Direccion = direccion;
 		TLF_Conserjeria = tLF_Conserjeria;
 	}
-	
+
 	public Centro() {
 		super();
+	}
+
+	public Centro(Integer iD, String nombre, String direccion, Integer tLF_Conserjeria,
+			List<Titulacion> centro_titulaciones) {
+		super();
+		ID = iD;
+		Nombre = nombre;
+		Direccion = direccion;
+		TLF_Conserjeria = tLF_Conserjeria;
+		this.centro_titulaciones = centro_titulaciones;
 	}
 
 	public Integer getID() {

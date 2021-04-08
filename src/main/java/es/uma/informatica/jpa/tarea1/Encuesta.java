@@ -6,29 +6,28 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 public class Encuesta implements Serializable {
-  
-	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private Date Fecha_de_envio;
 
-	@ManyToOne
+	@ManyToOne(optional=false)
 	private Expedientes expediente;
 	
 	@ManyToMany(mappedBy="encuesta")
 	private List<Grupo_por_asignatura> grupo_por_asignatura;
+
+	public Encuesta() {
+		super();
+	}
 
 	public Encuesta(Date fecha_de_envio, Expedientes expediente, List<Grupo_por_asignatura> grupo_por_asignatura) {
 		super();
 		Fecha_de_envio = fecha_de_envio;
 		this.expediente = expediente;
 		this.grupo_por_asignatura = grupo_por_asignatura;
-	}
-
-	public Encuesta() {
-		super();
 	}
 
 	public Date getFecha_de_envio() {
@@ -53,10 +52,6 @@ public class Encuesta implements Serializable {
 
 	public void setGrupo_por_asignatura(List<Grupo_por_asignatura> grupo_por_asignatura) {
 		this.grupo_por_asignatura = grupo_por_asignatura;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@Override
@@ -100,5 +95,5 @@ public class Encuesta implements Serializable {
 	public String toString() {
 		return "Encuesta [Fecha_de_envio=" + Fecha_de_envio + ", expediente=" + expediente + ", grupo_por_asignatura="
 				+ grupo_por_asignatura + "]";
-	}
+	}	
 }
