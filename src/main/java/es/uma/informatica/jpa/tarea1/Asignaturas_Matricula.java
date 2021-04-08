@@ -4,7 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 @Entity
+@IdClass(Asignaturas_Matricula.Asignatura_MatriculaID.class)
 public class Asignaturas_Matricula implements Serializable {
+	
 	
 	@Id @ManyToOne
 	private Asignatura asignatura;
@@ -17,7 +19,8 @@ public class Asignaturas_Matricula implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	public static class Asignatura_matriculaID implements Serializable{
+	public static class Asignatura_MatriculaID implements Serializable{
+		
 		private String matricula;
 		private Integer asignatura;
 	}

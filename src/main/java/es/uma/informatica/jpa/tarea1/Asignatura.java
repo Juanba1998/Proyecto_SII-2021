@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-
 public class Asignatura implements Serializable {
 	
 	@Id
@@ -34,10 +33,10 @@ public class Asignatura implements Serializable {
 	private Titulacion asignaturas_titulacion;
 	
 	@OneToMany (mappedBy="asignatura")
-	private List <Clase> clase;
+	private List<Clase> clase;
 	
-	@OneToMany (mappedBy="Asignatura") 
-	private List <Asignaturas_Matricula> asignaturas_matricula;
+	@OneToMany (mappedBy="asignatura") 
+	private List<Asignaturas_Matricula> asignaturas_matricula;
 	
 	private static final long serialVersionUID = 1L;
 
