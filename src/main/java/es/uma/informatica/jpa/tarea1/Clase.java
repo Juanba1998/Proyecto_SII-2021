@@ -15,6 +15,82 @@ public class Clase implements Serializable {
 		private Date dia;
 		private Date horaInicio;
 		private int grupo;
+		
+		public ClaseId() {
+			super();
+		}
+
+		public ClaseId(Date dia, Date horaInicio, int grupo) {
+			super();
+			this.dia = dia;
+			this.horaInicio = horaInicio;
+			this.grupo = grupo;
+		}
+
+		public Date getDia() {
+			return dia;
+		}
+
+		public void setDia(Date dia) {
+			this.dia = dia;
+		}
+
+		public Date getHoraInicio() {
+			return horaInicio;
+		}
+
+		public void setHoraInicio(Date horaInicio) {
+			this.horaInicio = horaInicio;
+		}
+
+		public int getGrupo() {
+			return grupo;
+		}
+
+		public void setGrupo(int grupo) {
+			this.grupo = grupo;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((dia == null) ? 0 : dia.hashCode());
+			result = prime * result + grupo;
+			result = prime * result + ((horaInicio == null) ? 0 : horaInicio.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			ClaseId other = (ClaseId) obj;
+			if (dia == null) {
+				if (other.dia != null)
+					return false;
+			} else if (!dia.equals(other.dia))
+				return false;
+			if (grupo != other.grupo)
+				return false;
+			if (horaInicio == null) {
+				if (other.horaInicio != null)
+					return false;
+			} else if (!horaInicio.equals(other.horaInicio))
+				return false;
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "ClaseId [dia=" + dia + ", horaInicio=" + horaInicio + ", grupo=" + grupo + "]";
+		}
+		
+		
 	}
 	
 	@Id

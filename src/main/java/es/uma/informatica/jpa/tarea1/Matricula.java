@@ -18,6 +18,68 @@ public class Matricula implements Serializable {
 		
 		private String Curso_academico;
 		private Integer expediente;
+		
+		public MatriculaId() {
+			super();
+		}
+		
+		public MatriculaId(String curso_academico, Integer expediente) {
+			super();
+			Curso_academico = curso_academico;
+			this.expediente = expediente;
+		}
+		
+		public String getCurso_academico() {
+			return Curso_academico;
+		}
+		
+		public void setCurso_academico(String curso_academico) {
+			Curso_academico = curso_academico;
+		}
+		
+		public Integer getExpediente() {
+			return expediente;
+		}
+		
+		public void setExpediente(Integer expediente) {
+			this.expediente = expediente;
+		}
+		
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((Curso_academico == null) ? 0 : Curso_academico.hashCode());
+			result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
+			return result;
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			MatriculaId other = (MatriculaId) obj;
+			if (Curso_academico == null) {
+				if (other.Curso_academico != null)
+					return false;
+			} else if (!Curso_academico.equals(other.Curso_academico))
+				return false;
+			if (expediente == null) {
+				if (other.expediente != null)
+					return false;
+			} else if (!expediente.equals(other.expediente))
+				return false;
+			return true;
+		}
+		
+		@Override
+		public String toString() {
+			return "MatriculaId [Curso_academico=" + Curso_academico + ", expediente=" + expediente + "]";
+		}
 	}
 	   
 	@Id

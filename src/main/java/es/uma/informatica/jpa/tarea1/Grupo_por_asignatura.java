@@ -34,6 +34,84 @@ public class Grupo_por_asignatura implements Serializable{
 		private String Curso_Academico;
 		private Integer grupo;
 		private Integer Asignatura;
+		
+		public Grupo_por_asignaturaID() {
+			super();
+		}
+
+		public Grupo_por_asignaturaID(String curso_Academico, Integer grupo, Integer asignatura) {
+			super();
+			Curso_Academico = curso_Academico;
+			this.grupo = grupo;
+			Asignatura = asignatura;
+		}
+
+		public String getCurso_Academico() {
+			return Curso_Academico;
+		}
+
+		public void setCurso_Academico(String curso_Academico) {
+			Curso_Academico = curso_Academico;
+		}
+
+		public Integer getGrupo() {
+			return grupo;
+		}
+
+		public void setGrupo(Integer grupo) {
+			this.grupo = grupo;
+		}
+
+		public Integer getAsignatura() {
+			return Asignatura;
+		}
+
+		public void setAsignatura(Integer asignatura) {
+			Asignatura = asignatura;
+		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + ((Asignatura == null) ? 0 : Asignatura.hashCode());
+			result = prime * result + ((Curso_Academico == null) ? 0 : Curso_Academico.hashCode());
+			result = prime * result + ((grupo == null) ? 0 : grupo.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Grupo_por_asignaturaID other = (Grupo_por_asignaturaID) obj;
+			if (Asignatura == null) {
+				if (other.Asignatura != null)
+					return false;
+			} else if (!Asignatura.equals(other.Asignatura))
+				return false;
+			if (Curso_Academico == null) {
+				if (other.Curso_Academico != null)
+					return false;
+			} else if (!Curso_Academico.equals(other.Curso_Academico))
+				return false;
+			if (grupo == null) {
+				if (other.grupo != null)
+					return false;
+			} else if (!grupo.equals(other.grupo))
+				return false;
+			return true;
+		}
+
+		@Override
+		public String toString() {
+			return "Grupo_por_asignaturaID [Curso_Academico=" + Curso_Academico + ", grupo=" + grupo + ", Asignatura="
+					+ Asignatura + "]";
+		}
 	}
 
 	public Grupo_por_asignatura() {
