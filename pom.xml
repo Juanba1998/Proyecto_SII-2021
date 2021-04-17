@@ -8,7 +8,6 @@
   	<maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   
-  
   <dependencies>
   
   	<dependency>
@@ -21,6 +20,27 @@
     	<groupId>mysql</groupId>
     	<artifactId>mysql-connector-java</artifactId>
     	<version>8.0.19</version>
+	</dependency>
+	
+	<dependency>
+    	<groupId>org.glassfish.main.extras</groupId>
+    	<artifactId>glassfish-embedded-all</artifactId>
+    	<version>5.1.0</version>
+    	<scope>test</scope>
+	</dependency>
+	
+	<dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.13</version>
+    	<scope>test</scope>
+	</dependency>
+	
+	<dependency>
+    	<groupId>com.h2database</groupId>
+    	<artifactId>h2</artifactId>
+    	<version>1.4.200</version>
+    	<scope>test</scope>
 	</dependency>
 	
   </dependencies>
