@@ -10,4 +10,3 @@ public class TrabajoException extends Exception{
 	}
 
 }
- 

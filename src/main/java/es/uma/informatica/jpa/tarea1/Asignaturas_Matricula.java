@@ -9,7 +9,7 @@ import es.uma.informatica.jpa.tarea1.Matricula.MatriculaId;
 @IdClass(Asignaturas_Matricula.Asignatura_MatriculaID.class)
 @SuppressWarnings("serial")
 public class Asignaturas_Matricula implements Serializable {
-	 
+	
 	@Id @ManyToOne(optional=false)
 	private Asignatura asignatura;
 	

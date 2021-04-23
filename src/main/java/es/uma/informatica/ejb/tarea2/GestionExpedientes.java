@@ -25,4 +25,3 @@ public interface GestionExpedientes {
 	
 	public void MostrarNMPExpediente(Expedientes exp, Login login) throws TrabajoException;
 }
- 

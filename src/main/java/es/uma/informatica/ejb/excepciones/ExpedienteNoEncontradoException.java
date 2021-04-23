@@ -4,4 +4,3 @@ package es.uma.informatica.ejb.excepciones;
 public class ExpedienteNoEncontradoException extends TrabajoException{
 
 }
- 
