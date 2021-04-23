@@ -41,7 +41,7 @@ public class AlumnoEJB implements GestionListaAlu {
 	}
 	
 	
-
+ 
 	@SuppressWarnings("unchecked")
 	private List<Expedientes> getExpedientes(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		

@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(Grupo_por_asignatura.Grupo_por_asignaturaID.class)
 public class Grupo_por_asignatura implements Serializable{
-
+ 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private String Curso_Academico;
 	

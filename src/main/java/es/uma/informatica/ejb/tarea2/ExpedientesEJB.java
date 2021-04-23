@@ -36,7 +36,7 @@ public class ExpedientesEJB implements GestionExpedientes {
 			System.out.println("NumExpediente: " + e.getNum_Expediente() + "; Nota Media: " + e.getNota_Media_Provisional()); 
 		}		
 	}
-	
+ 	
 	public void MostrarNMPExpediente(Expedientes exp, Login login) throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		String str = "";

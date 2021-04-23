@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Asignatura implements Serializable {
-	
+	 
 	@Id
 	private Integer Referencia; 
 	

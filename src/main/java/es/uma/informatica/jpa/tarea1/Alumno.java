@@ -7,7 +7,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 public class Alumno implements Serializable{
-
+ 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ID;
 	

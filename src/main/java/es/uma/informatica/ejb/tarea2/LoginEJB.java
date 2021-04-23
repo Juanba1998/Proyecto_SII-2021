@@ -14,7 +14,7 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 
 @Stateless
 public class LoginEJB implements GestionLogin{
-
+ 
 	
 @SuppressWarnings("unused")
 private static final Logger LOG = Logger.getLogger(LoginEJB.class.getCanonicalName());
