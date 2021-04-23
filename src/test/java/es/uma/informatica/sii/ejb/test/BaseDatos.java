@@ -30,7 +30,7 @@ public class BaseDatos {
 		
 		for (Alumno alumnos: new Alumno [] {alumno1,alumno2,alumno3}) {
 			em.persist(alumnos);
-		}
+		} 
 		
 			alumno1.setLista_Expedientes(Stream.of(exp1)
 					.collect(Collectors.toSet()));
