@@ -146,10 +146,10 @@ public class BaseDatos {
 		
 		//LOGIN
 		
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", 0,null);
-		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", 1,null);
-		Login login3 = new Login(1237213, "levi3", "micontraseña", 1,null);
-		Login login4 = new Login(1238873, "juju4", "contra123", 1,null);
+		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
+		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+		Login login3 = new Login(1237213, "levi3", "micontraseña", true, null);
+		Login login4 = new Login(1238873, "juju4", "contra123", true, null);
 				
 		for (Login logins: new Login [] {login1,login2,login3,login4}){
 			em.persist(logins);

@@ -18,8 +18,9 @@ public class Login implements Serializable {
 	@Column(nullable = false)
 	private String Contrasena;
 	
+	//0 indica personal de secretaria y 1 alumno
 	@Column(nullable = false)
-	private Integer Tipo;
+	private Boolean esAlumno;
 	
 	@OneToOne
 	private Alumno alumno;
@@ -28,12 +29,12 @@ public class Login implements Serializable {
 		super();
 	}
 
-	public Login(Integer codigo, String usuario, String contrasena, Integer tipo, Alumno alumno) {
+	public Login(Integer codigo, String usuario, String contrasena, Boolean esAlumno, Alumno alumno) {
 		super();
 		Codigo = codigo;
 		Usuario = usuario;
 		Contrasena = contrasena;
-		Tipo = tipo;
+		this.esAlumno = esAlumno;
 		this.alumno = alumno;
 	}
 
@@ -60,14 +61,13 @@ public class Login implements Serializable {
 	public void setContrasena(String contrasena) {
 		Contrasena = contrasena;
 	}
-	
-	//0 es para personal de secretaria y 1 para alumno
-	public Integer getTipo() {
-		return Tipo;
+
+	public Boolean getEsAlumno() {
+		return esAlumno;
 	}
 
-	public void setTipo(Integer tipo) {
-		Tipo = tipo;
+	public void setEsAlumno(Boolean esAlumno) {
+		this.esAlumno = esAlumno;
 	}
 
 	public Alumno getAlumno() {
@@ -84,9 +84,9 @@ public class Login implements Serializable {
 		int result = 1;
 		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
 		result = prime * result + ((Contrasena == null) ? 0 : Contrasena.hashCode());
-		result = prime * result + ((Tipo == null) ? 0 : Tipo.hashCode());
 		result = prime * result + ((Usuario == null) ? 0 : Usuario.hashCode());
 		result = prime * result + ((alumno == null) ? 0 : alumno.hashCode());
+		result = prime * result + ((esAlumno == null) ? 0 : esAlumno.hashCode());
 		return result;
 	}
 
@@ -109,11 +109,6 @@ public class Login implements Serializable {
 				return false;
 		} else if (!Contrasena.equals(other.Contrasena))
 			return false;
-		if (Tipo == null) {
-			if (other.Tipo != null)
-				return false;
-		} else if (!Tipo.equals(other.Tipo))
-			return false;
 		if (Usuario == null) {
 			if (other.Usuario != null)
 				return false;
@@ -124,13 +119,19 @@ public class Login implements Serializable {
 				return false;
 		} else if (!alumno.equals(other.alumno))
 			return false;
+		if (esAlumno == null) {
+			if (other.esAlumno != null)
+				return false;
+		} else if (!esAlumno.equals(other.esAlumno))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Login [Codigo=" + Codigo + ", Usuario=" + Usuario + ", Contrasena=" + Contrasena + ", Tipo=" + Tipo
-				+ ", alumno=" + alumno + "]";
+		return "Login [Codigo=" + Codigo + ", Usuario=" + Usuario + ", Contrasena=" + Contrasena + ", esAlumno="
+				+ esAlumno + ", alumno=" + alumno + "]";
 	}
 
+	
 }

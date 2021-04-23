@@ -55,12 +55,12 @@ public class ExpedientesEJB implements GestionExpedientes {
 	
 
 	@SuppressWarnings("unchecked")
-	private List<Expedientes> getExpedientes(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+	public List<Expedientes> getExpedientes(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 
 		LoginEJB.login(login);
 		
-		if(login.getTipo() > 0) throw new PermisosInsuficientesException();
+		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
 		else {
 		
