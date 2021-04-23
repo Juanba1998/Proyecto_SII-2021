@@ -6,8 +6,13 @@ import javax.persistence.*;
 import es.uma.informatica.jpa.tarea1.Matricula.MatriculaId;
 
 @Entity
+<<<<<<< HEAD
 @IdClass(Asignaturas_Matricula.Asignatura_MatriculaID.class)
 @SuppressWarnings("serial")
+=======
+
+
+>>>>>>> parent of bf8c2e1... UPDATE
 public class Asignaturas_Matricula implements Serializable {
 	
 	@Id @ManyToOne(optional=false)
