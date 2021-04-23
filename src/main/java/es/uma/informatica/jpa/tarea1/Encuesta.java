@@ -9,7 +9,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 public class Encuesta implements Serializable {
-	 
+	
 	@Id
 	private Date Fecha_de_envio;
 

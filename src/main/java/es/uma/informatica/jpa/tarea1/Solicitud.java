@@ -13,7 +13,7 @@ public class Solicitud implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Codigo;
-	 
+	
 	@Column(nullable = false)
 	private String Descripcion;
 	

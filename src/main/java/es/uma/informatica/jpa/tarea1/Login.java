@@ -8,7 +8,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 public class Login implements Serializable {
- 
+
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Codigo;
 	

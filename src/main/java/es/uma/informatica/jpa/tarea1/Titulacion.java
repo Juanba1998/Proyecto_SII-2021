@@ -16,7 +16,7 @@ public class Titulacion implements Serializable {
 	
 	@Column(nullable = false)
 	private String Nombre;
-	 
+	
 	@Column(nullable = false)
 	private Integer Creditos;
 	

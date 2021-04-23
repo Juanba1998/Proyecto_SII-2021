@@ -23,7 +23,7 @@ public interface GestionListaAlu {
 	  * Necesarios tres métodos: mostrar todos, mostrar en una titulacion, mostrar en una asginatura
 	  * */
 	
- 	public void MostrarTodosAlumnos(Login login) throws TrabajoException;
+	public void MostrarTodosAlumnos(Login login) throws TrabajoException;
 	
 	public void MostrarAlumnosTitu(Expedientes exp, Login login,Titulacion titu) throws TrabajoException;
 	

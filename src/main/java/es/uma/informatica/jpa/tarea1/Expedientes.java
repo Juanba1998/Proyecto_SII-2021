@@ -8,7 +8,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 public class Expedientes implements Serializable {
-	    
+	   
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Num_Expediente;
 
