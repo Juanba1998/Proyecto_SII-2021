@@ -18,7 +18,7 @@ public class Login implements Serializable {
 	@Column(nullable = false)
 	private String Contrasena;
 	
-	//0 indica personal de secretaria y 1 alumno
+	//false indica personal de secretaria y true alumno
 	@Column(nullable = false)
 	private Boolean esAlumno;
 	

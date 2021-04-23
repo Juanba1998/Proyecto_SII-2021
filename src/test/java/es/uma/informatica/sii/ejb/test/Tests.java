@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.sql.Date;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -16,7 +17,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import es.uma.informatica.jpa.tarea1.*;
 import es.uma.informatica.ejb.tarea2.*;
+import es.uma.informatica.ejb.excepciones.*;
+
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class Tests {
@@ -63,8 +67,29 @@ public class Tests {
 	
 	@Requisitos({"RF7"})
 	@Test
-	public void testSolicitudDuplicada() {
+	public void testinsertarSolicitudDuplicada() {
+		Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"), null);
 		
+		try {
+			try {
+				gestionSolicitud.aniadirSolicitud(new Login(1231213, "Manoli1", "contraseña123", false, null), solicitud);
+			} catch (SolicitudDuplicadaException e) {
+				//fail("Lanzó excepción al añadir la solicitud");
+				//OK
+				
+			} catch(PermisosInsuficientesException e) {
+				fail("No deberia lanzar excepcion de permisos insuficientes");
+			} catch(UsuarioInexistenteException e) {
+				fail("No deberia lanzar excepcion de usuario inexistente");
+			} catch(ContrasenaInvalidaException e) {
+				fail("No deberia lanzar excepcion de contraseña invalida");
+			} catch(LoginException e) {
+				fail("Captura LoginException");
+			}
+		
+		}catch (TrabajoException e) {
+			throw new RuntimeException(e);
+		}
 		
 	}
 	
