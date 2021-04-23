@@ -10,9 +10,6 @@ import es.uma.informatica.ejb.excepciones.AgruparGruposException;
 import es.uma.informatica.jpa.tarea1.Alumno;
 import es.uma.informatica.jpa.tarea1.Grupo;
 
-/**
- * Session Bean implementation class GrupoEJB
- */
 @Stateless
 public class GrupoEJB implements GestionGrupos {
 	

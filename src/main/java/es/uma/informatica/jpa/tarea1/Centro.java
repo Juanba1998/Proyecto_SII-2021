@@ -11,7 +11,7 @@ public class Centro implements Serializable{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer ID;
-	
+	 
 	@Column(unique = true)
 	private String Nombre;
 	

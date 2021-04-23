@@ -4,3 +4,4 @@ package es.uma.informatica.ejb.excepciones;
 public class SolicitudDuplicadaException extends TrabajoException{
 
 }
+ 

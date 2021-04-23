@@ -12,7 +12,7 @@ public class Encuesta implements Serializable {
 	
 	@Id
 	private Date Fecha_de_envio;
-
+ 
 	@ManyToOne(optional=false)
 	private Expedientes expediente;
 	

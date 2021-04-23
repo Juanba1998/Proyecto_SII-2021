@@ -3,7 +3,7 @@ package es.uma.informatica.jpa.tarea1;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
-
+ 
 @SuppressWarnings("serial")
 @Entity
 public class Grupo implements Serializable{

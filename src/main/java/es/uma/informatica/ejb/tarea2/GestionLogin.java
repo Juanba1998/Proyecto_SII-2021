@@ -13,8 +13,4 @@ public interface GestionLogin {
 	public void login (Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException;
 	
 	public Login refrescarLogin (Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException;
-
-	
-	
-
 }

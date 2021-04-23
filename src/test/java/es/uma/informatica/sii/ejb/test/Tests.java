@@ -13,7 +13,6 @@ import org.junit.BeforeClass;
 
 import es.uma.informatica.ejb.tarea2.*;
 
-
 public class Tests {
 	
 	private static final Logger LOG = Logger.getLogger(Tests.class.getCanonicalName());

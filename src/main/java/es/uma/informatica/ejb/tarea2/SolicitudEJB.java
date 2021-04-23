@@ -9,6 +9,7 @@ import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.ejb.excepciones.SolicitudDuplicadaException;
+import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Solicitud;
@@ -40,6 +41,12 @@ public class SolicitudEJB implements GestionSolicitud {
 			solicitud.setAlumno(login.getAlumno());
 			em.persist(solicitud);
 		}
+		
+		
+	}
+
+	@Override
+	public void verSolicitud(Login login, Solicitud solicitud) throws TrabajoException {
 		
 		
 	}

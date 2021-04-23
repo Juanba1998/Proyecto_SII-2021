@@ -28,7 +28,7 @@ public class Matricula implements Serializable {
 			Curso_academico = curso_academico;
 			this.expediente = expediente;
 		}
-		
+		 
 		public String getCurso_academico() {
 			return Curso_academico;
 		}

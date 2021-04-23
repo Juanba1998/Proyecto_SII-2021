@@ -11,7 +11,7 @@ public class Expedientes implements Serializable {
 	   
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Num_Expediente;
-
+ 
 	private Boolean Activo;
 	private Double Nota_Media_Provisional;
 	private Integer Creditos_superados;

@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Clase implements Serializable {
 	
 	public static class ClaseId implements Serializable{
-		
+		 
 		private Date dia;
 		private Date horaInicio;
 		private int grupo;
