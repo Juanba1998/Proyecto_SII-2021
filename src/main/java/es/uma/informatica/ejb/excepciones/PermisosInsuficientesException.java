@@ -4,3 +4,4 @@ package es.uma.informatica.ejb.excepciones;
 public class PermisosInsuficientesException extends TrabajoException {
 
 }
+ 

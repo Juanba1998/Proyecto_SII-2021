@@ -24,4 +24,4 @@ public interface GestionExpedientes {
 	public void MostrarTodasNMP(Login login) throws TrabajoException;
 	
 	public void MostrarNMPExpediente(Expedientes exp, Login login) throws TrabajoException;
-}
+}  

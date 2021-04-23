@@ -11,5 +11,6 @@ public interface GestionSolicitud {
 	
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws TrabajoException;
 	
+	public void verSolicitud(Login login, Solicitud solicitud) throws TrabajoException;
 	
 }

@@ -15,9 +15,7 @@
 		<class>es.uma.informatica.jpa.tarea1.Optativas</class>
 		<class>es.uma.informatica.jpa.tarea1.Alumno</class>
 		<class>es.uma.informatica.jpa.tarea1.Solicitud</class>
-		<class>es.uma.informatica.jpa.tarea1.Login</class>
-		<class>es.uma.informatica.jpa.tarea1.ExcelAlumnos</class>
-		<class>es.uma.informatica.jpa.tarea1.ExcelAsignaturas</class>
+		<class>es.uma.informatica.jpa.tarea1.Login</class> 
 		<shared-cache-mode>NONE</shared-cache-mode>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sii"/>

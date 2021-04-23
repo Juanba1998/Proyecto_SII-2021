@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.*;
-
+ 
 @SuppressWarnings("serial")
 @Entity
 @IdClass(Grupo_por_asignatura.Grupo_por_asignaturaID.class)

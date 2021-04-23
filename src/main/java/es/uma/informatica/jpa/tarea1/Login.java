@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import javax.persistence.*;
-
+ 
 @SuppressWarnings("serial")
 @Entity
 public class Login implements Serializable {

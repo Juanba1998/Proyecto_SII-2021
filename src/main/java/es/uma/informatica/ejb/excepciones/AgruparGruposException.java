@@ -1,7 +1,6 @@
 package es.uma.informatica.ejb.excepciones;
 
 @SuppressWarnings("serial")
-public class LoginException extends TrabajoException{
+public class AgruparGruposException extends TrabajoException{ 
 
 }
- 
