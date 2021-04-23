@@ -18,11 +18,13 @@ public class Tests {
 	
 	private static final Logger LOG = Logger.getLogger(Tests.class.getCanonicalName());
 	
-	//private static final String PRODUCTOS_EJB = "java:global/classes/ProductosEJB";
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
-	//private static final String LOTES_EJB = "java:global/classes/LotesEJB";
-	//private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrazabilidadTest";
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
+	
+	//private static final String EXCEL_EJB = "java:global/classes/ExcelEJB";
+	//private static final String EXPEDIENTES_EJB = "java:global/classes/ExpedientesEJB";
+
 	
 	private static EJBContainer ejbContainer;
 	private static Context ctx;

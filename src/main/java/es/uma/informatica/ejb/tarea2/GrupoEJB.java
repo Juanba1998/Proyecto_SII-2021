@@ -23,14 +23,14 @@ public class GrupoEJB implements GestionGrupos {
 	
 	public void agruparUno (Grupo g, Alumno a) throws AgruparGruposException{
 		//No existe esta entidad ya
-		ExcelAlumnos excel = em.find (ExcelAlumnos.class, a);
+		/*ExcelAlumnos excel = em.find (ExcelAlumnos.class, a);
 		String turnoPreferente = excel.getTurno_Preferente();
 		
 		if (turnoPreferente.equalsIgnoreCase("Tarde")){
 			Grupo grupoB = em.find(Grupo.class,); //no tengo ni idea de como elegir el grupo al que deberian ir
 		}else{
 			Grupo grupoA = em.find(Grupo.class,);
-		}
+		}*/
 
 	}
 	
