@@ -5,12 +5,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-//import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook; 
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
  
 /** 
  * Utility class, where we will create methods for training read and write excel files,
@@ -45,57 +45,56 @@ public class JavaPoiUtils {
      */
     public void readExcelFile(File excelFile){
         InputStream excelStream = null;
-       // private static final Logger LOG = Logger.getLogger(JavaPoiUtils.class.getCanonicalName());
+        private static final Logger LOG = Logger.getLogger(JavaPoiUtils.class.getCanonicalName());
         try {
             excelStream = new FileInputStream(excelFile);
             
-            try (// High level representation of a workbook.
-			            // Representación del más alto nivel de la hoja excel.
-			XSSFWorkbook xssfWorkbook = new XSSFWorkbook(excelStream)) {
-				// We chose the sheet is passed as parameter. 
-				// Elegimos la hoja que se pasa por parámetro.
-				XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
-				// An object that allows us to read a row of the excel sheet, and extract from it the cell contents.
-				// Objeto que nos permite leer un fila de la hoja excel, y de aquí extraer el contenido de las celdas.
-				XSSFRow xssfRow;
-				// Initialize the object to read the value of the cell 
-				// Inicializo el objeto que leerá el valor de la celda
-				//XSSFCell cell;                        
-				// I get the number of rows occupied on the sheet
-				// Obtengo el número de filas ocupadas en la hoja
-				int rows = xssfSheet.getLastRowNum();
-				// I get the number of columns occupied on the sheet
-				// Obtengo el número de columnas ocupadas en la hoja
-				//int cols = 0;            
-				// A string used to store the reading cell
-				// Cadena que usamos para almacenar la lectura de la celda
-				String cellValue;  
-				// For this example we'll loop through the rows getting the data we want
-				// Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos            
-				for (int r = 0; r < rows; r++) {
-				    xssfRow = xssfSheet.getRow(r);
-				    if (xssfRow == null){
-				        break;
-				    }else{
-				        System.out.print("Row: " + r + " -> ");
-				        for (int c = 0; c < (/*cols =*/ xssfRow.getLastCellNum()); c++) {
-				            /* 
-				                We have those cell types (tenemos estos tipos de celda): 
-				                    CELL_TYPE_BLANK, CELL_TYPE_NUMERIC, CELL_TYPE_BLANK, CELL_TYPE_FORMULA, CELL_TYPE_BOOLEAN, CELL_TYPE_ERROR
-				            */
-				            cellValue = xssfRow.getCell(c) == null?"":
-				                    (xssfRow.getCell(c).getCellType() == 1/*CellType.STRING*/)?xssfRow.getCell(c).getStringCellValue():
-				                    (xssfRow.getCell(c).getCellType() == 0 /*CellType.NUMERIC*/)?"" + xssfRow.getCell(c).getNumericCellValue():
-				                    (xssfRow.getCell(c).getCellType() == 4 /*CellType.BOOLEAN*/)?"" + xssfRow.getCell(c).getBooleanCellValue():
-				                    (xssfRow.getCell(c).getCellType() == 3 /*CellType.BLANK*/)?"BLANK":
-				                    (xssfRow.getCell(c).getCellType() == 5 /*CellType.ERROR*/)?"ERROR":"";    
+            // High level representation of a workbook.
+            // Representación del más alto nivel de la hoja excel.
+            XSSFWorkbook xssfWorkbook = new XSSFWorkbook(excelStream);
+            // We chose the sheet is passed as parameter. 
+            // Elegimos la hoja que se pasa por parámetro.
+            XSSFSheet xssfSheet = xssfWorkbook.getSheetAt(0);
+            // An object that allows us to read a row of the excel sheet, and extract from it the cell contents.
+            // Objeto que nos permite leer un fila de la hoja excel, y de aquí extraer el contenido de las celdas.
+            XSSFRow xssfRow;
+            // Initialize the object to read the value of the cell 
+            // Inicializo el objeto que leerá el valor de la celda
+            XSSFCell cell;                        
+            // I get the number of rows occupied on the sheet
+            // Obtengo el número de filas ocupadas en la hoja
+            int rows = xssfSheet.getLastRowNum();
+            // I get the number of columns occupied on the sheet
+            // Obtengo el número de columnas ocupadas en la hoja
+            int cols = 0;            
+            // A string used to store the reading cell
+            // Cadena que usamos para almacenar la lectura de la celda
+            String cellValue;  
+            // For this example we'll loop through the rows getting the data we want
+            // Para este ejemplo vamos a recorrer las filas obteniendo los datos que queremos            
+            for (int r = 0; r < rows; r++) {
+                xssfRow = xssfSheet.getRow(r);
+                if (xssfRow == null){
+                    break;
+                }else{
+                    System.out.print("Row: " + r + " -> ");
+                    for (int c = 0; c < (cols = xssfRow.getLastCellNum()); c++) {
+                        /* 
+                            We have those cell types (tenemos estos tipos de celda): 
+                                CELL_TYPE_BLANK, CELL_TYPE_NUMERIC, CELL_TYPE_BLANK, CELL_TYPE_FORMULA, CELL_TYPE_BOOLEAN, CELL_TYPE_ERROR
+                        */
+                        cellValue = xssfRow.getCell(c) == null?"":
+                                (xssfRow.getCell(c).getCellType() == 1/*CellType.STRING*/)?xssfRow.getCell(c).getStringCellValue():
+                                (xssfRow.getCell(c).getCellType() == 0 /*CellType.NUMERIC*/)?"" + xssfRow.getCell(c).getNumericCellValue():
+                                (xssfRow.getCell(c).getCellType() == 4 /*CellType.BOOLEAN*/)?"" + xssfRow.getCell(c).getBooleanCellValue():
+                                (xssfRow.getCell(c).getCellType() == 3 /*CellType.BLANK*/)?"BLANK":
+                                (xssfRow.getCell(c).getCellType() == 5 /*CellType.ERROR*/)?"ERROR":"";    
 
-				            System.out.print("[Column " + c + ": " + cellValue + "] ");
-				        }
-				        System.out.println();
-				    }
-				}
-			}            
+                        System.out.print("[Column " + c + ": " + cellValue + "] ");
+                    }
+                    System.out.println();
+                }
+            }            
         } catch (FileNotFoundException fileNotFoundException) {
             System.out.println("The file not exists (No se encontró el fichero): " + fileNotFoundException);
         } catch (IOException ex) {

@@ -20,7 +20,7 @@ public class Solicitud implements Serializable {
 	@Column(nullable = false)
 	private Date FechaSolicitud;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Alumno alumno;
 
 	public Solicitud() {

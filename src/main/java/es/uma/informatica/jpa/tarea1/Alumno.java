@@ -36,7 +36,7 @@ public class Alumno implements Serializable{
 	@OneToMany (mappedBy = "alumno")
 	private List<Solicitud> lista_solicitudes;
 	
-	@OneToOne(optional = false)
+	@OneToOne
 	private Login login;
 
 	public Alumno() {
