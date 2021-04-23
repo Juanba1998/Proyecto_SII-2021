@@ -16,12 +16,13 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 public class LoginEJB implements GestionLogin{
 
 	
+@SuppressWarnings("unused")
 private static final Logger LOG = Logger.getLogger(LoginEJB.class.getCanonicalName());
 	
 	@PersistenceContext(name="Trabajo")
 	private EntityManager em;
 	
-	public void login (Login l) throws LoginException{
+	public void login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		Login actual = em.find(Login.class, l.getUsuario());
 		
@@ -34,7 +35,8 @@ private static final Logger LOG = Logger.getLogger(LoginEJB.class.getCanonicalNa
 		}
 	}
 	
-	public Login refrescarLogin(Login l) throws LoginException {
+	@SuppressWarnings("unused")
+	public Login refrescarLogin(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		login(l);
 		Login actual = em.find(Login.class, l.getUsuario());
 		em.refresh(l);

@@ -60,7 +60,8 @@ public class Login implements Serializable {
 	public void setContrasena(String contrasena) {
 		Contrasena = contrasena;
 	}
-
+	
+	//0 es para personal de secretaria y 1 para alumno
 	public Integer getTipo() {
 		return Tipo;
 	}
