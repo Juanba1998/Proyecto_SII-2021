@@ -11,7 +11,7 @@ public class Optativas extends Asignatura implements Serializable{
 
 	private Integer plazas;
 	private String mencion;
-
+ 
 	public Optativas() {
 		super();
 	}

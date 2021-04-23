@@ -9,7 +9,7 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 public class ExcelAsignaturas implements Serializable {
-	
+	 
 	//@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	//private Integer Codigo;
 
