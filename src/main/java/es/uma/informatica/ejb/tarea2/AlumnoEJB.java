@@ -12,15 +12,18 @@ import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.ExpedienteNoEncontradoException;
 import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
+import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
+import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Expedientes;
 import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Titulacion;
 
 /**
  * Session Bean implementation class ExpedientesEJB
  */
 @Stateless
-public class AlumnoEJB implements GestionExpedientes {
+public class AlumnoEJB implements GestionListaAlu {
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
@@ -28,30 +31,15 @@ public class AlumnoEJB implements GestionExpedientes {
 	@EJB
 	private LoginEJB LoginEJB;
 	
-	public void MostrarTodasNMP(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
+	public void MostrarTodosAlumnos(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		List<Expedientes> lista_exp = getExpedientes(login);
 		
 		for(Expedientes e : lista_exp) {
 			System.out.println("DNI: " + e.getAlumno().getDNI() + "; Nombre: " + e.getAlumno().getNombre_completo()); 
-		}		
+		}
 	}
 	
-	public void MostrarNMPExpediente(Expedientes exp, Login login) throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
-		
-		String str = "";
-		Expedientes expedienteEntity = em.find(Expedientes.class, exp);
-		
-		if (expedienteEntity == null) throw new ExpedienteNoEncontradoException();
-		
-		List<Expedientes> lista_exp = getExpedientes(login);
-		
-		for(Expedientes e : lista_exp) {
-			
-			if(e.equals(expedienteEntity)) str += "DNI: " + e.getAlumno().getDNI() + "; Nombre: " + e.getAlumno().getNombre_completo();
-			System.out.println(str);
-		}		
-	}
 	
 
 	@SuppressWarnings("unchecked")
@@ -72,5 +60,34 @@ public class AlumnoEJB implements GestionExpedientes {
 			return lista_expedientes;
 		}
 	}
+
+	
+	@Override
+	public void MostrarAlumnosTitu(Expedientes exp, Login login, Titulacion titu) throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
+			
+			String str = "";
+			Expedientes expedienteEntity = em.find(Expedientes.class, exp);
+			
+			if(titu == null) throw new TitulacionNoExiste();
+			
+			if (expedienteEntity == null) throw new ExpedienteNoEncontradoException();
+			
+			List<Expedientes> lista_exp = getExpedientes(login);
+			
+			for(Expedientes e : lista_exp) {
+				
+				if(e.equals(expedienteEntity) && titu.equals(e.getTitulacion().getCodigoTitulacion())) str += "DNI: " + e.getAlumno().getDNI() + "; Nombre: " + e.getAlumno().getNombre_completo();
+				System.out.println(str);
+			}		
+		}
+
+	@Override
+	public void MostrarAlumnosTituAsig(Expedientes exp, Login login, Titulacion titu, Asignatura asi)
+			throws TrabajoException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
