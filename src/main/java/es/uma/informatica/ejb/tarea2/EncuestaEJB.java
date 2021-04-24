@@ -24,7 +24,7 @@ import es.uma.informatica.jpa.tarea1.Solicitud;
 
 @Stateless
 public class EncuestaEJB implements GestionEncuesta {
-
+ 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	

@@ -11,7 +11,7 @@ import es.uma.informatica.jpa.tarea1.Solicitud;
 
 @Local
 public interface GestionEncuesta {
-	
+	 
 	public void aniadirEncuesta(/*Login login, */Encuesta enc) throws TrabajoException;
 	
 	public void verEncuesta(/*Login login,*/ Encuesta enc) throws TrabajoException;
