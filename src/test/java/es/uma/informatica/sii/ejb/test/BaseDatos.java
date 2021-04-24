@@ -217,7 +217,12 @@ public class BaseDatos {
 		//GRUPO_POR_ASIGNATURA TAMPOCO LA ENTIENDO
 		
 		//MATRICULA TAMPOCO LA ENTIENDO
-			
+		Matricula m1 = new Matricula("2020/2021", "Finalizado", 1, "Tarde", Date.valueOf("2021-04-22"),false,"Calculo,Algebra,Estadistica,PL",exp1,null);
+		Matricula m2 = new Matricula("2020/2021", "Finalizado", 2, "Tarde", Date.valueOf("2021-04-22"),false,"Calculo,Algebra,Estadistica,PL",exp2,null);
+		Matricula m3 = new Matricula("2020/2021", "Finalizado", 3, "Tarde", Date.valueOf("2021-04-22"),false,"Calculo,Algebra,Estadistica,PL",exp3,null);
+		
+		
+		
 		em.getTransaction().commit();
 		em.close();
 		emf.close();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -92,7 +92,7 @@ public class Matricula implements Serializable {
 	private String Turno_Preferente;
 	
 	@Column(nullable = false)
-	private Date Fecha_de_matricula;
+	private String Fecha_de_matricula;
 	
 	private Boolean Nuevo_Ingreso;
 	private String Listado_Asignaturas;
@@ -108,7 +108,7 @@ public class Matricula implements Serializable {
 	}
 
 	public Matricula(String curso_academico, String estado, Integer num_Archivo, String turno_Preferente,
-			Date fecha_de_matricula, Boolean nuevo_Ingreso, String listado_Asignaturas, Expedientes expediente,
+			String fecha_de_matricula, Boolean nuevo_Ingreso, String listado_Asignaturas, Expedientes expediente,
 			List<Asignaturas_Matricula> asignatura_matricula) {
 		super();
 		Curso_academico = curso_academico;
@@ -154,11 +154,11 @@ public class Matricula implements Serializable {
 		Turno_Preferente = turno_Preferente;
 	}
 
-	public Date getFecha_de_matricula() {
+	public String getFecha_de_matricula() {
 		return Fecha_de_matricula;
 	}
 
-	public void setFecha_de_matricula(Date fecha_de_matricula) {
+	public void setFecha_de_matricula(String fecha_de_matricula) {
 		Fecha_de_matricula = fecha_de_matricula;
 	}
 
