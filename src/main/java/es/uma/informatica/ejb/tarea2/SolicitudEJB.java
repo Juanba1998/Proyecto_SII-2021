@@ -17,8 +17,6 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Solicitud;
 
-
-
 @Stateless
 public class SolicitudEJB implements GestionSolicitud {
 
@@ -67,7 +65,7 @@ public class SolicitudEJB implements GestionSolicitud {
 	public List<Solicitud> getSolicitudes(Login login) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudNoEncontradaException {
 		
 
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		

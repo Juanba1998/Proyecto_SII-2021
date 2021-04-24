@@ -1,6 +1,5 @@
 package es.uma.informatica.ejb.tarea2;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,10 +20,6 @@ import es.uma.informatica.jpa.tarea1.Alumno;
 import es.uma.informatica.jpa.tarea1.Expedientes;
 import es.uma.informatica.jpa.tarea1.Matricula;
 
-
-/**
- * Session Bean implementation class ExcelEJB
- */
 @Stateless
 public class ExcelEJB implements GestionExcel {
 	private static final Logger LOG = Logger.getLogger(ExcelEJB.class.getCanonicalName());
@@ -34,25 +29,21 @@ public class ExcelEJB implements GestionExcel {
 	
 	@PersistenceContext(name="trabajo")
 	private  EntityManager em;
-
-	
 	
 	private  String nombreAux;
 	private  Alumno al;
 	private  Matricula matr;
 	private  Expedientes exp;
-	
-	
-	
 
-	
 	public  void insertExcelData(String excelPath,String sheetName) throws MatriculaExistenteException, AlumnoExistenteException, ExpedientesExistenteException {
+		
 		try {
-		wB =  new XSSFWorkbook(excelPath);
-		sheet = wB.getSheet(sheetName);
+			wB =  new XSSFWorkbook(excelPath);
+			sheet = wB.getSheet(sheetName);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
+		
 		Iterator<Row> rowIt = sheet.iterator();
 		
 		int aux = 3;
@@ -75,13 +66,9 @@ public class ExcelEJB implements GestionExcel {
 				while(cellIt.hasNext()) {
 					Cell cell = cellIt.next();
 					
-					
 					setCellData(cell, nColum);
 					
 					nColum++;
-					
-					
-					
 				}
 				
 				insertAlumno(al);
@@ -92,46 +79,47 @@ public class ExcelEJB implements GestionExcel {
 				
 				System.out.println("***************");
 			}
-			
-			
 		}
-		
-
 	}
 	
 	private  void insertMatricula(Matricula matr2) throws MatriculaExistenteException {
 		
 		Matricula mtrExist = em.find(Matricula.class, new Matricula.MatriculaId(matr2.getCurso_academico(),exp.getNum_Expediente()));
+		
 		if(mtrExist != null) {
+		
 			throw new MatriculaExistenteException();
 		}
 		em.persist(matr2);
-		
 	}
-
+	
 	private  void insertExpediente(Expedientes exp2) throws ExpedientesExistenteException {
 		Expedientes alExist = em.find(Expedientes.class, exp2.getNum_Expediente());
+		
 		if(alExist != null) {
 			throw new ExpedientesExistenteException();
 		}
-		em.persist(exp2);
-		
+		em.persist(exp2);	
 	}
 
 	private  void insertAlumno(Alumno al2) throws AlumnoExistenteException {
+		
 		Alumno alExist = em.find(Alumno.class, al2.getID());
+		
 		if(alExist != null) {
 			throw new AlumnoExistenteException();
 		}
+		
 		em.persist(al2);
-		
-		
 	}
 
 	private  boolean isRowEmpty(Row row) {
-	    for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
-	        Cell cell = row.getCell(c);
-	        if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
+	    
+		for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+	        
+			Cell cell = row.getCell(c);
+	        
+			if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
 	            return false;
 	    }
 	    return true;
@@ -246,10 +234,7 @@ public class ExcelEJB implements GestionExcel {
 				matr.setFecha_de_matricula(cell.toString());
 				//Curso Academico
 				matr.setCurso_academico(cursoAcademico(cell.toString()));
-				
-				
-				
-				
+
 			} catch (Exception e) {
 				System.out.println("ERROR");
 			}
@@ -336,8 +321,7 @@ public class ExcelEJB implements GestionExcel {
 		default:
 			System.out.println("Error"+ cell.toString());
 			break;
-		}
-		
+		}		
 	}
 	
 	private  String cursoAcademico(String fechaMatri) {
@@ -346,11 +330,4 @@ public class ExcelEJB implements GestionExcel {
 		
 		return aux + "/" + (aux+1) ;
 	}
-
-	
- 
 }
-
-
-
-

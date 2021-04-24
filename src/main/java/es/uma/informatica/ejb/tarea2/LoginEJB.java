@@ -2,7 +2,6 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.logging.Logger;
 
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,7 +23,7 @@ public class LoginEJB implements GestionLogin{
 	
 	public void login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
-		Login actual = em.find(Login.class, l.getCodigo()); //En esta linea da NullPointerException
+		Login actual = em.find(Login.class, l.getCodigo());
 		
 		if(!(actual.getUsuario().equalsIgnoreCase(l.getUsuario()))) throw new UsuarioInexistenteException();
 		

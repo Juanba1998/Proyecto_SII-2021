@@ -2,7 +2,7 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import javax.ejb.EJB;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,17 +16,14 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Expedientes;
 import es.uma.informatica.jpa.tarea1.Login;
 
-/**
- * Session Bean implementation class ExpedientesEJB
- */
 @Stateless
 public class ExpedientesEJB implements GestionExpedientes {
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	//@EJB
-	//private LoginEJB LoginEJB;
+	@EJB
+	private LoginEJB LoginEJB;
 	
 	public void MostrarTodasNMP(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
@@ -58,7 +55,7 @@ public class ExpedientesEJB implements GestionExpedientes {
 	public List<Expedientes> getExpedientes(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		

@@ -2,19 +2,23 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import java.util.logging.Logger;
+import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.uma.informatica.ejb.excepciones.AsignaturaNoEncontradoException;
+import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.GrupoExistenteException;
 import es.uma.informatica.ejb.excepciones.GrupoNoExistenteException;
 import es.uma.informatica.ejb.excepciones.GrupoPorAsignaturaNoEncontradoException;
+import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
+import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Grupo;
 import es.uma.informatica.jpa.tarea1.Grupo_por_asignatura;
@@ -23,18 +27,18 @@ import es.uma.informatica.jpa.tarea1.Login;
 @Stateless
 public class GrupoEJB implements GestionGrupos {
 	
-	//private static final Logger LOG = Logger.getLogger(GrupoEJB.class.getCanonicalName());
+	private static final Logger LOG = Logger.getLogger(GrupoEJB.class.getCanonicalName());
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	//@EJB
-	//private LoginEJB LoginEJB;
+	@EJB
+	private LoginEJB LoginEJB;
 
 	@Override
 	public void aniadirSuperGrupo(Login login, Grupo sgrupo) throws TrabajoException {
 
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		else {
@@ -47,9 +51,9 @@ public class GrupoEJB implements GestionGrupos {
 		}
 	}
 	
-	public void agruparGrupos(Grupo g, Grupo sgrupo, Asignatura asi, Login login, String curso_actual) throws PermisosInsuficientesException, AsignaturaNoEncontradoException, GrupoNoExistenteException, GrupoPorAsignaturaNoEncontradoException  {
+	public void agruparGrupos(Grupo g, Grupo sgrupo, Asignatura asi, Login login, String curso_actual) throws PermisosInsuficientesException, AsignaturaNoEncontradoException, GrupoNoExistenteException, GrupoPorAsignaturaNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException  {
 		
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		else {
@@ -76,9 +80,9 @@ public class GrupoEJB implements GestionGrupos {
 	}	
 
 	@Override
-	public void asignarplazas(Login login, Integer nplazas, Grupo grupo) throws PermisosInsuficientesException, GrupoNoExistenteException  {
+	public void asignarplazas(Login login, Integer nplazas, Grupo grupo) throws PermisosInsuficientesException, GrupoNoExistenteException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException  {
 		
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		else {
@@ -92,9 +96,9 @@ public class GrupoEJB implements GestionGrupos {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Grupo_por_asignatura> getGruposAsignaturas(Login login) throws PermisosInsuficientesException, GrupoPorAsignaturaNoEncontradoException {
+	public List<Grupo_por_asignatura> getGruposAsignaturas(Login login) throws PermisosInsuficientesException, GrupoPorAsignaturaNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
