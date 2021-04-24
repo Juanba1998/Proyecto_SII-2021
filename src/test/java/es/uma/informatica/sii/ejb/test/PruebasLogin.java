@@ -1,8 +1,8 @@
 package es.uma.informatica.sii.ejb.test;
 
 import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
@@ -31,69 +31,61 @@ public class PruebasLogin {
 		
 	@Before
 	public void setup() throws NamingException  {
-		gestionLogin = (GestionLogin) ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
-
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, al no existir el usuario en la base de datos, debería salir una excepción.
-	public void testusuarionoencontrado() {
+	public void testUsuarioNoEncontrado() {
 
 			try {
-				Login l = new Login(123456, "naruto4", "boruto123", true, null);
-				login(l)
+				Login l = new Login(123456, "naruto4", "boruto123", true, null);		
+				gestionLogin.login(l);				
 				
 			} catch (UsuarioInexistenteException e) {
 				//OK
 			} catch(ContrasenaInvalidaException e) {
 				fail("No deberia lanzar excepcion de contraseña invalida");
+			} catch (LoginException e) {
+				fail("Capturada LoginException");
 			}
-		
-		
-		
 	}
-	
 	
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, ya que la contraseña no coincide con la que hay guardada en la base de datos, debería salir una excepción.
-	public void tescontraseniainvalida() {
+	public void testContrsenaInvalida() {
 	
 			try {
 				Login l = new Login(1231213, "Manoli1", "boruto123", true, null);
-				login(l)
+				gestionLogin.login(l);
 				
 			} catch (UsuarioInexistenteException e) {
 				fail("No deberia lanzar excepcion de contraseña invalida");
 			} catch(ContrasenaInvalidaException e) {
 				//OK
+			} catch (LoginException e) {
+				fail("Capturada LoginException");
 			}
-		
-		
-		
 	}
 	
 	@Requisitos({"RF6"})
 	@Test
 	//El usuario se encuentra en la base de datos, por lo que el login se realiza de forma correcta e identifica al usuario.
-	public void testlogincorrecto() {
+	public void testLoginCorrecto() {
 	
 			try {
 				Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
-				login(l)
+				gestionLogin.login(l);
 				//OK
 			} catch (UsuarioInexistenteException e) {
 				fail("No deberia lanzar excepcion de contraseña invalida");
 			} catch(ContrasenaInvalidaException e) {
 				fail("No deberia lanzar excepcion de contraseña invalida");
-			}
-		
-		
-		
+			} catch (LoginException e) {
+				fail("Capturada LoginException");
+			}	
 	}
-	
-	
-
 }
