@@ -82,7 +82,7 @@ public class EncuestaEJB implements GestionEncuesta {
 			Query query = em.createQuery("SELECT enc FROM Encuesta enc");
 			@SuppressWarnings("unchecked")
 			List<Encuesta> lista_encuesta = query.getResultList();
-		
+		 
 			if(lista_encuesta == null) throw new EncuestaNoEncontradaException();
 		
 			return lista_encuesta;
