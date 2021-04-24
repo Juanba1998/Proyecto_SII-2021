@@ -24,15 +24,15 @@ public class PruebasSolicitud {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String SOLICITUD_EJB = "java:global/classes/SolicitudEJB";
 	
-	//private GestionLogin gestionLogin;
+	private GestionLogin gestionLogin;
 	private GestionSolicitud gestionSolicitud;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		gestionSolicitud = (GestionSolicitud) SuiteTest.ctx.lookup(SOLICITUD_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
