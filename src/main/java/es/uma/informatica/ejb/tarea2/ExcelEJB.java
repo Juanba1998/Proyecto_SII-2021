@@ -120,6 +120,7 @@ public class ExcelEJB implements GestionExcel {
 	}
 
 	private  void insertAlumno(Alumno al2) throws AlumnoExistenteException {
+		//Como tiene como PK ID el cual es un valor autogenerado al2.getID() devuelve null
 		//Alumno alExist = em.find(Alumno.class, al2.getID());
 		//if(alExist != null) {
 			//throw new AlumnoExistenteException();
