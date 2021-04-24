@@ -30,7 +30,11 @@ import es.uma.informatica.jpa.tarea1.Solicitud;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class PruebaExcel{
+	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
+	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
 	
+	public static EJBContainer ejbContainer;
+	public static Context ctx;
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
@@ -40,22 +44,18 @@ public class PruebaExcel{
 	private static GestionExcel gestionExcel;
 	
 	
-	
-	@Before
-	public void setup() throws NamingException  {
-		
-		gestionExcel = (GestionExcel) SuiteTest.ctx.lookup(Excel_EJB);
-		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
-	}
+
 	
 	@Requisitos({"RF1"})
 	@Test
-	public void testinsertarSolicitudDuplicada() {
-		ExcelEJB ex =  new ExcelEJB("/home/alumno/Escritorio/SII/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx", "Hoja1");
+	public void testinsertarSolicitudDuplicada() throws TrabajoException {
+	
 		
 		
 			try {
-				ex.insertExcelData();
+			
+				gestionExcel.insertExcelData("/home/alumno/Escritorio/SII/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
+				
 				fail("F");
 			} catch (AlumnoExistenteExpection e) {
 				//OK
@@ -67,5 +67,11 @@ public class PruebaExcel{
 		
 		
 	}
-	
+	@AfterClass
+	public static void tearDownClass() {
+		if (ejbContainer != null) {
+			ejbContainer.close();
+		}
+	}
+
 }

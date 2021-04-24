@@ -28,36 +28,30 @@ import es.uma.informatica.jpa.tarea1.Matricula;
 public class ExcelEJB implements GestionExcel {
 	
 	
-	private XSSFWorkbook wB;
-	private XSSFSheet sheet;
+	private  XSSFWorkbook wB;
+	private  XSSFSheet sheet;
 	
 	@PersistenceContext(name="trabajo")
-	private EntityManager em;
+	private  EntityManager em;
 
 	
 	
-	private String nombreAux;
-	private Alumno al;
-	private Matricula matr;
-	private Expedientes exp;
+	private  String nombreAux;
+	private  Alumno al;
+	private  Matricula matr;
+	private  Expedientes exp;
 	
-	public ExcelEJB(String excelPath, String sheetName) {
+	
+	
+
+	
+	public  void insertExcelData(String excelPath,String sheetName) throws MatriculaExistenteExpection, AlumnoExistenteExpection, ExpedientesExistenteExpection {
 		try {
-			
-			
-			wB =  new XSSFWorkbook(excelPath);
-			sheet = wB.getSheet(sheetName);
-			
-			
+		wB =  new XSSFWorkbook(excelPath);
+		sheet = wB.getSheet(sheetName);
 		}catch (Exception e) {
 			// TODO: handle exception
 		}
-	}
-	
-
-	
-	public void insertExcelData() throws MatriculaExistenteExpection, AlumnoExistenteExpection, ExpedientesExistenteExpection {
-		
 		Iterator<Row> rowIt = sheet.iterator();
 		
 		int aux = 3;
@@ -104,7 +98,7 @@ public class ExcelEJB implements GestionExcel {
 
 	}
 	
-	private void insertMatricula(Matricula matr2) throws MatriculaExistenteExpection {
+	private  void insertMatricula(Matricula matr2) throws MatriculaExistenteExpection {
 		
 		Matricula mtrExist = em.find(Matricula.class, new Matricula.MatriculaId(matr2.getCurso_academico(),exp.getNum_Expediente()));
 		if(mtrExist != null) {
@@ -114,7 +108,7 @@ public class ExcelEJB implements GestionExcel {
 		
 	}
 
-	private void insertExpediente(Expedientes exp2) throws ExpedientesExistenteExpection {
+	private  void insertExpediente(Expedientes exp2) throws ExpedientesExistenteExpection {
 		Expedientes alExist = em.find(Expedientes.class, exp2.getNum_Expediente());
 		if(alExist != null) {
 			throw new ExpedientesExistenteExpection();
@@ -123,7 +117,7 @@ public class ExcelEJB implements GestionExcel {
 		
 	}
 
-	private void insertAlumno(Alumno al2) throws AlumnoExistenteExpection {
+	private  void insertAlumno(Alumno al2) throws AlumnoExistenteExpection {
 		Alumno alExist = em.find(Alumno.class, al2.getID());
 		if(alExist != null) {
 			throw new AlumnoExistenteExpection();
@@ -142,7 +136,7 @@ public class ExcelEJB implements GestionExcel {
 	    return true;
 	}
 	
-	private void setCellData(Cell cell, int nColum) {
+	private  void setCellData(Cell cell, int nColum) {
 		
 		switch (nColum) {
 		
@@ -345,7 +339,7 @@ public class ExcelEJB implements GestionExcel {
 		
 	}
 	
-	private String cursoAcademico(String fechaMatri) {
+	private  String cursoAcademico(String fechaMatri) {
 		
 		int aux = Integer.parseInt(fechaMatri.split(" ")[0].split("/")[2]);
 		

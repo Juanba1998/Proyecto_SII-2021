@@ -8,6 +8,7 @@ import es.uma.informatica.ejb.excepciones.TrabajoException;
 @Local
 public interface GestionExcel {
 
-	public void insertExcelData() throws TrabajoException;
+	
+	public void insertExcelData(String excelPath,String sheetName) throws TrabajoException;
 	
 } 
