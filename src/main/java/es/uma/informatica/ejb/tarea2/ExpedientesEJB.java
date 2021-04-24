@@ -26,7 +26,7 @@ public class ExpedientesEJB implements GestionExpedientes {
 	private EntityManager em;
 	
 	//@EJB
-	private LoginEJB LoginEJB;
+	//private LoginEJB LoginEJB;
 	
 	public void MostrarTodasNMP(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		

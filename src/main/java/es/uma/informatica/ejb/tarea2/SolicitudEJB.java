@@ -26,7 +26,7 @@ public class SolicitudEJB implements GestionSolicitud {
 	private EntityManager em;
 	
 	//@EJB
-	private LoginEJB LoginEJB;
+	//private LoginEJB LoginEJB;
 	
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
 		

@@ -7,7 +7,6 @@ import javax.persistence.PersistenceContext;
 
 import es.uma.informatica.ejb.excepciones.EncuestaDuplicadaException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
-import es.uma.informatica.ejb.excepciones.TrabajoException;
 
 import es.uma.informatica.jpa.tarea1.Encuesta;
 import es.uma.informatica.jpa.tarea1.Login;
@@ -20,7 +19,7 @@ public class EncuestaEJB implements GestionEncuesta {
 	private EntityManager em;
 	
 	//@EJB
-	private LoginEJB LoginEJB;
+	//private LoginEJB LoginEJB;
 
 	@Override
 	public void aniadirEncuesta(Login login, Encuesta enc) throws PermisosInsuficientesException, EncuestaDuplicadaException {

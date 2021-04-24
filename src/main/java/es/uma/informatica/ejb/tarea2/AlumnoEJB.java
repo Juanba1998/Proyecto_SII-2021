@@ -25,7 +25,7 @@ public class AlumnoEJB implements GestionAlumno {
 	private EntityManager em;
 	
 	//@EJB
-	private LoginEJB LoginEJB;
+	//private LoginEJB LoginEJB;
 	
 	//mostrar todos los nombres y dni de alumnos dentro de una titulacion
 	public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TitulacionNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException {
