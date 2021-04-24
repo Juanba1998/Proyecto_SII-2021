@@ -24,7 +24,7 @@ import es.uma.informatica.jpa.tarea1.Titulacion;
  * Session Bean implementation class ExpedientesEJB
  */
 @Stateless
-public class LisAlumno implements GestionLisAlumno {
+public class LisAlumnoEJB implements GestionLisAlumno {
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
@@ -93,7 +93,7 @@ public class LisAlumno implements GestionLisAlumno {
 		//if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
 	//	else {
-		
+		 
 			Query query = em.createQuery("SELECT exp FROM Expedientes exp");
 			List<Expedientes> lista_expedientes = query.getResultList();
 		
