@@ -39,7 +39,7 @@ public class PruebasLogin {
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, al no existir el usuario en la base de datos, debería salir una excepción.
-	public void testrealizarEncuesta() {
+	public void testusuarionoencontrado() {
 
 			try {
 				Login l = new Login(123456, "naruto4", "boruto123", true, null);
@@ -59,7 +59,7 @@ public class PruebasLogin {
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, ya que la contraseña no coincide con la que hay guardada en la base de datos, debería salir una excepción.
-	public void testrealizarEncuesta() {
+	public void tescontraseniainvalida() {
 	
 			try {
 				Login l = new Login(1231213, "Manoli1", "boruto123", true, null);
@@ -78,7 +78,7 @@ public class PruebasLogin {
 	@Requisitos({"RF6"})
 	@Test
 	//El usuario se encuentra en la base de datos, por lo que el login se realiza de forma correcta e identifica al usuario.
-	public void testrealizarEncuesta() {
+	public void testlogincorrecto() {
 	
 			try {
 				Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
