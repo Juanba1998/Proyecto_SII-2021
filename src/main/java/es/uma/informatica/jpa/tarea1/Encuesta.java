@@ -11,7 +11,7 @@ import javax.persistence.*;
 public class Encuesta implements Serializable {
 	
 	@Id
-	private Date Fecha_de_envio;
+	private String Fecha_de_envio;
  
 	@ManyToOne(optional=false)
 	private Expedientes expediente;
@@ -23,18 +23,18 @@ public class Encuesta implements Serializable {
 		super();
 	}
 
-	public Encuesta(Date fecha_de_envio, Expedientes expediente, List<Grupo_por_asignatura> grupo_por_asignatura) {
+	public Encuesta(String fecha_de_envio, Expedientes expediente, List<Grupo_por_asignatura> grupo_por_asignatura) {
 		super();
 		Fecha_de_envio = fecha_de_envio;
 		this.expediente = expediente;
 		this.grupo_por_asignatura = grupo_por_asignatura;
 	}
 
-	public Date getFecha_de_envio() {
+	public String getFecha_de_envio() {
 		return Fecha_de_envio;
 	}
 
-	public void setFecha_de_envio(Date fecha_de_envio) {
+	public void setFecha_de_envio(String fecha_de_envio) {
 		Fecha_de_envio = fecha_de_envio;
 	}
 

@@ -20,9 +20,9 @@ public class BaseDatos {
 		
 		//ENCUESTA
 		
-		Encuesta encuesta1 = new Encuesta(Date.valueOf("2021-04-12"),null,null);
-		Encuesta encuesta2 = new Encuesta(Date.valueOf("2021-04-13"),null,null);
-		Encuesta encuesta3 = new Encuesta(Date.valueOf("2021-01-19"),null,null);
+		Encuesta encuesta1 = new Encuesta("2021-04-12 13:00",null,null);
+		Encuesta encuesta2 = new Encuesta("2021-04-13 14:00",null,null);
+		Encuesta encuesta3 = new Encuesta("2021-01-19 12:00",null,null);
 						
 		for (Encuesta encuestas: new Encuesta [] {encuesta1,encuesta2,encuesta3}){
 			em.persist(encuestas);
