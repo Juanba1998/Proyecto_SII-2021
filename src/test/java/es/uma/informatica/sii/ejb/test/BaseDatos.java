@@ -81,13 +81,13 @@ public class BaseDatos {
 		//ALUMNO
 		
 		Alumno alumno1 = new Alumno (123, "27372494W", "Jose Manuel Kaneki", "josemanu@uma.es", "manteca@gmail.com", 123123123,
-				321321321, "Calle falsa 2", "Pueblo 1","Málaga", 12319, false, null, null, null);
+				321321321, "Calle falsa 2", "Pueblo 1","Málaga", 12319, false, null, null, null, null);
 				
 		Alumno alumno2 = new Alumno (124,"27372494Z", "Levi Ackermann", "leviacker@uma.es","shinzou_no_sasageyo@gmail.com",123423123,
-				319321321, "Calle real 3", "Pueblo 3","Málaga", 12719, false, null, null, null);
+				319321321, "Calle real 3", "Pueblo 3","Málaga", 12719, false, null, null, null, null);
 				
 		Alumno alumno3 = new Alumno (125,"27372400P", "Jujut Sukai Sen", "jujutsu@uma.es","itadori.bestoprota@hotmail.com",127892123,
-				893783938, "Calle del amor 9", "Torrequebrada","Málaga",12319, true,null,null,null);
+				893783938, "Calle del amor 9", "Torrequebrada","Málaga",12319, true,null,null,null, null);
 				
 		for (Alumno alumnos: new Alumno [] {alumno1,alumno2,alumno3}) {
 			em.persist(alumnos);
