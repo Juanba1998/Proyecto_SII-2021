@@ -38,8 +38,5 @@ public class LoginEJB implements GestionLogin{
 		Login actual = em.find(Login.class, l.getUsuario());
 		em.refresh(l);
 		return l;
-
 	}
-	
-	public LoginEJB() {}
 }

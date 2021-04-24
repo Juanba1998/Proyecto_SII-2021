@@ -44,7 +44,6 @@ public class GrupoEJB implements GestionGrupos {
 			
 			em.persist(sgrupo);
 		}
-		
 	}
 	
 	public void agruparGrupos(List<Grupo> gru, Asignatura asi, Login login, String curso_actual) throws AsignaturaNoEncontradoException, PermisosInsuficientesException, GrupoNoExistenteException {

@@ -12,7 +12,7 @@ public class Login implements Serializable {
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer Codigo;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String Usuario;
 	
 	@Column(nullable = false)
