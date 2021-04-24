@@ -14,13 +14,13 @@ public class Expedientes implements Serializable {
  
 	private Boolean Activo;
 	private Double Nota_Media_Provisional;
-	private Integer Creditos_superados;
-	private Integer Creditos_FB;
-	private Integer Creditos_OB;
-	private Integer Creditos_OP;
-	private Integer Creditos_CF;
-	private Integer Creditos_PE;
-	private Integer Creditos_TF;
+	private Double Creditos_superados;
+	private Double Creditos_FB;
+	private Double Creditos_OB;
+	private Double Creditos_OP;
+	private Double Creditos_CF;
+	private Double Creditos_PE;
+	private Double Creditos_TF;
 	
 	@ManyToOne(optional=false)
 	private Titulacion titulacion;
@@ -39,8 +39,8 @@ public class Expedientes implements Serializable {
 	}
 
 	public Expedientes(Integer num_Expediente, Boolean activo, Double nota_Media_Provisional,
-			Integer creditos_superados, Integer creditos_FB, Integer creditos_OB, Integer creditos_OP,
-			Integer creditos_CF, Integer creditos_PE, Integer creditos_TF, Titulacion titulacion, Alumno alumno,
+			Double creditos_superados, Double creditos_FB, Double creditos_OB, Double creditos_OP,
+			Double creditos_CF, Double creditos_PE, Double creditos_TF, Titulacion titulacion, Alumno alumno,
 			List<Encuesta> encuestas_expediente, List<Matricula> matriculas) {
 		super();
 		Num_Expediente = num_Expediente;
@@ -83,59 +83,59 @@ public class Expedientes implements Serializable {
 		Nota_Media_Provisional = nota_Media_Provisional;
 	}
 
-	public Integer getCreditos_superados() {
+	public Double getCreditos_superados() {
 		return Creditos_superados;
 	}
 
-	public void setCreditos_superados(Integer creditos_superados) {
+	public void setCreditos_superados(Double creditos_superados) {
 		Creditos_superados = creditos_superados;
 	}
 
-	public Integer getCreditos_FB() {
+	public Double getCreditos_FB() {
 		return Creditos_FB;
 	}
 
-	public void setCreditos_FB(Integer creditos_FB) {
+	public void setCreditos_FB(Double creditos_FB) {
 		Creditos_FB = creditos_FB;
 	}
 
-	public Integer getCreditos_OB() {
+	public Double getCreditos_OB() {
 		return Creditos_OB;
 	}
 
-	public void setCreditos_OB(Integer creditos_OB) {
+	public void setCreditos_OB(Double creditos_OB) {
 		Creditos_OB = creditos_OB;
 	}
 
-	public Integer getCreditos_OP() {
+	public Double getCreditos_OP() {
 		return Creditos_OP;
 	}
 
-	public void setCreditos_OP(Integer creditos_OP) {
+	public void setCreditos_OP(Double creditos_OP) {
 		Creditos_OP = creditos_OP;
 	}
 
-	public Integer getCreditos_CF() {
+	public Double getCreditos_CF() {
 		return Creditos_CF;
 	}
 
-	public void setCreditos_CF(Integer creditos_CF) {
+	public void setCreditos_CF(Double creditos_CF) {
 		Creditos_CF = creditos_CF;
 	}
 
-	public Integer getCreditos_PE() {
+	public Double getCreditos_PE() {
 		return Creditos_PE;
 	}
 
-	public void setCreditos_PE(Integer creditos_PE) {
+	public void setCreditos_PE(Double creditos_PE) {
 		Creditos_PE = creditos_PE;
 	}
 
-	public Integer getCreditos_TF() {
+	public Double getCreditos_TF() {
 		return Creditos_TF;
 	}
 
-	public void setCreditos_TF(Integer creditos_TF) {
+	public void setCreditos_TF(Double creditos_TF) {
 		Creditos_TF = creditos_TF;
 	}
 

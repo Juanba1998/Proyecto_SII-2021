@@ -80,14 +80,14 @@ public class BaseDatos {
 		
 		//ALUMNO
 		
-		Alumno alumno1 = new Alumno (123, "27372494W", "Jose Manuel Kaneki", "josemanu@uma.es", "manteca@gmail.com", 123123123,
-				321321321, "Calle falsa 2", "Pueblo 1","Málaga", 12319, false, null, null, null, null);
+		Alumno alumno1 = new Alumno ( "27372494W", "Jose Manuel Kaneki", "josemanu@uma.es", "manteca@gmail.com", "123 123 123",
+				"321 321 321", "Calle falsa 2", "Pueblo 1","Málaga", 12319, false, null, null, null, null);
 				
-		Alumno alumno2 = new Alumno (124,"27372494Z", "Levi Ackermann", "leviacker@uma.es","shinzou_no_sasageyo@gmail.com",123423123,
-				319321321, "Calle real 3", "Pueblo 3","Málaga", 12719, false, null, null, null, null);
+		Alumno alumno2 = new Alumno ("27372494Z", "Levi Ackermann", "leviacker@uma.es","shinzou_no_sasageyo@gmail.com","123 423 123",
+				"319 321 321", "Calle real 3", "Pueblo 3","Málaga", 12719, false, null, null, null, null);
 				
-		Alumno alumno3 = new Alumno (125,"27372400P", "Jujut Sukai Sen", "jujutsu@uma.es","itadori.bestoprota@hotmail.com",127892123,
-				893783938, "Calle del amor 9", "Torrequebrada","Málaga",12319, true,null,null,null, null);
+		Alumno alumno3 = new Alumno ("27372400P", "Jujut Sukai Sen", "jujutsu@uma.es","itadori.bestoprota@hotmail.com","127 892 123",
+				"893 783 938", "Calle del amor 9", "Torrequebrada","Málaga",12319, true,null,null,null, null);
 				
 		for (Alumno alumnos: new Alumno [] {alumno1,alumno2,alumno3}) {
 			em.persist(alumnos);
@@ -95,9 +95,9 @@ public class BaseDatos {
 																
 		//EXPEDIENTES
 		
-		Expedientes exp1 = new Expedientes(12345, true, 4.0, 20, 10, 10, 0, 0, 0, 0, null, null, null, null);
-		Expedientes exp2 = new Expedientes(12346, true, 6.0, 30, 10, 10, 6, 4, 0, 0, null, null, null, null);
-		Expedientes exp3 = new Expedientes(12347, true, 1.0,  0,  0, 10, 0, 0, 0, 0, null, null, null, null);
+		Expedientes exp1 = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+		Expedientes exp2 = new Expedientes(12346, true, 6.0, 30.0, 10.0, 10.0, 6.0, 4.0, 0.0, 0.0, null, null, null, null);
+		Expedientes exp3 = new Expedientes(12347, true, 1.0,  0.0,  0.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
 					
 		exp1.setTitulacion(informatica);
 		exp2.setTitulacion(informatica);

@@ -20,7 +20,7 @@ public class EncuestaEJB implements GestionEncuesta {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	@EJB
+	//@EJB
 	private LoginEJB LoginEJB;
 
 	@Override

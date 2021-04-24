@@ -27,7 +27,7 @@ public class AlumnoEJB implements GestionAlumno {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	@EJB
+	//@EJB
 	private LoginEJB LoginEJB;
 	
 	public AlumnoEJB() {}

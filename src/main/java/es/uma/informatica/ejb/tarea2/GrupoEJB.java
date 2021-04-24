@@ -32,7 +32,7 @@ public class GrupoEJB implements GestionGrupos {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	@EJB
+	//@EJB
 	private LoginEJB LoginEJB;
 
 	@Override

@@ -22,7 +22,7 @@ public class ExpedientesEJB implements GestionExpedientes {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	@EJB
+	//@EJB
 	private LoginEJB LoginEJB;
 	
 	public void MostrarTodasNMP(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{

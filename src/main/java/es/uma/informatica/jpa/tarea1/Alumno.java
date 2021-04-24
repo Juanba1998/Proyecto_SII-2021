@@ -21,8 +21,8 @@ public class Alumno implements Serializable{
 	private String Email_Institucional;
 	
 	private String Email_Personal;
-	private Integer Telefono;
-	private Integer Movil;
+	private String Telefono;
+	private String Movil;
 	private String Direccion;
 	private String Localidad;
 	private String Provincia;
@@ -46,12 +46,12 @@ public class Alumno implements Serializable{
 
 
 
-	public Alumno(Integer iD, String dNI, String nombre_completo, String email_Institucional, String email_Personal,
-			Integer telefono, Integer movil, String direccion, String localidad, String provincia, Integer codigoPostal,
+	public Alumno(String dNI, String nombre_completo, String email_Institucional, String email_Personal,
+			String telefono, String movil, String direccion, String localidad, String provincia, Integer codigoPostal,
 			Boolean alumnoMovilidad, List<String> grupos_asignados, List<Expedientes> lista_expedientes,
 			List<Solicitud> lista_solicitudes, Login login) {
 		super();
-		ID = iD;
+	
 		DNI = dNI;
 		Nombre_completo = nombre_completo;
 		Email_Institucional = email_Institucional;
@@ -90,9 +90,7 @@ public class Alumno implements Serializable{
 		return ID;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
-	}
+	
 
 	public String getDNI() {
 		return DNI;
@@ -126,19 +124,19 @@ public class Alumno implements Serializable{
 		Email_Personal = email_Personal;
 	}
 
-	public Integer getTelefono() {
+	public String getTelefono() {
 		return Telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(String telefono) {
 		Telefono = telefono;
 	}
 
-	public Integer getMovil() {
+	public String getMovil() {
 		return Movil;
 	}
 
-	public void setMovil(Integer movil) {
+	public void setMovil(String movil) {
 		Movil = movil;
 	}
 

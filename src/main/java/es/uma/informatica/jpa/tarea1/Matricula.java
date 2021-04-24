@@ -84,7 +84,7 @@ public class Matricula implements Serializable {
 	@Id
 	private String Curso_academico;
 	
-	@Column(nullable = false)
+	//@Column(nullable = false)
 	private String Estado;
 	
 	private Integer Num_Archivo;

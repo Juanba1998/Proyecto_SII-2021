@@ -23,7 +23,7 @@ public class SolicitudEJB implements GestionSolicitud {
 	@PersistenceContext(name= "trabajo")
 	private EntityManager em;
 	
-	@EJB
+	//@EJB
 	private LoginEJB LoginEJB;
 	
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {

@@ -6,8 +6,9 @@ import java.util.logging.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
+import javax.naming.NamingException;
 
-
+import org.junit.Before;
 import org.junit.Test;
 
 import es.uma.informatica.ejb.excepciones.AlumnoExistenteException;
@@ -15,6 +16,7 @@ import es.uma.informatica.ejb.excepciones.ExpedientesExistenteException;
 import es.uma.informatica.ejb.excepciones.MatriculaExistenteException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.tarea2.GestionExcel;
+
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class ExcelPr{
@@ -25,25 +27,39 @@ public class ExcelPr{
 
 
 	private static GestionExcel gestionExcel;
+	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
+	
+	private static final String SOLICITUD_EJB = "java:global/classes/ExcelEJB";
+	
+	
+		
+	@Before
+	public void setup() throws NamingException  {
+		
+		gestionExcel = (GestionExcel) SuiteTest.ctx.lookup(SOLICITUD_EJB);
+		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
+	}
 	
 
 	
 	@Requisitos({"RF1"})
 	@Test
-	//En este test se inserta un alumno ya existente, por lo que debe dar la primera excepción.
-	public void testinsertarAlumnoExistente() throws TrabajoException {
+	
+	public void testinsertarExcel() throws TrabajoException {
 		
 			try {
 			
-				gestionExcel.insertExcelData("/home/alumno/eclipse-workspace/trabajo/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
+				gestionExcel.insertExcelData("/home/alumno/Escritorio/SII/DatosAlumnadoFAKE.xlsx","Hoja1");
 				
 			} catch (AlumnoExistenteException e) {
-				//OK
+				fail("Alumno repetido");
 			} catch(MatriculaExistenteException e) {
-				fail("No deberia lanzar excepcion de permisos insuficientes");
+				fail("Matricula repetido");
 			} catch(ExpedientesExistenteException e) {
-				fail("No deberia lanzar excepcion de usuario inexistente");
+				fail("Expediente repetido");
+			}catch (NullPointerException e) {
+				fail("Ruta del Excel erronea");
 			}
 		
 		
