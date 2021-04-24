@@ -28,6 +28,7 @@ public class Alumno implements Serializable{
 	private String Provincia;
 	private Integer CodigoPostal;
 	private Boolean AlumnoMovilidad;
+	private List<String> grupos_asignados; 
 	
 	
 	@OneToMany (mappedBy = "alumno", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
@@ -43,10 +44,12 @@ public class Alumno implements Serializable{
 		super();
 	}
 
+
+
 	public Alumno(Integer iD, String dNI, String nombre_completo, String email_Institucional, String email_Personal,
 			Integer telefono, Integer movil, String direccion, String localidad, String provincia, Integer codigoPostal,
-			Boolean alumnoMovilidad, List<Expedientes> lista_expedientes, List<Solicitud> lista_solicitudes,
-			Login login) {
+			Boolean alumnoMovilidad, List<String> grupos_asignados, List<Expedientes> lista_expedientes,
+			List<Solicitud> lista_solicitudes, Login login) {
 		super();
 		ID = iD;
 		DNI = dNI;
@@ -60,10 +63,28 @@ public class Alumno implements Serializable{
 		Provincia = provincia;
 		CodigoPostal = codigoPostal;
 		AlumnoMovilidad = alumnoMovilidad;
+		this.grupos_asignados = grupos_asignados;
 		this.lista_expedientes = lista_expedientes;
 		this.lista_solicitudes = lista_solicitudes;
 		this.login = login;
 	}
+
+
+
+	
+
+
+	public List<String> getGrupos_asignados() {
+		return grupos_asignados;
+	}
+
+
+
+	public void setGrupos_asignados(List<String> grupos_asignados) {
+		this.grupos_asignados = grupos_asignados;
+	}
+
+
 
 	public Integer getID() {
 		return ID;
@@ -184,7 +205,6 @@ public class Alumno implements Serializable{
 	public void setLogin(Login login) {
 		this.login = login;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -201,11 +221,14 @@ public class Alumno implements Serializable{
 		result = prime * result + ((Nombre_completo == null) ? 0 : Nombre_completo.hashCode());
 		result = prime * result + ((Provincia == null) ? 0 : Provincia.hashCode());
 		result = prime * result + ((Telefono == null) ? 0 : Telefono.hashCode());
+		result = prime * result + ((grupos_asignados == null) ? 0 : grupos_asignados.hashCode());
 		result = prime * result + ((lista_expedientes == null) ? 0 : lista_expedientes.hashCode());
 		result = prime * result + ((lista_solicitudes == null) ? 0 : lista_solicitudes.hashCode());
 		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		return result;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -276,6 +299,11 @@ public class Alumno implements Serializable{
 				return false;
 		} else if (!Telefono.equals(other.Telefono))
 			return false;
+		if (grupos_asignados == null) {
+			if (other.grupos_asignados != null)
+				return false;
+		} else if (!grupos_asignados.equals(other.grupos_asignados))
+			return false;
 		if (lista_expedientes == null) {
 			if (other.lista_expedientes != null)
 				return false;
@@ -294,12 +322,18 @@ public class Alumno implements Serializable{
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
 		return "Alumno [ID=" + ID + ", DNI=" + DNI + ", Nombre_completo=" + Nombre_completo + ", Email_Institucional="
 				+ Email_Institucional + ", Email_Personal=" + Email_Personal + ", Telefono=" + Telefono + ", Movil="
 				+ Movil + ", Direccion=" + Direccion + ", Localidad=" + Localidad + ", Provincia=" + Provincia
-				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", lista_expedientes="
-				+ lista_expedientes + ", lista_solicitudes=" + lista_solicitudes + ", login=" + login + "]";
-	}	
+				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", grupos_asignados="
+				+ grupos_asignados + ", lista_expedientes=" + lista_expedientes + ", lista_solicitudes="
+				+ lista_solicitudes + ", login=" + login + "]";
+	}
+
+
+	
 }
