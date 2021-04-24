@@ -2,7 +2,7 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+//import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Expedientes;
-import es.uma.informatica.jpa.tarea1.Login;
+//import es.uma.informatica.jpa.tarea1.Login;
 
 /**
  * Session Bean implementation class ExpedientesEJB

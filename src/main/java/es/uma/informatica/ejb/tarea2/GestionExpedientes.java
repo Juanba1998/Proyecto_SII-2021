@@ -6,7 +6,7 @@ import javax.ejb.Local;
 
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.jpa.tarea1.Expedientes;
-import es.uma.informatica.jpa.tarea1.Login;
+//import es.uma.informatica.jpa.tarea1.Login;
 
 @Local
 public interface GestionExpedientes {

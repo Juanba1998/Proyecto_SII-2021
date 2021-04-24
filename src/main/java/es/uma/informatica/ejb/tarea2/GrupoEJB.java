@@ -1,6 +1,6 @@
 package es.uma.informatica.ejb.tarea2;
 
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,7 +13,7 @@ import es.uma.informatica.jpa.tarea1.Grupo;
 @Stateless
 public class GrupoEJB implements GestionGrupos {
 	
-	private static final Logger LOG = Logger.getLogger(GrupoEJB.class.getCanonicalName());
+	//private static final Logger LOG = Logger.getLogger(GrupoEJB.class.getCanonicalName());
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;

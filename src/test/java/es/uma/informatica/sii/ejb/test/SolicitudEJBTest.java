@@ -1,12 +1,12 @@
 package es.uma.informatica.sii.ejb.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
 import java.util.Properties;
-import java.util.logging.Logger;
+//import java.util.logging.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
@@ -24,7 +24,7 @@ import es.uma.informatica.ejb.excepciones.*;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class SolicitudEJBTest {
-	private static final Logger LOG = Logger.getLogger(SolicitudEJBTest.class.getCanonicalName());
+	//private static final Logger LOG = Logger.getLogger(SolicitudEJBTest.class.getCanonicalName());
 	
 	private static final String GLASSFISH_CONFIGI_FILE_PROPERTY = "org.glassfish.ejb.embedded.glassfish.configuration.file";
 	private static final String CONFIG_FILE = "target/test-classes/META-INF/domain.xml";
