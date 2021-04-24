@@ -6,9 +6,13 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import es.uma.informatica.ejb.excepciones.AgruparGruposException;
-import es.uma.informatica.jpa.tarea1.Alumno;
+import es.uma.informatica.ejb.excepciones.GrupoExistenteException;
+import es.uma.informatica.ejb.excepciones.GrupoNoExistenteException;
+import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
+import es.uma.informatica.ejb.excepciones.TrabajoException;
+import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Grupo;
+import es.uma.informatica.jpa.tarea1.Login;
 
 @Stateless
 public class GrupoEJB implements GestionGrupos {
@@ -18,25 +22,39 @@ public class GrupoEJB implements GestionGrupos {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	public void agruparUno (Grupo g, Alumno a) throws AgruparGruposException{
-		//No existe esta entidad ya
-		/*ExcelAlumnos excel = em.find (ExcelAlumnos.class, a);
-		String turnoPreferente = excel.getTurno_Preferente();
-		
-		if (turnoPreferente.equalsIgnoreCase("Tarde")){
-			Grupo grupoB = em.find(Grupo.class,); //no tengo ni idea de como elegir el grupo al que deberian ir
-		}else{
-			Grupo grupoA = em.find(Grupo.class,);
-		}*/
+	//@EJB
+	private LoginEJB LoginEJB;
 
-	}
-	
-	public void agruparGrupos (Alumno a){
+	@Override
+	public void aniadirSuperGrupo(Login login, Grupo sgrupo) throws TrabajoException {
+
+		//LoginEJB.login(login);
 		
-		//for (Iterator<Alumno> it = productoEntity.getAlumno().iterator(); it.hasNext();) {
+		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
+		else {
 			
-			//}
+			Grupo grupoExistente = em.find(Grupo.class, sgrupo.getID());
+			
+			if (grupoExistente != null) throw new GrupoExistenteException();
+			
+			em.persist(sgrupo);
+		}
 		
 	}
 
+	@Override
+	public void asignarplazas(Login login, Integer nplazas, Grupo grupo) throws TrabajoException {
+		
+		//LoginEJB.login(login);
+		
+		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
+		else {
+			
+			Grupo grupoEntity = em.find(Grupo.class, grupo.getID());
+			
+			if (grupoEntity == null) throw new GrupoNoExistenteException();
+			
+			grupo.setPlazas(nplazas);
+		}
+	}
 }

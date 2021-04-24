@@ -14,26 +14,26 @@ import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.ejb.excepciones.SolicitudDuplicadaException;
 import es.uma.informatica.ejb.excepciones.SolicitudNoEncontradaException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
-//import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Solicitud;
+
 
 
 @Stateless
 public class SolicitudEJB implements GestionSolicitud {
 
-	@PersistenceContext(name="trabajo")
+	@PersistenceContext(name= "trabajo")
 	private EntityManager em;
 	
-	/*@EJB
-	private LoginEJB LoginEJB;*/
-
-	@Override
-	public void aniadirSolicitud(/*Login login,*/ Solicitud solicitud) throws /*PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException,*/ SolicitudDuplicadaException {
+	//@EJB
+	private LoginEJB LoginEJB;
+	
+	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
 		
 		//LoginEJB.login(login);
 		
-		//if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
-		//else {
+		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
+		else {
 			
 			Solicitud solicitudExistente = em.find(Solicitud.class, solicitud.getCodigo());
 			
@@ -41,22 +41,19 @@ public class SolicitudEJB implements GestionSolicitud {
 				throw new SolicitudDuplicadaException();
 			}
 			
-			//solicitud.setAlumno(login.getAlumno());
+			solicitud.setAlumno(login.getAlumno());
 			em.persist(solicitud);
-		//}
-		
-		
+		}
 	}
 
-	@Override
-	public void verSolicitud(/*Login login,*/ Solicitud sol) throws SolicitudNoEncontradaException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+	public void verSolicitud(Login login, Solicitud sol) throws SolicitudNoEncontradaException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
 		Solicitud solicitudEntity = em.find(Solicitud.class, sol);
 		
 		if (solicitudEntity == null) throw new SolicitudNoEncontradaException();
 		
-		List<Solicitud> lista_sol = getSolicitudes(/*login*/);
+		List<Solicitud> lista_sol = getSolicitudes(login);
 		
 		for(Solicitud s : lista_sol) {
 			
@@ -67,14 +64,14 @@ public class SolicitudEJB implements GestionSolicitud {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Solicitud> getSolicitudes(/*Login login*/) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudNoEncontradaException {
+	public List<Solicitud> getSolicitudes(Login login) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudNoEncontradaException {
 		
 
 		//LoginEJB.login(login);
 		
-		//if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
+		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
-		//else {
+		else {
 		
 			Query query = em.createQuery("SELECT sol FROM Solicitud sol");
 			List<Solicitud> lista_solicitudes = query.getResultList();
@@ -82,6 +79,6 @@ public class SolicitudEJB implements GestionSolicitud {
 			if(lista_solicitudes == null) throw new SolicitudNoEncontradaException();
 		
 			return lista_solicitudes;
-		//}
+		}
 	}
 }

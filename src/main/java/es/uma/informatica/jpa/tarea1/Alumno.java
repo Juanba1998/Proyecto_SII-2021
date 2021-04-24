@@ -30,7 +30,7 @@ public class Alumno implements Serializable{
 	private Boolean AlumnoMovilidad;
 	
 	
-	@OneToMany (mappedBy = "alumno")
+	@OneToMany (mappedBy = "alumno", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Expedientes> lista_expedientes;
 	
 	@OneToMany (mappedBy = "alumno")
