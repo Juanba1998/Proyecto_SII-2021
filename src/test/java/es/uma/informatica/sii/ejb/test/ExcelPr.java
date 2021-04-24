@@ -31,14 +31,13 @@ public class ExcelPr{
 	
 	@Requisitos({"RF1"})
 	@Test
-
+	//En este test se inserta un alumno ya existente, por lo que debe dar la primera excepción.
 	public void testinsertarAlumnoExistente() throws TrabajoException {
 		
 			try {
 			
 				gestionExcel.insertExcelData("/home/alumno/eclipse-workspace/trabajo/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
 				
-				fail("F");
 			} catch (AlumnoExistenteException e) {
 				//OK
 			} catch(MatriculaExistenteException e) {
