@@ -2,7 +2,7 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import javax.ejb.EJB;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,12 +25,12 @@ public class SolicitudEJB implements GestionSolicitud {
 	@PersistenceContext(name= "trabajo")
 	private EntityManager em;
 	
-	//@EJB
-	//private LoginEJB LoginEJB;
+	@EJB
+	private LoginEJB LoginEJB;
 	
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
 		
-		//LoginEJB.login(login);
+		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
 		else {

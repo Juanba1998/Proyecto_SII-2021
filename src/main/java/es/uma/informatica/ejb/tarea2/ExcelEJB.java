@@ -14,9 +14,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.*;
 
-import es.uma.informatica.ejb.excepciones.AlumnoExistenteExpection;
-import es.uma.informatica.ejb.excepciones.ExpedientesExistenteExpection;
-import es.uma.informatica.ejb.excepciones.MatriculaExistenteExpection;
+import es.uma.informatica.ejb.excepciones.AlumnoExistenteException;
+import es.uma.informatica.ejb.excepciones.ExpedientesExistenteException;
+import es.uma.informatica.ejb.excepciones.MatriculaExistenteException;
 import es.uma.informatica.jpa.tarea1.Alumno;
 import es.uma.informatica.jpa.tarea1.Expedientes;
 import es.uma.informatica.jpa.tarea1.Matricula;
@@ -46,7 +46,7 @@ public class ExcelEJB implements GestionExcel {
 	
 
 	
-	public  void insertExcelData(String excelPath,String sheetName) throws MatriculaExistenteExpection, AlumnoExistenteExpection, ExpedientesExistenteExpection {
+	public  void insertExcelData(String excelPath,String sheetName) throws MatriculaExistenteException, AlumnoExistenteException, ExpedientesExistenteException {
 		try {
 		wB =  new XSSFWorkbook(excelPath);
 		sheet = wB.getSheet(sheetName);
@@ -99,29 +99,29 @@ public class ExcelEJB implements GestionExcel {
 
 	}
 	
-	private  void insertMatricula(Matricula matr2) throws MatriculaExistenteExpection {
+	private  void insertMatricula(Matricula matr2) throws MatriculaExistenteException {
 		
 		Matricula mtrExist = em.find(Matricula.class, new Matricula.MatriculaId(matr2.getCurso_academico(),exp.getNum_Expediente()));
 		if(mtrExist != null) {
-			throw new MatriculaExistenteExpection();
+			throw new MatriculaExistenteException();
 		}
 		em.persist(matr2);
 		
 	}
 
-	private  void insertExpediente(Expedientes exp2) throws ExpedientesExistenteExpection {
+	private  void insertExpediente(Expedientes exp2) throws ExpedientesExistenteException {
 		Expedientes alExist = em.find(Expedientes.class, exp2.getNum_Expediente());
 		if(alExist != null) {
-			throw new ExpedientesExistenteExpection();
+			throw new ExpedientesExistenteException();
 		}
 		em.persist(exp2);
 		
 	}
 
-	private  void insertAlumno(Alumno al2) throws AlumnoExistenteExpection {
+	private  void insertAlumno(Alumno al2) throws AlumnoExistenteException {
 		Alumno alExist = em.find(Alumno.class, al2.getID());
 		if(alExist != null) {
-			throw new AlumnoExistenteExpection();
+			throw new AlumnoExistenteException();
 		}
 		em.persist(al2);
 		

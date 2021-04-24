@@ -10,9 +10,9 @@ import javax.naming.Context;
 
 import org.junit.Test;
 
-import es.uma.informatica.ejb.excepciones.AlumnoExistenteExpection;
-import es.uma.informatica.ejb.excepciones.ExpedientesExistenteExpection;
-import es.uma.informatica.ejb.excepciones.MatriculaExistenteExpection;
+import es.uma.informatica.ejb.excepciones.AlumnoExistenteException;
+import es.uma.informatica.ejb.excepciones.ExpedientesExistenteException;
+import es.uma.informatica.ejb.excepciones.MatriculaExistenteException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.tarea2.GestionExcel;
 import es.uma.informatica.sii.anotaciones.Requisitos;
@@ -36,7 +36,7 @@ public class ExcelPr{
 		
 			try {
 			
-				gestionExcel.insertExcelData("/home/alumno/eclipse-workspace/Trabajo/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
+				gestionExcel.insertExcelData("/home/alumno/eclipse-workspace/trabajo/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
 				
 				fail("F");
 			} catch (AlumnoExistenteException e) {
