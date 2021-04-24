@@ -2,6 +2,7 @@ package es.uma.informatica.sii.ejb.test;
 
 import static org.junit.Assert.fail;
 
+import java.util.logging.Logger;
 
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
@@ -16,8 +17,7 @@ import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.tarea2.GestionExcel;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
-public class PruebaExcel{
-
+public class ExcelPr{
 	
 	public static EJBContainer ejbContainer;
 	public static Context ctx;
@@ -36,14 +36,14 @@ public class PruebaExcel{
 		
 			try {
 			
-				gestionExcel.insertExcelData("/home/alumno/Escritorio/SII/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
+				gestionExcel.insertExcelData("/home/alumno/eclipse-workspace/Trabajo/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx","Hoja1");
 				
 				fail("F");
-			} catch (AlumnoExistenteExpection e) {
+			} catch (AlumnoExistenteException e) {
 				//OK
-			} catch(MatriculaExistenteExpection e) {
+			} catch(MatriculaExistenteException e) {
 				fail("No deberia lanzar excepcion de permisos insuficientes");
-			} catch(ExpedientesExistenteExpection e) {
+			} catch(ExpedientesExistenteException e) {
 				fail("No deberia lanzar excepcion de usuario inexistente");
 			}
 		

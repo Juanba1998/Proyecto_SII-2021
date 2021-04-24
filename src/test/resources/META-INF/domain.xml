@@ -40,7 +40,6 @@
     </jdbc-connection-pool>
     <jdbc-connection-pool name="H2Pool" datasource-classname="org.h2.jdbcx.JdbcDataSource" res-type="javax.sql.DataSource">
       <property name="url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE" />
-      <property UserName="siiuser" Password="siipassword"/>
     </jdbc-connection-pool>
     
     

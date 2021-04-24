@@ -4,6 +4,7 @@ package es.uma.informatica.ejb.tarea2;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,7 +27,7 @@ import es.uma.informatica.jpa.tarea1.Matricula;
  */
 @Stateless
 public class ExcelEJB implements GestionExcel {
-	
+	private static final Logger LOG = Logger.getLogger(ExcelEJB.class.getCanonicalName());
 	
 	private  XSSFWorkbook wB;
 	private  XSSFSheet sheet;
