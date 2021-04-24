@@ -24,7 +24,7 @@ import es.uma.informatica.jpa.tarea1.Titulacion;
  * Session Bean implementation class ExpedientesEJB
  */
 @Stateless
-public class LisAlumnoEJB implements GestionLisAlumno {
+public class AlumnoEJB implements GestionAlumno {
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;

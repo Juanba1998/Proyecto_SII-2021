@@ -7,7 +7,6 @@ import javax.ejb.Local;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.jpa.tarea1.Encuesta;
 //import es.uma.informatica.jpa.tarea1.Login;
-import es.uma.informatica.jpa.tarea1.Solicitud;
  
 @Local
 public interface GestionEncuesta {

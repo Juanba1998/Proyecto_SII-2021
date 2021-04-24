@@ -8,18 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.EncuestaDuplicadaException;
 import es.uma.informatica.ejb.excepciones.EncuestaNoEncontradaException;
-import es.uma.informatica.ejb.excepciones.LoginException;
-import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
-import es.uma.informatica.ejb.excepciones.SolicitudDuplicadaException;
-import es.uma.informatica.ejb.excepciones.SolicitudNoEncontradaException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
-import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
+
 import es.uma.informatica.jpa.tarea1.Encuesta;
 //import es.uma.informatica.jpa.tarea1.Login;
-import es.uma.informatica.jpa.tarea1.Solicitud;
 
 
 @Stateless

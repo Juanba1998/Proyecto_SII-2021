@@ -12,7 +12,7 @@ import es.uma.informatica.jpa.tarea1.Titulacion;
 //import es.uma.informatica.jpa.tarea1.Login;
 
 @Local
-public interface GestionLisAlumno {
+public interface GestionAlumno {
 
 
 		public void MostrarTodoAlumno(/*Login login*/) throws TrabajoException;
