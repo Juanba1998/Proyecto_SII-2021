@@ -39,7 +39,6 @@ public class GrupoEJB implements GestionGrupos {
 			
 			em.persist(sgrupo);
 		}
-		
 	}
 
 	@Override

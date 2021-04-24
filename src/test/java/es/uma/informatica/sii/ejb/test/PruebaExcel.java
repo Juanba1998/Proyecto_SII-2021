@@ -50,7 +50,7 @@ public class PruebaExcel{
 	
 	@Requisitos({"RF1"})
 	@Test
-	public void testinsertarSolicitudDuplicada() {
+	public void testinsertarAlumnoExistente() {
 		ExcelEJB ex =  new ExcelEJB("/home/alumno/Escritorio/SII/Proyecto_SII-2021/DatosAlumnadoFAKE.xlsx", "Hoja1");
 		
 		
