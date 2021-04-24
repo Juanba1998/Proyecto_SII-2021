@@ -256,11 +256,8 @@ public class ExcelEJB implements GestionExcel {
 				//Curso Academico
 				matr.setCurso_academico(cursoAcademico(cell.toString()));
 				
-				
-				
-				
 			} catch (Exception e) {
-				System.out.println("ERROR");
+				System.out.println("Error en la fecha de matricula" + cell.toString());
 			}
 			
 			break;
