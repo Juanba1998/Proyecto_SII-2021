@@ -40,7 +40,7 @@ public class SolicitudPr {
 	
 	@Requisitos({"RF7"})
 	@Test
-	@Ignore
+	//En este test se prueba la excepcion SolcitudDuplicadaException
 	public void testinsertarSolicitudDuplicada() {
 		Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"), null);
 		

@@ -18,8 +18,8 @@ import es.uma.informatica.ejb.excepciones.*;
 
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
-public class PruebasLogin {
-	private static final Logger LOG = Logger.getLogger(PruebasLogin.class.getCanonicalName());
+public class LoginPr {
+	private static final Logger LOG = Logger.getLogger(LoginPr.class.getCanonicalName());
 	
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
