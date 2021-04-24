@@ -1,7 +1,9 @@
 package es.uma.informatica.ejb.tarea2;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -236,7 +238,14 @@ public class ExcelEJB implements GestionExcel {
 			break;
 		case 16:
 			System.out.println("GRUPOS_ASIGNADOS: "+ cell.toString());
-			//TODO
+			
+			List<String> aux = new ArrayList<String>();
+			for (String asg : cell.toString().split(",")) {
+				aux.add(asg);
+			}
+			
+			al.setGrupos_asignados(aux);
+			
 			break;
 		case 17:
 			System.out.println("NOTA_MEDIA: "+ cell.toString());
