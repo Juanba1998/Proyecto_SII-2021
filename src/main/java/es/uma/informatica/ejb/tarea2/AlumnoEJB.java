@@ -2,7 +2,7 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-import javax.ejb.EJB;
+//import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +18,7 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Matricula;
-import es.uma.informatica.jpa.tarea1.Login;
+//import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Titulacion;
 
 @Stateless

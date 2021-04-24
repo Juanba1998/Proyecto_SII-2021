@@ -5,12 +5,10 @@ package es.uma.informatica.sii.ejb.test;
 import static org.junit.Assert.fail;
 
 import java.sql.Date;
-import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.jpa.tarea1.*;
@@ -20,7 +18,6 @@ import es.uma.informatica.ejb.excepciones.*;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class SolicitudPr {
-	private static final Logger LOG = Logger.getLogger(SolicitudPr.class.getCanonicalName());
 	
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";

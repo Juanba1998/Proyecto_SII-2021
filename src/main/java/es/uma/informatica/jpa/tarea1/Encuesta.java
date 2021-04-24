@@ -1,7 +1,6 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.*;

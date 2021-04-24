@@ -1,11 +1,8 @@
 package es.uma.informatica.sii.ejb.test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-
-import java.util.logging.Logger;
 
 import javax.naming.NamingException;
 
@@ -19,8 +16,6 @@ import es.uma.informatica.ejb.excepciones.*;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class LoginPr {
-	private static final Logger LOG = Logger.getLogger(LoginPr.class.getCanonicalName());
-	
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	

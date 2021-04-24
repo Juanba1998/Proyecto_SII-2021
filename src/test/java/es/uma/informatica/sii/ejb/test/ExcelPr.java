@@ -2,8 +2,6 @@ package es.uma.informatica.sii.ejb.test;
 
 import static org.junit.Assert.fail;
 
-import java.util.logging.Logger;
-
 import javax.ejb.embeddable.EJBContainer;
 import javax.naming.Context;
 import javax.naming.NamingException;
@@ -24,15 +22,10 @@ public class ExcelPr{
 	public static EJBContainer ejbContainer;
 	public static Context ctx;
 	
-
-
 	private static GestionExcel gestionExcel;
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	
 	private static final String SOLICITUD_EJB = "java:global/classes/ExcelEJB";
-	
-	
 		
 	@Before
 	public void setup() throws NamingException  {
@@ -41,29 +34,23 @@ public class ExcelPr{
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
-
-	
 	@Requisitos({"RF1"})
 	@Test
 	
 	public void testinsertarExcel() throws TrabajoException {
 		
-			try {
+		try {
 			
-				gestionExcel.insertExcelData("/home/alumno/Escritorio/SII/DatosAlumnadoFAKE.xlsx","Hoja1");
+			gestionExcel.insertExcelData("/home/alumno/Escritorio/SII/DatosAlumnadoFAKE.xlsx","Hoja1");
 				
-			} catch (AlumnoExistenteException e) {
-				fail("Alumno repetido");
-			} catch(MatriculaExistenteException e) {
-				fail("Matricula repetido");
-			} catch(ExpedientesExistenteException e) {
-				fail("Expediente repetido");
-			}catch (NullPointerException e) {
-				fail("Ruta del Excel erronea");
-			}
-		
-		
+		} catch (AlumnoExistenteException e) {
+			fail("Alumno repetido");
+		} catch(MatriculaExistenteException e) {
+			fail("Matricula repetido");
+		} catch(ExpedientesExistenteException e) {
+			fail("Expediente repetido");
+		}catch (NullPointerException e) {
+			fail("Ruta del Excel erronea");
+		}
 	}
-	
-
 }
