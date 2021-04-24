@@ -4,9 +4,6 @@ package es.uma.informatica.sii.ejb.test;
 //import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.sql.Date;
-//import java.util.logging.Logger;
-
 import javax.naming.NamingException;
 
 import org.junit.Before;
@@ -18,22 +15,20 @@ import es.uma.informatica.ejb.excepciones.*;
 
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
-public class PruebasGrupo {
-	//private static final Logger LOG = Logger.getLogger(PruebasSolicitud.class.getCanonicalName());
-	
+public class GrupoPr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String GRUPO_EJB = "java:global/classes/GrupoEJB";
 	
-	private GestionLogin gestionLogin;
-	private GestionSolicitud gestionGrupo;
+	//private GestionLogin gestionLogin;
+	private GestionGrupos gestionGrupo;
 		
 	@Before
 	public void setup() throws NamingException  {
-		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
-		gestionGrupo = (GestionGrupo) SuiteTest.ctx.lookup(GRUPO_EJB);
+		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		gestionGrupo = (GestionGrupos) SuiteTest.ctx.lookup(GRUPO_EJB);;
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
@@ -46,12 +41,15 @@ public class PruebasGrupo {
 		
 		
 		try {
-			gestionGrupo.aniadirSuperGrupo(login1, grupo1)
+			gestionGrupo.aniadirSuperGrupo(login1, grupo1);
+
 			//OK
 			} catch (PermisosInsuficientesException e) {
 				fail("No debe lanzar excepción de permisos insuficientes");
-		
-	
+			} catch (TrabajoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	
 	@Requisitos({"RF5"})
@@ -63,11 +61,15 @@ public class PruebasGrupo {
 		
 		
 		try {
-			gestionGrupo.aniadirSuperGrupo(login1, grupo1)
+				gestionGrupo.aniadirSuperGrupo(login4, grupo1);
+			
 				
 			} catch (PermisosInsuficientesException e) {
 				fail("Debe lanzar excepción de permisos insuficientes");
 				//OK
+			} catch (TrabajoException e) {
+				fail("Captura TrabajoException");
+			}
 		
 	
 	}

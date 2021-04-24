@@ -4,10 +4,6 @@ package es.uma.informatica.sii.ejb.test;
 //import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.sql.Date;
-import java.util.List;
-import java.util.logging.Logger;
-
 import javax.naming.NamingException;
 
 import org.junit.Before;
@@ -20,17 +16,17 @@ import es.uma.informatica.ejb.excepciones.*;
 import es.uma.informatica.sii.anotaciones.Requisitos;
 
 public class ExpedientePr {
-	private static final Logger LOG = Logger.getLogger(ExpedientePr.class.getCanonicalName());
+	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
-	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String EXPEDIENTES_EJB = "java:global/classes/ExpedientesEJB";
 	
-	private GestionLogin gestionLogin;
+	//private GestionLogin gestionLogin;
 	private GestionExpedientes GestionExpedientes;
 		
 	@Before
 	public void setup() throws NamingException  {
-		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		GestionExpedientes = (GestionExpedientes) SuiteTest.ctx.lookup(EXPEDIENTES_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
