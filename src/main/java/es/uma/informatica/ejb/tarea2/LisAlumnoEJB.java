@@ -93,7 +93,7 @@ public class LisAlumnoEJB implements GestionLisAlumno {
 		//if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
 	//	else {
-		
+		 
 			Query query = em.createQuery("SELECT exp FROM Expedientes exp");
 			List<Expedientes> lista_expedientes = query.getResultList();
 		
