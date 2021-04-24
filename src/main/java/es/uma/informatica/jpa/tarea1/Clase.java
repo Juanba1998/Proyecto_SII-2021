@@ -89,8 +89,6 @@ public class Clase implements Serializable {
 		public String toString() {
 			return "ClaseId [dia=" + dia + ", horaInicio=" + horaInicio + ", grupo=" + grupo + "]";
 		}
-		
-		
 	}
 	
 	@Id
@@ -214,6 +212,4 @@ public class Clase implements Serializable {
 		return "Clase [dia=" + dia + ", horaInicio=" + horaInicio + ", HoraFin=" + HoraFin + ", asignatura="
 				+ asignatura + ", grupo=" + grupo + "]";
 	}
-
-	
 }

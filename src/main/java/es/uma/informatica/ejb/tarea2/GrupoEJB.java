@@ -15,7 +15,7 @@ public class GrupoEJB implements GestionGrupos {
 	
 	private static final Logger LOG = Logger.getLogger(GrupoEJB.class.getCanonicalName());
 
-	@PersistenceContext(name="Trabajo")
+	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
 	public void agruparUno (Grupo g, Alumno a) throws AgruparGruposException{

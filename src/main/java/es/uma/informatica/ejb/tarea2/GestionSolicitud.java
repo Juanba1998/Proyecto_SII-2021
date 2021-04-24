@@ -11,10 +11,10 @@ import es.uma.informatica.jpa.tarea1.Solicitud;
 @Local
 public interface GestionSolicitud {
 	
-	public void aniadirSolicitud(Login login, Solicitud solicitud) throws TrabajoException;
+	public void aniadirSolicitud(/*Login login, */Solicitud solicitud) throws TrabajoException;
 	
-	public void verSolicitud(Login login, Solicitud sol) throws TrabajoException;
+	public void verSolicitud(/*Login login,*/ Solicitud sol) throws TrabajoException;
 	
-	public List<Solicitud> getSolicitudes(Login login) throws TrabajoException;
+	public List<Solicitud> getSolicitudes(/*Login login*/) throws TrabajoException;
 	
 }

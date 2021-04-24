@@ -11,9 +11,9 @@ import es.uma.informatica.jpa.tarea1.Login;
 @Local
 public interface GestionExpedientes {
 	
-	public void MostrarTodasNMP(Login login) throws TrabajoException;
+	public void MostrarTodasNMP(/*Login login*/) throws TrabajoException;
 	
-	public void MostrarNMPExpediente(Expedientes exp, Login login) throws TrabajoException;
+	public void MostrarNMPExpediente(Expedientes exp/*, Login login*/) throws TrabajoException;
 	
-	public List<Expedientes> getExpedientes(Login login) throws TrabajoException;
+	public List<Expedientes> getExpedientes(/*Login login*/) throws TrabajoException;
 }  

@@ -114,5 +114,5 @@ public class Solicitud implements Serializable {
 	public String toString() {
 		return "Solicitud [Codigo=" + Codigo + ", Descripcion=" + Descripcion + ", FechaSolicitud=" + FechaSolicitud
 				+ ", alumno=" + alumno + "]";
-	}   
+	}  
 }

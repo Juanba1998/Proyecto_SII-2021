@@ -174,6 +174,4 @@ public class Titulacion implements Serializable {
 				+ ", titulacion_centros=" + titulacion_centros + ", asignaturas=" + asignaturas
 				+ ", expedientes_titulacion=" + expedientes_titulacion + ", grupos=" + grupos + "]";
 	}
-
-	
 }
