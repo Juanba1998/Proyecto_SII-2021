@@ -5,23 +5,20 @@ import java.util.List;
 import javax.ejb.Local;
 
 import es.uma.informatica.ejb.excepciones.TrabajoException;
-import es.uma.informatica.jpa.tarea1.Alumno;
 import es.uma.informatica.jpa.tarea1.Asignatura;
-import es.uma.informatica.jpa.tarea1.Expedientes;
 import es.uma.informatica.jpa.tarea1.Titulacion;
-//import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Matricula;
 
 @Local
 public interface GestionAlumno {
 
-
-		public void MostrarTodoAlumno(/*Login login*/) throws TrabajoException;
 		
-		public void MostrarTitulacionAlumno(Titulacion titu/*, Login login*/) throws TrabajoException;
+		public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TrabajoException;
 		
-		public void MostrarAsignaturaAlumno(Titulacion titu, Asignatura asi/*, Login login*/) throws TrabajoException;
+		public void MostrarAsignaturaAlumno(Asignatura asi, Login login, String curso_actual) throws TrabajoException;
 		
-		public List<Expedientes> getExpediente(/*Login login*/) throws TrabajoException;
+		public List<Matricula> getListaMatricula(Login login) throws TrabajoException;
 	
 	}  
 

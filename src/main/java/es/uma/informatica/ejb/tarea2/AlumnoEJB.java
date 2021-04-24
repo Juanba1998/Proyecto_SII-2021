@@ -9,20 +9,15 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import es.uma.informatica.ejb.excepciones.AsignaturaNoEncontradoException;
-import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
-import es.uma.informatica.ejb.excepciones.ExpedienteNoEncontradoException;
-import es.uma.informatica.ejb.excepciones.LoginException;
+import es.uma.informatica.ejb.excepciones.MatriculaNoEncontradaException;
 import es.uma.informatica.ejb.excepciones.PermisosInsuficientesException;
 import es.uma.informatica.ejb.excepciones.TitulacionNoEncontradoException;
-import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Asignatura;
-import es.uma.informatica.jpa.tarea1.Expedientes;
+import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Matricula;
 //import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Titulacion;
 
-/**
- * Session Bean implementation class ExpedientesEJB
- */
 @Stateless
 public class AlumnoEJB implements GestionAlumno {
 
@@ -30,20 +25,10 @@ public class AlumnoEJB implements GestionAlumno {
 	private EntityManager em;
 	
 	//@EJB
-	//private LoginEJB LoginEJB;
+	private LoginEJB LoginEJB;
 	
-	//mostrar todos los nombres y dni de alumnos
-	public void MostrarTodoAlumno(/*Login login*/) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
-		
-		List<Expedientes> lista_exp = getExpediente(/*login*/);
-		for(Expedientes e : lista_exp) {
-			System.out.println("Nombre Alumno: " + e.getAlumno().getNombre_completo() + ", DNI: " + e.getAlumno().getDNI()); 
-		}		
-	} 
-	
-
 	//mostrar todos los nombres y dni de alumnos dentro de una titulacion
-	public void MostrarTitulacionAlumno(Titulacion titu/*, Login login*/) throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, TitulacionNoEncontradoException{
+	public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TitulacionNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException {
 		
 		String str = "";
 
@@ -51,11 +36,12 @@ public class AlumnoEJB implements GestionAlumno {
 		
 		if (TituEntity == null) throw new TitulacionNoEncontradoException();
 		
-		List<Expedientes> lista_exp = getExpediente(/*login*/);
+		List<Matricula> lista_mat = getListaMatricula(login);
 
-		for(Expedientes e : lista_exp) {
+		for(Matricula m : lista_mat) {
 			
-			if(e.getTitulacion().equals(TituEntity)) str += "Nombre Alumno: " + e.getAlumno().getNombre_completo() + ", DNI: " + e.getAlumno().getDNI();
+			if(m.getCurso_academico().equalsIgnoreCase(curso_actual)) 
+			str += "Titulacion: " + titu + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombre_completo();
 			System.out.println(str);
 		}		
 	}
@@ -63,44 +49,41 @@ public class AlumnoEJB implements GestionAlumno {
 
 
 	//mostrar todos los nombres y dni de alumnos dentro de una asignatura
-	public void MostrarAsignaturaAlumno(Titulacion titu, Asignatura asi)  throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, TitulacionNoEncontradoException, AsignaturaNoEncontradoException{
+	public void MostrarAsignaturaAlumno(Asignatura asi, Login login, String curso_actual) throws AsignaturaNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException {
 		
 		String str = "";
-
-		Titulacion TituEntity = em.find(Titulacion.class, titu);
-		Asignatura AsiEntity = em.find(Asignatura.class, asi);
 		
-		if (TituEntity == null) throw new TitulacionNoEncontradoException();
+		Asignatura AsiEntity = em.find(Asignatura.class, asi.getReferencia());
+		
 		if (AsiEntity == null) throw new AsignaturaNoEncontradoException();
 		
-		List<Expedientes> lista_exp = getExpediente(/*login*/);
+		List<Matricula> lista_mat = getListaMatricula(login);
 
-		for(Expedientes e : lista_exp) {
+		for(Matricula m : lista_mat) {
 			
-			if(e.getTitulacion().equals(TituEntity) && e.getTitulacion().equals(AsiEntity.getAsignaturas_titulacion())) str += "Nombre Alumno: " + e.getAlumno().getNombre_completo() + ", DNI: " + e.getAlumno().getDNI();
+			if(m.getCurso_academico().equalsIgnoreCase(curso_actual)) 
+			str += "Asignatura: " + asi + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombre_completo();
 			System.out.println(str);
 		}		
 	}
 
-
-
 	@SuppressWarnings("unchecked")
-	public List<Expedientes> getExpediente(/*Login login*/) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
-		
-
+	@Override
+	public List<Matricula> getListaMatricula(Login login) throws PermisosInsuficientesException, MatriculaNoEncontradaException {
+	
 		//LoginEJB.login(login);
 		
-		//if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
+		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
-	//	else {
-		 
-			Query query = em.createQuery("SELECT exp FROM Expedientes exp");
-			List<Expedientes> lista_expedientes = query.getResultList();
+		else {
+			Query query = em.createQuery("SELECT mat FROM Matricula mat");
 		
-			if(lista_expedientes == null) throw new ExpedienteNoEncontradoException();
-		
-			return lista_expedientes;
-		//}
+		List<Matricula> lista_matricula = query.getResultList();
+	
+		if(lista_matricula == null) throw new MatriculaNoEncontradaException();
+	
+		return lista_matricula;
+		}
 	}
 
 
