@@ -21,6 +21,9 @@ public class LoginEJB implements GestionLogin{
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
+	public LoginEJB() {}
+	
+	@Override
 	public void login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		Login actual = em.find(Login.class, l.getCodigo());
@@ -31,6 +34,7 @@ public class LoginEJB implements GestionLogin{
 	}
 	
 	@SuppressWarnings("unused")
+	@Override
 	public Login refrescarLogin(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		login(l);

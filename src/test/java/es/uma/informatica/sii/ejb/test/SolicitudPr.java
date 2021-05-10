@@ -22,15 +22,15 @@ public class SolicitudPr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String SOLICITUD_EJB = "java:global/classes/SolicitudEJB";
 	
-	//private GestionLogin gestionLogin;
+	private GestionLogin gestionLogin;
 	private GestionSolicitud gestionSolicitud;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		gestionSolicitud = (GestionSolicitud) SuiteTest.ctx.lookup(SOLICITUD_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
@@ -39,11 +39,13 @@ public class SolicitudPr {
 	@Test
 	//En este test se prueba la excepcion SolcitudDuplicadaException
 	public void testinsertarSolicitudDuplicada() {
-		Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"), null);
 		
 		try {
+			Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"), null);
+			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
 			try {
-				gestionSolicitud.aniadirSolicitud(new Login(1237213, "levi3", "micontraseña", true, null), solicitud);
+				gestionLogin.login(l);
+				gestionSolicitud.aniadirSolicitud(l, solicitud);
 				fail("Debe lanzar la excepcion de Solcictud Duplicada");
 			} catch (SolicitudDuplicadaException e) {
 				//OK

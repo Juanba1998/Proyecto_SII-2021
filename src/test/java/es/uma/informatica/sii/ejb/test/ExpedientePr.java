@@ -1,12 +1,11 @@
 package es.uma.informatica.sii.ejb.test;
 
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import javax.naming.NamingException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import es.uma.informatica.jpa.tarea1.*;
@@ -18,128 +17,180 @@ import es.uma.informatica.sii.anotaciones.Requisitos;
 public class ExpedientePr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String EXPEDIENTES_EJB = "java:global/classes/ExpedientesEJB";
 	
-	//private GestionLogin gestionLogin;
-	private GestionExpedientes GestionExpedientes;
+	private GestionLogin gestionLogin;
+	private GestionExpedientes gestionExpedientes;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
-		GestionExpedientes = (GestionExpedientes) SuiteTest.ctx.lookup(EXPEDIENTES_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		gestionExpedientes = (GestionExpedientes) SuiteTest.ctx.lookup(EXPEDIENTES_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
+		
+	@Requisitos({"RF2"})
+	@Test
+	/**
+	 * En este test se comprueba que el personal de secretaria puede
+	 * consultar correctamente la nota media provisional de
+	 * un expediente en específico
+	 */
+	public void testConsultarNMPExpediente() {
+
+		try {
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Expedientes exp = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			try {
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				//OK
+			}  catch(PermisosInsuficientesException e) {
+				fail("Lanza PermisosInsuficientesException");
+			} catch(ExpedienteNoEncontradoException e) {
+				fail("Lanza ExpedienteNoEncontradoException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
+		}catch (TrabajoException e) {
+			fail("Lanza TrabajoException");
+		}
+	}
 	
 	@Requisitos({"RF2"})
 	@Test
-	//En este test se compruba en el metodo de sacar todas las notas medias
-	//buscamos que no sea alumno
-	public void testTodoPermisoInsuficiente() {
-		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+	/**
+	 * En este test se comprueba que un miembro de secretaría 
+	 * pueda consultar las notas medias provisionales de todos los expedientes;
+	 */
+	public void testConsultarTodasNMP() {
+
 		try {
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				
-				GestionExpedientes.MostrarTodasNMP(login2);
-				fail("Debe lanzar la excepcion de permisos insuficientes");
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarTodasNMP(l);
+				//OK	
+			} catch(PermisosInsuficientesException e) {
+				fail("Lanza PermisosInsuficientesException");
+			} catch(ExpedienteNoEncontradoException e) {
+				fail("Lanza ExpedienteNoEncontradoException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
+		}catch (TrabajoException e) {
+			fail("Lanza TrabajoException");
+		}
+	}
+	
+	@Requisitos({"RF2"})
+	@Test
+	/**
+	 * En este test se comprueba que un alumno no puede consultar
+	 * las nota media provisional de un expediente
+	 * de la base de datos
+	 */
+	public void testPermisosInsuficientes_MostrarNMPExpediente() {
+		
+		try {
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+			Expedientes exp = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			
+			try {
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				fail("Debe lanzar PermisosInsuficientesException");
 			} catch(PermisosInsuficientesException e) {
 				//OK
-			} 
-		
+			} catch(ExpedienteNoEncontradoException e) {
+				fail("Lanza ExpedienteNoEncontradoException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
 	
 	@Requisitos({"RF2"})
 	@Test
-	//En este test se compruba en el metodo de sacar todas las notas medias
-	//buscamos funcione
-	public void testTodoBien() {
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
+	/** En este test se comprueba que un alumno no puede consultar
+	 * las notas medias provisionales de los expedientes
+	 * de la base de datos
+	 */
+	public void testPermisosInsuficientes_MostrarTodasNMP() {
 		try {
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
 			try {
-				
-				GestionExpedientes.MostrarTodasNMP(login1);
-				
-			} catch(PermisosInsuficientesException e) {
-				fail("No debe lanzar la excepcion de permisos insuficientes");
-			} 
-		
-		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	@Requisitos({"RF2"})
-	@Test
-	//En este test se compruba en el metodo de sacar nota media de un expedientes
-	//buscamos fallo en los permisos
-	
-	public void testnotamediaPermiso() {
-		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", true, null);
-		Expedientes exp1 = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
-		
-		try {
-			try {
-				
-				GestionExpedientes.MostrarNMPExpediente(exp1, login2);
-				fail("Debe lanzar la excepcion de permisos insuficientes");
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarTodasNMP(l);
+				fail("Debe lanzar PermisosInsuficientesException");
 			} catch(PermisosInsuficientesException e) {
 				//OK
-			}catch(ExpedienteNoEncontradoException e) {
-				fail("No debe lanzar la excepcion de permisos insuficientes");
-			} 
+			} catch(ExpedienteNoEncontradoException e) {
+				fail("Lanza ExpedienteNoEncontradoException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
 		
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
+	
 	@Requisitos({"RF2"})
 	@Test
-	//En este test se compruba en el metodo de sacar nota media de un expedientes
-	//buscamos fallo en encontrar expediente
-	
-	public void testnotamedianoexiste() {
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		Expedientes exp1 = new Expedientes(11111, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
-		
+	/**
+	 * En este test se comprueba que el método detecte
+	 * correctamente la excepcion ExpedienteNoEncontradoException
+	 * en la funcion MostrarNMPExpediente()
+	 */
+	public void testExpedienteNoEncontradoException_MostrarNMPExpediente() {	
 		try {
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Expedientes exp = new Expedientes(11111, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
 			try {
-				
-				GestionExpedientes.MostrarNMPExpediente(exp1, login1);
-				fail("debe lanzar la excepcion de permisos insuficientes");
-			} catch(PermisosInsuficientesException e) {
-				fail("no Debe lanzar la excepcion de permisos insuficientes");
-			}catch(ExpedienteNoEncontradoException e) {
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				fail("Debe lanzar ExpedienteNoEncontradoException");
+			}  catch(PermisosInsuficientesException e) {
+				fail("Lanza PermisosInsuficientesException");
+			} catch(ExpedienteNoEncontradoException e) {
 				//OK
-			} 
-		
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
+	
 	@Requisitos({"RF2"})
 	@Test
-	//En este test se compruba en el metodo de sacar nota media de un expedientes
-	//buscamos bien
-	
-	public void testnotamediabien() {
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		Expedientes exp1 = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
-		
+	@Ignore
+	/**
+	 * En este test se comprueba que el método detecte
+	 * correctamente la excepcion ExpedienteNoEncontradoException
+	 * en la funcion MostrarTodasNMP()
+	 * No funciona el test porque la base de datos no esta vacía
+	 */
+	public void testExpedienteNoEncontradoException_MostrarTodasNMP() {	
 		try {
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				
-				GestionExpedientes.MostrarNMPExpediente(exp1, login1);
-			} catch(PermisosInsuficientesException e) {
-				fail("no Debe lanzar la excepcion de permisos insuficientes");
-			}catch(ExpedienteNoEncontradoException e) {
-				fail("No debe lanzar la excepcion de permisos insuficientes");
-			} 
-		
+				gestionLogin.login(l);
+				gestionExpedientes.MostrarTodasNMP(l);
+				fail("Debe lanzar ExpedienteNoEncontradoException");
+			}  catch(PermisosInsuficientesException e) {
+				fail("Lanza PermisosInsuficientesException");
+			} catch(ExpedienteNoEncontradoException e) {
+				//OK
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
+			}
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
-	
 }

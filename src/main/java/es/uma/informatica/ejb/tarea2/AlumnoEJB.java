@@ -2,7 +2,7 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import javax.ejb.EJB;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +18,7 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Matricula;
-//import es.uma.informatica.jpa.tarea1.Login;
+import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Titulacion;
 
 @Stateless
@@ -28,16 +28,17 @@ public class AlumnoEJB implements GestionAlumno {
 	private EntityManager em;
 	
 	//@EJB
-	private LoginEJB LoginEJB;
+	//private LoginEJB LoginEJB;
 	
 	public AlumnoEJB() {}
 	
 	//mostrar todos los nombres y dni de alumnos dentro de una titulacion
+	@Override
 	public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TitulacionNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
 
-		Titulacion TituEntity = em.find(Titulacion.class, titu);
+		Titulacion TituEntity = em.find(Titulacion.class, titu.getCodigoTitulacion());
 		
 		if (TituEntity == null) throw new TitulacionNoEncontradoException();
 		
@@ -51,9 +52,8 @@ public class AlumnoEJB implements GestionAlumno {
 		}		
 	}
 	
-
-
 	//mostrar todos los nombres y dni de alumnos dentro de una asignatura
+	@Override
 	public void MostrarAsignaturaAlumno(Asignatura asi, Login login, String curso_actual) throws AsignaturaNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
@@ -76,7 +76,7 @@ public class AlumnoEJB implements GestionAlumno {
 	@Override
 	public List<Matricula> getListaMatricula(Login login) throws PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 	
-		LoginEJB.login(login);
+		//LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		

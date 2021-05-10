@@ -2,7 +2,6 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,9 +21,9 @@ public class ExpedientesEJB implements GestionExpedientes {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	//@EJB
-	private LoginEJB LoginEJB;
+	public ExpedientesEJB() {}
 	
+	@Override
 	public void MostrarTodasNMP(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		List<Expedientes> lista_exp = getExpedientes(login);
@@ -34,10 +33,11 @@ public class ExpedientesEJB implements GestionExpedientes {
 		}		
 	} 
 	
+	@Override
 	public void MostrarNMPExpediente(Expedientes exp, Login login) throws ExpedienteNoEncontradoException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
 		String str = "";
-		Expedientes expedienteEntity = em.find(Expedientes.class, exp);
+		Expedientes expedienteEntity = em.find(Expedientes.class, exp.getNum_Expediente());
 		
 		if (expedienteEntity == null) throw new ExpedienteNoEncontradoException();
 		
@@ -49,14 +49,11 @@ public class ExpedientesEJB implements GestionExpedientes {
 			System.out.println(str);
 		}		
 	}
-	
 
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Expedientes> getExpedientes(Login login) throws PermisosInsuficientesException, ExpedienteNoEncontradoException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
-		
-
-		LoginEJB.login(login);
-		
+				
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
 		else {
@@ -69,5 +66,4 @@ public class ExpedientesEJB implements GestionExpedientes {
 			return lista_expedientes;
 		}
 	}
-
 }

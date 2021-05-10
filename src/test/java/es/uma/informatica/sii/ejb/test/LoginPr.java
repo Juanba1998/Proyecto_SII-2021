@@ -32,32 +32,33 @@ public class LoginPr {
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, al no existir el usuario en la base de datos, debería salir una excepción.
+	//NPI
 	public void testUsuarioNoEncontrado() {
 
-			try {
-				Login l = new Login(123456, "naruto4", "boruto123", true, null);		
-				gestionLogin.login(l);				
-				
-			} catch (UsuarioInexistenteException e) {
-				//OK
-			} catch(ContrasenaInvalidaException e) {
-				fail("No deberia lanzar excepcion de contraseña invalida");
-			} catch (LoginException e) {
-				fail("Capturada LoginException");
-			}
+		try {
+			Login l = new Login(1231213, "naruto4", "boruto123", true, null);		
+			gestionLogin.login(l);				
+			fail("Debe lanzar la excepcion de Usuario Inexistente");
+		} catch (UsuarioInexistenteException e) {
+			//OK
+		} catch(ContrasenaInvalidaException e) {
+			fail("No deberia lanzar excepcion de contraseña invalida");
+		} catch (LoginException e) {
+			fail("Capturada LoginException");
+		}
 	}
 	
 	@Requisitos({"RF6"})
 	@Test
 	//En este test, ya que la contraseña no coincide con la que hay guardada en la base de datos, debería salir una excepción.
-	public void testContrsenaInvalida() {
+	public void testContrasenaInvalida() {
 	
 			try {
 				Login l = new Login(1231213, "Manoli1", "boruto123", true, null);
 				gestionLogin.login(l);
-				
+				fail("Debe lanzar la excepcion de Contrasena Invalida");
 			} catch (UsuarioInexistenteException e) {
-				fail("No deberia lanzar excepcion de contraseña invalida");
+				fail("No deberia lanzar excepcion de usuario inexistente");
 			} catch(ContrasenaInvalidaException e) {
 				//OK
 			} catch (LoginException e) {

@@ -1,6 +1,5 @@
 package es.uma.informatica.ejb.tarea2;
 
-//import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -20,13 +19,10 @@ public class EncuestaEJB implements GestionEncuesta {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	//@EJB //Al compilar da el error "Failed to Deploy EJB Modules"
-	private LoginEJB LoginEJB;
+	public EncuestaEJB() {}
 
 	@Override
 	public void aniadirEncuesta(Login login, Encuesta enc) throws PermisosInsuficientesException, EncuestaDuplicadaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
-		
-		LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
 		else {

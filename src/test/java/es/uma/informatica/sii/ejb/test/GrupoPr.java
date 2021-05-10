@@ -19,60 +19,69 @@ public class GrupoPr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String GRUPO_EJB = "java:global/classes/GrupoEJB";
 	
-	//private GestionLogin gestionLogin;
+	private GestionLogin gestionLogin;
 	private GestionGrupos gestionGrupo;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		gestionGrupo = (GestionGrupos) SuiteTest.ctx.lookup(GRUPO_EJB);;
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
+	//FALTAN TEST + DOCUMENTACION
+	
 	@Requisitos({"RF5"})
 	@Test
 	//En este test todo va bien y se puede añadir un grupo
-	public void testAniadurGrupoOK() {
-		Grupo grupo1 = new Grupo(45435, "Primero", "C", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		
+	public void testAniadirSuperGrupo() {
 		
 		try {
-			gestionGrupo.aniadirSuperGrupo(login1, grupo1);
-
-			//OK
+			Grupo gr = new Grupo(454351, "Cuarto", "F", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
+			gr.setTitulacion(new Titulacion(8989, "Informática", 60, null, null, null, null));
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			try {
+				gestionLogin.login(l);			
+				gestionGrupo.aniadirSuperGrupo(l, gr);
+				//OK
 			} catch (PermisosInsuficientesException e) {
-				fail("No debe lanzar excepción de permisos insuficientes");
-			} catch (TrabajoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				fail("Lanza PermisosInsuficientesException");
+			} catch (GrupoExistenteException e) {
+				fail("Lanza GrupoExistenteException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
 			}
+
+		}catch (TrabajoException e) {
+			fail("Lanza TrabajoException");
+		}
 	}
 	
 	@Requisitos({"RF5"})
 	@Test
 	//En este test el usuario no tiene permisos suficientes y por lo tanto salta una excepción.
-	public void testAniadurGrupoPermisosInsuficientes() {
-		Grupo grupo1 = new Grupo(45435, "Primero", "C", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
-		Login login4 = new Login(1238873, "juju4", "contra123", true, null);
-		
-		
-		try {
-				gestionGrupo.aniadirSuperGrupo(login4, grupo1);
-			
+	public void testPermisosInsuficientes_AniadirSuperGrupo() {
 				
+		try {
+			Grupo grupo = new Grupo(4544, "Primero", "C", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
+			Login l = new Login(1238873, "juju4", "contra123", true, null);
+			
+			try {
+				gestionLogin.login(l);
+				gestionGrupo.aniadirSuperGrupo(l, grupo);
+				fail("Debe lanzar PermisosInsuficientesException");
 			} catch (PermisosInsuficientesException e) {
-				fail("Debe lanzar excepción de permisos insuficientes");
 				//OK
-			} catch (TrabajoException e) {
-				fail("Captura TrabajoException");
+			} catch (GrupoExistenteException e) {
+				fail("Lanza GrupoExistenteException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
 			}
-		
-	
+		}catch(TrabajoException e) {
+			fail("Lanza TrabajoException");
+		}
 	}
-	
-	
 }

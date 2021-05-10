@@ -18,15 +18,15 @@ import es.uma.informatica.sii.anotaciones.Requisitos;
 public class ListaAlumnosPr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String ALUMNO_EJB = "java:global/classes/AlumnoEJB";
 	
-	//private GestionLogin gestionLogin;
+	private GestionLogin gestionLogin;
 	private GestionAlumno gestionAlumno;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		gestionAlumno = (GestionAlumno) SuiteTest.ctx.lookup(ALUMNO_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
@@ -35,14 +35,16 @@ public class ListaAlumnosPr {
 	@Test
 	//En este test se compruba en el metodo buscar por titulacion
 	//si la titulacion buscada no existe en la base de datos
-	public void testTitulacionNoEncontradaTitulacion() {
-		Titulacion titu = new Titulacion(1111, "Informática", 60, null, null, null, null);
-		String curso_actual = "2003";
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
+	public void testTitulacionNoEncontradoException() {
 		
 		try {
+			Titulacion titu = new Titulacion(1111, "Informática", 60, null, null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			
 			try {
-				gestionAlumno.MostrarTitulacionAlumno(titu,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarTitulacionAlumno(titu,l, curso_actual);
 				fail("Debe lanzar la excepcion de Titulacion no encontrada");
 			} catch (TitulacionNoEncontradoException e) {
 				//OK
@@ -53,7 +55,7 @@ public class ListaAlumnosPr {
 			} 
 		
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
 	@Requisitos({"RF4"})
@@ -61,13 +63,15 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por titulacion
 	//debe fallar si lo pide un alumno
 	public void testPermisosInsuficientesTitulacion() {
-		Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
-		String curso_actual = "2003";
-		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+
 		
 		try {
+			Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
 			try {
-				gestionAlumno.MostrarTitulacionAlumno(titu,login2, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarTitulacionAlumno(titu,l, curso_actual);
 				fail("Deberia lanzar excepcion de permisos insuficientes");
 			} catch (TitulacionNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Titulacion no encontrada");
@@ -87,13 +91,16 @@ public class ListaAlumnosPr {
 	//si la matricula no existe en la base de datos
 	
 	public void testMatriculaNoEncontradaTitulacion() {
-		Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
-		String curso_actual = "2003";
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		
+
+		//Para arreglar este test hace falta crear una titulacion sin matriculas asociadas
+		//MAL HECHO EL TEST
 		try {
+			Titulacion titu = new Titulacion(8980, "Computadores", 60, null, null, null, null);
+			String curso_actual = "2003/2004";
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				gestionAlumno.MostrarTitulacionAlumno(titu,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarTitulacionAlumno(titu,l, curso_actual);
 				fail("Deberia lanzar excepcion de matricula no encontrada");
 			} catch (TitulacionNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Titulacion no encontrada");
@@ -112,13 +119,14 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por titulacion
 	//que este todo correcto
 	public void testMostrarTitulacionAlumno() {
-		Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
-		String curso_actual = "2003";
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		
+
 		try {
+			Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				gestionAlumno.MostrarTitulacionAlumno(titu,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarTitulacionAlumno(titu,l, curso_actual);
 				
 			} catch (TitulacionNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Titulacion no encontrada");
@@ -137,14 +145,16 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por asignatura
 	//si la asignatura no existe en la base da datos
 	public void testAsignaturaNoEncontradaAsignatura() {
-		Asignatura asi = new Asignatura (001, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
-				"2 meses", "Primero", "Español, Chino", null, null, null);
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		
-		String curso_actual = "2003";
+
 		try {
+			Asignatura asi = new Asignatura (001, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
+					"2 meses", "Primero", "Español, Chino", null, null, null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			
+			String curso_actual = "2003";
 			try {
-				gestionAlumno.MostrarAsignaturaAlumno(asi,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarAsignaturaAlumno(asi,l, curso_actual);
 				fail("Debe lanzar la excepcion de Asignatura no encontrada");
 			} catch (AsignaturaNoEncontradoException e) {
 				//OK
@@ -163,14 +173,16 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por asignatura
 	//dara fallo si un alumno lo usa
 	public void testPermisosInsuficientesAsignatura() {
-		Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
-				"2 meses", "Primero", "Español, Chino", null, null, null);
-		String curso_actual = "2003";
-		Login login2 = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+
 		
 		try {
+			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
+					"2 meses", "Primero", "Español, Chino", null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
 			try {
-				gestionAlumno.MostrarAsignaturaAlumno(asi,login2, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarAsignaturaAlumno(asi,l, curso_actual);
 				fail("Deberia lanzar excepcion de permisos insuficientes");
 			} catch (AsignaturaNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Asignatura no encontrada");
@@ -189,14 +201,18 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por asignatura
 	//la matricula no se encuentra en la base de datos
 	public void testMatriculaNoEncontradaAsignatura() {
-		Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
-				"2 meses", "Primero", "Español, Chino", null, null, null);
-		String curso_actual = "2003";
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
+		
+		//Lo mismo que el otro test, hay que crear asignatura sin matricula asociada
+		//MAL HECHO EL TEST
 		
 		try {
+			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
+					"2 meses", "Primero", "Español, Chino", null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				gestionAlumno.MostrarAsignaturaAlumno(asi,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarAsignaturaAlumno(asi,l, curso_actual);
 				fail("Deberia lanzar excepcion de matricula no encontrada");
 			} catch (AsignaturaNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Asignatura no encontrada");
@@ -215,14 +231,15 @@ public class ListaAlumnosPr {
 	//En este test se compruba en el metodo buscar por asignatura
 	//que todo este correcto
 	public void testMostrarAsignaturaAlumno() {
-		Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
-				"2 meses", "Primero", "Español, Chino", null, null, null);
-		String curso_actual = "2003";
-		Login login1 = new Login(1231213, "Manoli1", "contraseña123", false, null);
-		
+
 		try {
+			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
+					"2 meses", "Primero", "Español, Chino", null, null, null);
+			String curso_actual = "2003";
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				gestionAlumno.MostrarAsignaturaAlumno(asi,login1, curso_actual);
+				gestionLogin.login(l);
+				gestionAlumno.MostrarAsignaturaAlumno(asi,l, curso_actual);
 				
 			} catch (AsignaturaNoEncontradoException e) {
 				fail("No debe lanzar la excepcion de Asignatura no encontrada");

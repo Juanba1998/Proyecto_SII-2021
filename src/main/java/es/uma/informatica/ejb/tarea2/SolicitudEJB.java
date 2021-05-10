@@ -2,8 +2,9 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-//import javax.ejb.EJB;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -23,12 +24,15 @@ public class SolicitudEJB implements GestionSolicitud {
 	@PersistenceContext(name= "trabajo")
 	private EntityManager em;
 	
-	//@EJB
-	private LoginEJB LoginEJB;
+	//@Inject
+	//private LoginEJB LoginEJB;
 	
+	public SolicitudEJB() {}
+	
+	@Override
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
 		
-		LoginEJB.login(login);
+		//LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
 		else {
@@ -43,7 +47,8 @@ public class SolicitudEJB implements GestionSolicitud {
 			em.persist(solicitud);
 		}
 	}
-
+	
+	@Override
 	public void verSolicitud(Login login, Solicitud sol) throws SolicitudNoEncontradaException, PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
@@ -62,10 +67,11 @@ public class SolicitudEJB implements GestionSolicitud {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Solicitud> getSolicitudes(Login login) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudNoEncontradaException {
 		
 
-		LoginEJB.login(login);
+		//LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		

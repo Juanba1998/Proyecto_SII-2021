@@ -36,8 +36,9 @@ public class BaseDatos {
 		
 		Titulacion informatica = new Titulacion(8989, "Informática", 60, null, null, null, null);
 		Titulacion software = new Titulacion(8990, "Software", 60, null, null, null, null);
+		Titulacion computadores = new Titulacion(8980, "Computadores", 60, null, null, null, null);
 				
-		for (Titulacion titulaciones: new Titulacion [] {informatica, software}){
+		for (Titulacion titulaciones: new Titulacion [] {informatica, software, computadores}){
 			em.persist(titulaciones);
 		}
 		
@@ -217,10 +218,13 @@ public class BaseDatos {
 		//GRUPO_POR_ASIGNATURA TAMPOCO LA ENTIENDO
 		
 		//MATRICULA TAMPOCO LA ENTIENDO
-		/*Matricula m1 = new Matricula("2020/2021", "Finalizado", 1, "Tarde", "2021-04-22",false,"Calculo,Algebra,Estadistica,PL",exp1,null);
+		Matricula m1 = new Matricula("2020/2021", "Finalizado", 1, "Tarde", "2021-04-22",false,"Calculo,Algebra,Estadistica,PL",exp1,null);
 		Matricula m2 = new Matricula("2020/2021", "Finalizado", 2, "Tarde", "2021-04-22",false,"Calculo,Algebra,Estadistica,PL",exp2,null);
-		Matricula m3 = new Matricula("2020/2021", "Finalizado", 3, "Tarde", "2021-04-22",false,"Calculo,Algebra,Estadistica,PL",exp3,null);*/
+		Matricula m3 = new Matricula("2020/2021", "Finalizado", 3, "Tarde", "2021-04-22",false,"Calculo,Algebra,Estadistica,PL",exp3,null);
 		
+		for (Matricula mat: new Matricula[] {m1,m2,m3}){
+			em.persist(mat);
+		}
 		
 		em.getTransaction().commit();
 		em.close();

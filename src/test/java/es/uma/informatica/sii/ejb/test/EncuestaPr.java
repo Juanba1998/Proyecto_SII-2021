@@ -1,7 +1,5 @@
 package es.uma.informatica.sii.ejb.test;
 
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import javax.naming.NamingException;
 
@@ -18,81 +16,97 @@ public class EncuestaPr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	
-	//private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
+	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
 	private static final String ENCUESTA_EJB = "java:global/classes/EncuestaEJB";
 	
-	//private GestionLogin gestionLogin;
+	private GestionLogin gestionLogin;
 	private GestionEncuesta gestionEncuesta;
 		
 	@Before
 	public void setup() throws NamingException  {
-		//gestionLogin = (GestionLogin) ctx.lookup(LOGIN_EJB);
+		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
 		gestionEncuesta = (GestionEncuesta) SuiteTest.ctx.lookup(ENCUESTA_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 	
-
 	@Requisitos({"RF3"})
 	@Test
-	public void testrealizarEncuesta() {
+	/**
+	 * En este test se comprueba que se pueda
+	 * insertar correctamente una encuesta a la entidad
+	 */
+	public void testInsertarEncuesta() {
 
-		
 		try {
-			Encuesta encuesta1 = new Encuesta("2021-04-12 13:00",null,null);
+			Encuesta enc = new Encuesta("2021-04-19 13:00",null,null);
+			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
 			try {
-				gestionEncuesta.aniadirEncuesta(new Login(1237213, "levi3", "micontraseña", true, null),encuesta1);
-				
+				gestionLogin.login(l);
+				gestionEncuesta.aniadirEncuesta(l,enc);
+				//OK
 			} catch (EncuestaDuplicadaException e) {
-				fail("Debe lanzar la excepcion de Encuesta Duplicada");
+				fail("Lanza EncuestaDuplicadaException");
 			} catch(PermisosInsuficientesException e) {
-				fail("No deberia lanzar excepcion de permisos insuficientes");
+				fail("Lanza PermisosInsuficientesException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
 			}
-		
+			
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
-		
 	}
 	
 	@Requisitos({"RF3"})
 	@Test
-	public void testinsertarEncuestaDuplicada() {
-		
+	/**
+	 * En este test se comprueba que el método detecte
+	 * correctamente la excepcion EncuestaDuplicadaException
+	 */
+	public void testEncuestaDuplicadaException() {
 		try {
-			Encuesta encuesta = new Encuesta("2021-04-12 13:00",null,null);
+			Encuesta enc = new Encuesta("2021-04-12 13:00",null,null);
+			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
 			try {
-				gestionEncuesta.aniadirEncuesta(new Login(1237213, "levi3", "micontraseña", true, null),encuesta);
-				gestionEncuesta.aniadirEncuesta(new Login(1237213, "levi3", "micontraseña", true, null),encuesta);
-				fail("Debe lanzar la excepcion de Encuesta Duplicada");
+				gestionLogin.login(l);
+				gestionEncuesta.aniadirEncuesta(l,enc);
+				fail("Debe lanzar EncuestaDuplicadaException");
 			} catch (EncuestaDuplicadaException e) {
 				//OK
 			} catch(PermisosInsuficientesException e) {
-				fail("No deberia lanzar excepcion de permisos insuficientes");
+				fail("Lanza PermisosInsuficientesException");
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
 			}
 		
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
+	
 	@Requisitos({"RF3"})
 	@Test
-	public void testPermisosInsuficientes() {
+	/**
+	 * En este test se comprueba que el personal de secretaría no puede
+	 * insertar una encuesta en la base de datos
+	 */
+	public void testPermisosInsuficientesException_AniadirEncuesta() {
 		try {
-			Encuesta encuesta = new Encuesta("2021-04-12 13:00",null,null);
+			Encuesta enc = new Encuesta("2021-04-12 13:00",null,null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
-				gestionEncuesta.aniadirEncuesta(new Login(1231213, "Manoli1", "contraseña123", false, null),encuesta);
-				
-				fail("Debe lanzar la excepcion de Permisos Insuficientes");
+				gestionLogin.login(l);
+				gestionEncuesta.aniadirEncuesta(l,enc);
+				fail("Debe lanzar PermisosInsuficientesException");
 			} catch (EncuestaDuplicadaException e) {
-				fail("No deberia lanzar excepcion de encuesta duplicada");
-				
+				fail("Lanza EncuestaDuplicadaException");
 			} catch(PermisosInsuficientesException e) {
 				//OK
+			} catch(LoginException e) {
+				fail("Lanza una excepción relacionada con el login");
 			}
-		
 		}catch (TrabajoException e) {
-			throw new RuntimeException(e);
+			fail("Lanza TrabajoException");
 		}
 	}
-
 }

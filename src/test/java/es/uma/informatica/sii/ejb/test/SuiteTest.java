@@ -11,7 +11,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-
 @RunWith(Suite.class)
 @SuiteClasses({ExcelPr.class, EncuestaPr.class, ExpedientePr.class, GrupoPr.class, ListaAlumnosPr.class, SolicitudPr.class, LoginPr.class})
 public class SuiteTest {
