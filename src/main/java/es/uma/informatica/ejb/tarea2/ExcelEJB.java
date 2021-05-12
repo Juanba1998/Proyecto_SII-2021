@@ -37,13 +37,13 @@ public class ExcelEJB implements GestionExcel {
 	public ExcelEJB() {}
 
 	@Override
-	public  void insertExcelData(String excelPath,String sheetName) throws MatriculaExistenteException, AlumnoExistenteException, ExpedientesExistenteException {
+	public  void insertExcelData(String excelPath, String sheetName) throws MatriculaExistenteException, AlumnoExistenteException, ExpedientesExistenteException {
 		
 		try {
 			wB =  new XSSFWorkbook(excelPath);
 			sheet = wB.getSheet(sheetName);
 		}catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		Iterator<Row> rowIt = sheet.iterator();

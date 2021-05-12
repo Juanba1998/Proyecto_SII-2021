@@ -95,7 +95,9 @@ public class ListaAlumnosPr {
 		//Para arreglar este test hace falta crear una titulacion sin matriculas asociadas
 		//MAL HECHO EL TEST
 		try {
-			Titulacion titu = new Titulacion(8980, "Computadores", 60, null, null, null, null);
+			Titulacion titu = new Titulacion(8989, "Informática", 60, null, null, null, null);
+			Expedientes exp1 = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			exp1.setTitulacion(titu);
 			String curso_actual = "2003/2004";
 			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
 			try {
@@ -253,5 +255,4 @@ public class ListaAlumnosPr {
 			throw new RuntimeException(e);
 		}
 	}
-	
 }

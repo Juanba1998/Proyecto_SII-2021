@@ -53,6 +53,7 @@ public class GrupoEJB implements GestionGrupos {
 			if (asignaturaExistente == null) throw new AsignaturaNoEncontradoException();
 						
 			Grupo grupoExistente = em.find(Grupo.class, g.getID());
+			
 			if (grupoExistente == null) throw new GrupoNoExistenteException();
 				
 			List<Grupo_por_asignatura> lista_gpa = getGruposAsignaturas(login);

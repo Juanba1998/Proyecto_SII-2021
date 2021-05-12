@@ -2,7 +2,6 @@ package es.uma.informatica.ejb.tarea2;
 
 import java.util.List;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +17,6 @@ import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.jpa.tarea1.Asignatura;
 import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Matricula;
-import es.uma.informatica.jpa.tarea1.Login;
 import es.uma.informatica.jpa.tarea1.Titulacion;
 
 @Stateless
@@ -26,9 +24,7 @@ public class AlumnoEJB implements GestionAlumno {
 
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
-	
-	//@EJB
-	//private LoginEJB LoginEJB;
+	//private List<Matricula> lista_mat;
 	
 	public AlumnoEJB() {}
 	
@@ -43,6 +39,13 @@ public class AlumnoEJB implements GestionAlumno {
 		if (TituEntity == null) throw new TitulacionNoEncontradoException();
 		
 		List<Matricula> lista_mat = getListaMatricula(login);
+		
+		/*lista_mat = null;
+		for(Expedientes e: titu.getExpedientes_titulacion()) {
+			for(Matricula m : e.getMatriculas()) {
+				if (m.getCurso_academico().equalsIgnoreCase(curso_actual)) lista_mat.add(m);
+			}
+		}*/
 
 		for(Matricula m : lista_mat) {
 			
@@ -75,8 +78,6 @@ public class AlumnoEJB implements GestionAlumno {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Matricula> getListaMatricula(Login login) throws PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
-	
-		//LoginEJB.login(login);
 		
 		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
 		
@@ -84,13 +85,10 @@ public class AlumnoEJB implements GestionAlumno {
 			Query query = em.createQuery("SELECT mat FROM Matricula mat");
 		
 		List<Matricula> lista_matricula = query.getResultList();
-	
+				
 		if(lista_matricula == null) throw new MatriculaNoEncontradaException();
 	
 		return lista_matricula;
 		}
 	}
-
-
-
 }
