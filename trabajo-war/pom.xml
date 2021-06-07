@@ -24,7 +24,6 @@
   		<version>1.2</version>
   		<scope>provided</scope>
   	</dependency>
-
   	<dependency>
   		<groupId>es.uma.informatica.sii</groupId>
   		<artifactId>trabajo-ejb</artifactId>
@@ -32,11 +31,10 @@
   		<type>ejb</type>
   		<scope>provided</scope>
   	</dependency>
-  	
   	<dependency>
-	    <groupId>org.primefaces</groupId>
-	    <artifactId>primefaces</artifactId>
-	    <version>10.0.0</version>
+    	<groupId>org.primefaces</groupId>
+    	<artifactId>primefaces</artifactId>
+    	<version>10.0.0</version>
 	</dependency>
   </dependencies>
 </project>
