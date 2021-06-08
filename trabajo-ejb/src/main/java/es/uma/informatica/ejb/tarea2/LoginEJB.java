@@ -1,15 +1,13 @@
 package es.uma.informatica.ejb.tarea2;
 
-import java.net.URI;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.core.UriBuilder;
+import javax.persistence.PersistenceException;
 
 import es.uma.informatica.jpa.tarea1.*;
-
 import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
@@ -22,7 +20,7 @@ public class LoginEJB implements GestionLogin{
 	@SuppressWarnings("unused")
 	private static final Logger LOG = Logger.getLogger(LoginEJB.class.getCanonicalName());
 	
-	@PersistenceContext(name="trabajo")
+	@PersistenceContext(unitName="trabajo")
 	private EntityManager em;
 	
 	public LoginEJB() {
@@ -39,6 +37,7 @@ public class LoginEJB implements GestionLogin{
      * existe ahora mismo en la BBDD.
      * @param u
      * @return 
+	 * @throws Exception 
      *
     @Override
     public Login refrescarUsuario(Login u) throws TrabajoException {
@@ -49,33 +48,43 @@ public class LoginEJB implements GestionLogin{
 
     }
     */
-	
-	@Override
-	public String login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
-		
-		String type = "alumno";
-		Login actual = em.find(Login.class, l.getCodigo());
-		
-	
-		if(!(actual.getUsuario().equalsIgnoreCase(l.getUsuario()))) throw new UsuarioInexistenteException();
-		
-		if(!actual.getContrasena().equals(l.getContrasena())) throw new ContrasenaInvalidaException();
-		
-		if(!actual.getEsAlumno()){
-			type = "secretaria";
+	   @Override
+	    public void compruebaLogin(Login u) throws Exception {
+		   
+		   try{
+			   Login user = em.find(Login.class, "a");
+			}catch (PersistenceException e) {
+			
+				   throw new PersistenceException();
 		}
-		
-		return type;
-	}
+		   //throw new UsuarioInexistenteException();
+	        /*if (user == null) {
+	            throw new UsuarioInexistenteException();
+	        }
+
+
+	        if (!user.getContrasena().equals(u.getContrasena())) {
+	            throw new ContrasenaInvalidaException();
+	        }*/
+
+	    }
 	
-	@SuppressWarnings("unused")
+
+	
+	
 	@Override
-	public Login refrescarLogin(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+	public Login refrescarLogin(Login l) throws Exception  {
+		compruebaLogin(l);
 		
-		login(l);
-		Login actual = em.find(Login.class, l.getUsuario());
-		em.refresh(l);
-		return l;
+		Login actual = em.find(Login.class, l.getnombreUsuario());
+		em.refresh(actual);
+		return actual;
+	}
+
+	@Override
+	public String login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

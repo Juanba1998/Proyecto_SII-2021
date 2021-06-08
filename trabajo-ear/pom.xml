@@ -37,6 +37,7 @@
 			<artifactId>maven-ear-plugin</artifactId>
 			<configuration>
 				<defaultLibBundleDir>lib</defaultLibBundleDir>
+				<modules>
 				<ejbModule>
 					<groupId>es.uma.informatica.sii</groupId>
 					<artifactId>trabajo-ejb</artifactId>
@@ -45,6 +46,7 @@
 					<groupId>es.uma.informatica.sii</groupId>
 					<artifactId>trabajo-war</artifactId>
 				</webModule>
+				</modules>
 			</configuration>
 		</plugin>
 	</plugins>

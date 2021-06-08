@@ -20,17 +20,19 @@
           
                     <div class="formInputGroup">
                         <h:outputLabel class= "formText" for="user">Nombre Usuario</h:outputLabel>
-                        <h:inputText id="user" class="formInput" name="userName" 
-                        autofocus="autofocus"  
+                        <h:inputText id="user" required="true"  class="formInput" name="userName" 
+                        autofocus="autofocus"
+                        value="#{loginVista.log.nombreUsuario}" 
                         />
                         
                        <h:message for="user" class=" formInputError formInputErrorMsg"/>
                     </div>
                         
                     <div class="formInputGroup">
-                     	<h:outputLabel class= "formText" for="psw">Contraseña</h:outputLabel>
+                     	<h:outputLabel class= "formText"  required="true" for="psw">Contraseña</h:outputLabel>
                         <h:inputSecret  id="psw"  
                         name="psw" class="formInput" autofocus="autofocus" placeholder="Password"
+                        value="#{loginVista.log.contrasena}"
                         />
                         
                         <h:message for="pass" class="formInputErrorMsg"/>

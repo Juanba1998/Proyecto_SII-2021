@@ -2,17 +2,15 @@ package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
  
 @SuppressWarnings("serial")
 @Entity
 public class Login implements Serializable {
 
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer codigo;
-	
-	@Column(nullable = false, unique = true)
-	private String usuario;
-	
+	@Id //@GeneratedValue(strategy = GenerationType.AUTO)
+	private String nombreUsuario;
+
 	@Column(nullable = false)
 	private String contrasena;
 	
@@ -27,28 +25,21 @@ public class Login implements Serializable {
 		super();
 	}
 
-	public Login(Integer codigo, String usuario, String contrasena, Boolean esAlumno) {
-		this.codigo = codigo;
-		this.usuario = usuario;
+	public Login(String nombreUsuario, String contrasena, Boolean esAlumno) {
+		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.esAlumno = esAlumno;
 	}
 
-	public Integer getCodigo() {
-		return codigo;
+	public String getnombreUsuario() {
+		return nombreUsuario;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setnombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
+	
 
 	public String getContrasena() {
 		return contrasena;
@@ -80,7 +71,7 @@ public class Login implements Serializable {
 		
         if(obj instanceof Login){
         	Login log = (Login) obj;
-            ok = (codigo == log.codigo) && usuario.equalsIgnoreCase(log.usuario) &&
+            ok = (nombreUsuario == log.nombreUsuario) &&
             		contrasena.equalsIgnoreCase(log.contrasena) && esAlumno.equals(log.esAlumno);
         }
         
@@ -89,12 +80,12 @@ public class Login implements Serializable {
 	
 	@Override
 	public int hashCode() {
-		return usuario.hashCode() + contrasena.hashCode() + esAlumno.hashCode() + codigo.hashCode();
+		return contrasena.hashCode() + esAlumno.hashCode() + nombreUsuario.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Login [codigo=" + codigo + ", usuario=" + usuario + ", contrasena=" + contrasena + ", esAlumno="
+		return "Login [nombreUsuario=" + nombreUsuario + ", contrasena=" + contrasena + ", esAlumno="
 				+ esAlumno + "]";
 	}
 }
