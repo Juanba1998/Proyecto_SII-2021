@@ -9,36 +9,35 @@ import javax.persistence.*;
 public class Alumno implements Serializable{
  
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer ID;
+	private Integer id;
 	
 	@Column(unique = true)
-	private String DNI;
+	private String dni;
 	
 	@Column(nullable = false)
-	private String Nombre_completo;
+	private String nombreCompleto;
 	
 	@Column(nullable = false)
-	private String Email_Institucional;
+	private String emailInstitucional;
 	
-	private String Email_Personal;
-	private String Telefono;
-	private String Movil;
-	private String Direccion;
-	private String Localidad;
-	private String Provincia;
-	private Integer CodigoPostal;
-	private Boolean AlumnoMovilidad;
+	private String emailPersonal;
+	private String telefono;
+	private String movil;
+	private String direccion;
+	private String localidad;
+	private String provincia;
+	private Integer codigoPostal;
+	private Boolean alumnoMovilidad;
 	
 	@Column
 	@ElementCollection(targetClass=String.class)
-	private List<String> grupos_asignados; 
-	
+	private List<String> gruposAsignados; 
 	
 	@OneToMany (mappedBy = "alumno", cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
-	private List<Expedientes> lista_expedientes;
+	private List<Expediente> listaExpedientes;
 	
 	@OneToMany (mappedBy = "alumno")
-	private List<Solicitud> lista_solicitudes;
+	private List<Solicitud> listaSolicitudes;
 	
 	@OneToOne(optional = false)
 	private Login login;
@@ -47,156 +46,142 @@ public class Alumno implements Serializable{
 		super();
 	}
 
-
-
-	public Alumno(String dNI, String nombre_completo, String email_Institucional, String email_Personal,
+	public Alumno(Integer id, String dni, String nombreCompleto, String emailInstitucional, String emailPersonal,
 			String telefono, String movil, String direccion, String localidad, String provincia, Integer codigoPostal,
-			Boolean alumnoMovilidad, List<String> grupos_asignados, List<Expedientes> lista_expedientes,
-			List<Solicitud> lista_solicitudes, Login login) {
+			Boolean alumnoMovilidad) {
 		super();
-	
-		DNI = dNI;
-		Nombre_completo = nombre_completo;
-		Email_Institucional = email_Institucional;
-		Email_Personal = email_Personal;
-		Telefono = telefono;
-		Movil = movil;
-		Direccion = direccion;
-		Localidad = localidad;
-		Provincia = provincia;
-		CodigoPostal = codigoPostal;
-		AlumnoMovilidad = alumnoMovilidad;
-		this.grupos_asignados = grupos_asignados;
-		this.lista_expedientes = lista_expedientes;
-		this.lista_solicitudes = lista_solicitudes;
-		this.login = login;
+		this.id = id;
+		this.dni = dni;
+		this.nombreCompleto = nombreCompleto;
+		this.emailInstitucional = emailInstitucional;
+		this.emailPersonal = emailPersonal;
+		this.telefono = telefono;
+		this.movil = movil;
+		this.direccion = direccion;
+		this.localidad = localidad;
+		this.provincia = provincia;
+		this.codigoPostal = codigoPostal;
+		this.alumnoMovilidad = alumnoMovilidad;
 	}
 
-
-
-	
-
-
-	public List<String> getGrupos_asignados() {
-		return grupos_asignados;
+	public Integer getId() {
+		return id;
 	}
 
-
-
-	public void setGrupos_asignados(List<String> grupos_asignados) {
-		this.grupos_asignados = grupos_asignados;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-
-
-	public Integer getID() {
-		return ID;
+	public String getDni() {
+		return dni;
 	}
 
-	
-
-	public String getDNI() {
-		return DNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
 
-	public String getNombre_completo() {
-		return Nombre_completo;
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 
-	public void setNombre_completo(String nombre_completo) {
-		Nombre_completo = nombre_completo;
+	public String getEmailInstitucional() {
+		return emailInstitucional;
 	}
 
-	public String getEmail_Institucional() {
-		return Email_Institucional;
+	public void setEmailInstitucional(String emailInstitucional) {
+		this.emailInstitucional = emailInstitucional;
 	}
 
-	public void setEmail_Institucional(String email_Institucional) {
-		Email_Institucional = email_Institucional;
+	public String getEmailPersonal() {
+		return emailPersonal;
 	}
 
-	public String getEmail_Personal() {
-		return Email_Personal;
-	}
-
-	public void setEmail_Personal(String email_Personal) {
-		Email_Personal = email_Personal;
+	public void setEmailPersonal(String emailPersonal) {
+		this.emailPersonal = emailPersonal;
 	}
 
 	public String getTelefono() {
-		return Telefono;
+		return telefono;
 	}
 
 	public void setTelefono(String telefono) {
-		Telefono = telefono;
+		this.telefono = telefono;
 	}
 
 	public String getMovil() {
-		return Movil;
+		return movil;
 	}
 
 	public void setMovil(String movil) {
-		Movil = movil;
+		this.movil = movil;
 	}
 
 	public String getDireccion() {
-		return Direccion;
+		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
-		Direccion = direccion;
+		this.direccion = direccion;
 	}
 
 	public String getLocalidad() {
-		return Localidad;
+		return localidad;
 	}
 
 	public void setLocalidad(String localidad) {
-		Localidad = localidad;
+		this.localidad = localidad;
 	}
 
 	public String getProvincia() {
-		return Provincia;
+		return provincia;
 	}
 
 	public void setProvincia(String provincia) {
-		Provincia = provincia;
+		this.provincia = provincia;
 	}
 
 	public Integer getCodigoPostal() {
-		return CodigoPostal;
+		return codigoPostal;
 	}
 
 	public void setCodigoPostal(Integer codigoPostal) {
-		CodigoPostal = codigoPostal;
+		this.codigoPostal = codigoPostal;
 	}
 
 	public Boolean getAlumnoMovilidad() {
-		return AlumnoMovilidad;
+		return alumnoMovilidad;
 	}
 
 	public void setAlumnoMovilidad(Boolean alumnoMovilidad) {
-		AlumnoMovilidad = alumnoMovilidad;
+		this.alumnoMovilidad = alumnoMovilidad;
 	}
 
-	public List<Expedientes> getLista_expedientes() {
-		return lista_expedientes;
+	public List<String> getGruposAsignados() {
+		return gruposAsignados;
 	}
 
-	public void setLista_expedientes(List<Expedientes> lista_expedientes) {
-		this.lista_expedientes = lista_expedientes;
+	public void setGruposAsignados(List<String> gruposAsignados) {
+		this.gruposAsignados = gruposAsignados;
 	}
 
-	public List<Solicitud> getLista_solicitudes() {
-		return lista_solicitudes;
+	public List<Expediente> getListaExpedientes() {
+		return listaExpedientes;
 	}
 
-	public void setLista_solicitudes(List<Solicitud> lista_solicitudes) {
-		this.lista_solicitudes = lista_solicitudes;
+	public void setListaExpedientes(List<Expediente> listaExpedientes) {
+		this.listaExpedientes = listaExpedientes;
+	}
+
+	public List<Solicitud> getListaSolicitudes() {
+		return listaSolicitudes;
+	}
+
+	public void setListaSolicitudes(List<Solicitud> listaSolicitudes) {
+		this.listaSolicitudes = listaSolicitudes;
 	}
 
 	public Login getLogin() {
@@ -206,135 +191,31 @@ public class Alumno implements Serializable{
 	public void setLogin(Login login) {
 		this.login = login;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((AlumnoMovilidad == null) ? 0 : AlumnoMovilidad.hashCode());
-		result = prime * result + ((CodigoPostal == null) ? 0 : CodigoPostal.hashCode());
-		result = prime * result + ((DNI == null) ? 0 : DNI.hashCode());
-		result = prime * result + ((Direccion == null) ? 0 : Direccion.hashCode());
-		result = prime * result + ((Email_Institucional == null) ? 0 : Email_Institucional.hashCode());
-		result = prime * result + ((Email_Personal == null) ? 0 : Email_Personal.hashCode());
-		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + ((Localidad == null) ? 0 : Localidad.hashCode());
-		result = prime * result + ((Movil == null) ? 0 : Movil.hashCode());
-		result = prime * result + ((Nombre_completo == null) ? 0 : Nombre_completo.hashCode());
-		result = prime * result + ((Provincia == null) ? 0 : Provincia.hashCode());
-		result = prime * result + ((Telefono == null) ? 0 : Telefono.hashCode());
-		result = prime * result + ((grupos_asignados == null) ? 0 : grupos_asignados.hashCode());
-		result = prime * result + ((lista_expedientes == null) ? 0 : lista_expedientes.hashCode());
-		result = prime * result + ((lista_solicitudes == null) ? 0 : lista_solicitudes.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
-		return result;
-	}
-
-
-
+		
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Alumno other = (Alumno) obj;
-		if (AlumnoMovilidad == null) {
-			if (other.AlumnoMovilidad != null)
-				return false;
-		} else if (!AlumnoMovilidad.equals(other.AlumnoMovilidad))
-			return false;
-		if (CodigoPostal == null) {
-			if (other.CodigoPostal != null)
-				return false;
-		} else if (!CodigoPostal.equals(other.CodigoPostal))
-			return false;
-		if (DNI == null) {
-			if (other.DNI != null)
-				return false;
-		} else if (!DNI.equals(other.DNI))
-			return false;
-		if (Direccion == null) {
-			if (other.Direccion != null)
-				return false;
-		} else if (!Direccion.equals(other.Direccion))
-			return false;
-		if (Email_Institucional == null) {
-			if (other.Email_Institucional != null)
-				return false;
-		} else if (!Email_Institucional.equals(other.Email_Institucional))
-			return false;
-		if (Email_Personal == null) {
-			if (other.Email_Personal != null)
-				return false;
-		} else if (!Email_Personal.equals(other.Email_Personal))
-			return false;
-		if (ID == null) {
-			if (other.ID != null)
-				return false;
-		} else if (!ID.equals(other.ID))
-			return false;
-		if (Localidad == null) {
-			if (other.Localidad != null)
-				return false;
-		} else if (!Localidad.equals(other.Localidad))
-			return false;
-		if (Movil == null) {
-			if (other.Movil != null)
-				return false;
-		} else if (!Movil.equals(other.Movil))
-			return false;
-		if (Nombre_completo == null) {
-			if (other.Nombre_completo != null)
-				return false;
-		} else if (!Nombre_completo.equals(other.Nombre_completo))
-			return false;
-		if (Provincia == null) {
-			if (other.Provincia != null)
-				return false;
-		} else if (!Provincia.equals(other.Provincia))
-			return false;
-		if (Telefono == null) {
-			if (other.Telefono != null)
-				return false;
-		} else if (!Telefono.equals(other.Telefono))
-			return false;
-		if (grupos_asignados == null) {
-			if (other.grupos_asignados != null)
-				return false;
-		} else if (!grupos_asignados.equals(other.grupos_asignados))
-			return false;
-		if (lista_expedientes == null) {
-			if (other.lista_expedientes != null)
-				return false;
-		} else if (!lista_expedientes.equals(other.lista_expedientes))
-			return false;
-		if (lista_solicitudes == null) {
-			if (other.lista_solicitudes != null)
-				return false;
-		} else if (!lista_solicitudes.equals(other.lista_solicitudes))
-			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Alumno){
+            Alumno al = (Alumno) obj;
+            ok = (id == al.id) && dni.equalsIgnoreCase(al.dni) && nombreCompleto.equalsIgnoreCase(al.nombreCompleto) &&
+            		emailInstitucional.equalsIgnoreCase(al.emailInstitucional);
+        }
+        
+        return ok;
+		
 	}
 
-
+	@Override
+	public int hashCode() {
+		return id.hashCode() + dni.hashCode() + nombreCompleto.hashCode() + emailInstitucional.hashCode();
+	}
 
 	@Override
 	public String toString() {
-		return "Alumno [ID=" + ID + ", DNI=" + DNI + ", Nombre_completo=" + Nombre_completo + ", Email_Institucional="
-				+ Email_Institucional + ", Email_Personal=" + Email_Personal + ", Telefono=" + Telefono + ", Movil="
-				+ Movil + ", Direccion=" + Direccion + ", Localidad=" + Localidad + ", Provincia=" + Provincia
-				+ ", CodigoPostal=" + CodigoPostal + ", AlumnoMovilidad=" + AlumnoMovilidad + ", grupos_asignados="
-				+ grupos_asignados + ", lista_expedientes=" + lista_expedientes + ", lista_solicitudes="
-				+ lista_solicitudes + ", login=" + login + "]";
+		return "Alumno [id=" + id + ", dni=" + dni + ", nombreCompleto=" + nombreCompleto + ", emailInstitucional="
+				+ emailInstitucional + ", emailPersonal=" + emailPersonal + ", telefono=" + telefono + ", movil="
+				+ movil + ", direccion=" + direccion + ", localidad=" + localidad + ", provincia=" + provincia
+				+ ", codigoPostal=" + codigoPostal + ", alumnoMovilidad=" + alumnoMovilidad + "]";
 	}
-
-
-	
 }

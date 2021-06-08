@@ -41,8 +41,8 @@ public class SolicitudPr {
 	public void testinsertarSolicitudDuplicada() {
 		
 		try {
-			Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"), null);
-			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
+			Solicitud solicitud = new Solicitud(567,"Quiero cambiar de 3ºA al B por incompatibilidad horaria", Date.valueOf("2021-04-23"));
+			Login l = new Login(1237213, "levi3", "micontraseña", true);
 			try {
 				gestionLogin.login(l);
 				gestionSolicitud.aniadirSolicitud(l, solicitud);

@@ -26,19 +26,21 @@ public class AlumnoEJB implements GestionAlumno {
 	private EntityManager em;
 	//private List<Matricula> lista_mat;
 	
-	public AlumnoEJB() {}
+	public AlumnoEJB() {
+		super();
+	}
 	
 	//mostrar todos los nombres y dni de alumnos dentro de una titulacion
 	@Override
-	public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TitulacionNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+	public void mostrarTitulacionAlumno(Titulacion titu, Login login, String cursoActual) throws TitulacionNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
 
-		Titulacion TituEntity = em.find(Titulacion.class, titu.getCodigoTitulacion());
+		Titulacion tituEntity = em.find(Titulacion.class, titu.getCodigo());
 		
-		if (TituEntity == null) throw new TitulacionNoEncontradoException();
+		if (tituEntity == null) throw new TitulacionNoEncontradoException();
 		
-		List<Matricula> lista_mat = getListaMatricula(login);
+		List<Matricula> listaMat = getListaMatricula(login);
 		
 		/*lista_mat = null;
 		for(Expedientes e: titu.getExpedientes_titulacion()) {
@@ -47,31 +49,33 @@ public class AlumnoEJB implements GestionAlumno {
 			}
 		}*/
 
-		for(Matricula m : lista_mat) {
+		for(Matricula m : listaMat) {
 			
-			if(m.getCurso_academico().equalsIgnoreCase(curso_actual)) 
-			str += "Titulacion: " + titu + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombre_completo();
-			System.out.println(str);
+			if(m.getCursoAcademico().equalsIgnoreCase(cursoActual)) {
+				str += "Titulacion: " + titu.getNombre() + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombreCompleto();
+				System.out.println(str);
+			}
 		}		
 	}
 	
 	//mostrar todos los nombres y dni de alumnos dentro de una asignatura
 	@Override
-	public void MostrarAsignaturaAlumno(Asignatura asi, Login login, String curso_actual) throws AsignaturaNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
+	public void mostrarAsignaturaAlumno(Asignatura asi, Login login, String cursoActual) throws AsignaturaNoEncontradoException, PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
 		String str = "";
 		
-		Asignatura AsiEntity = em.find(Asignatura.class, asi.getReferencia());
+		Asignatura asiEntity = em.find(Asignatura.class, asi.getReferencia());
 		
-		if (AsiEntity == null) throw new AsignaturaNoEncontradoException();
+		if (asiEntity == null) throw new AsignaturaNoEncontradoException();
 		
-		List<Matricula> lista_mat = getListaMatricula(login);
+		List<Matricula> listaMat = getListaMatricula(login);
 
-		for(Matricula m : lista_mat) {
+		for(Matricula m : listaMat) {
 			
-			if(m.getCurso_academico().equalsIgnoreCase(curso_actual)) 
-			str += "Asignatura: " + asi + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombre_completo();
-			System.out.println(str);
+			if(m.getCursoAcademico().equalsIgnoreCase(cursoActual)) {
+				str += "Asignatura: " + asi.getNombre() + "\n" + "Nombre Alumno: " + m.getExpediente().getAlumno().getNombreCompleto();
+				System.out.println(str);
+			}
 		}		
 	}
 
@@ -79,16 +83,12 @@ public class AlumnoEJB implements GestionAlumno {
 	@Override
 	public List<Matricula> getListaMatricula(Login login) throws PermisosInsuficientesException, MatriculaNoEncontradaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
-		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
-		
-		else {
-			Query query = em.createQuery("SELECT mat FROM Matricula mat");
-		
-		List<Matricula> lista_matricula = query.getResultList();
-				
-		if(lista_matricula == null) throw new MatriculaNoEncontradaException();
+		if(Boolean.TRUE.equals(login.getEsAlumno())) throw new PermisosInsuficientesException();
+
+		Query query = em.createQuery("SELECT mat FROM Matricula mat");
+		List<Matricula> listaMatricula = query.getResultList();	
+		if(listaMatricula == null) throw new MatriculaNoEncontradaException();
 	
-		return lista_matricula;
-		}
+		return listaMatricula;
 	}
 }

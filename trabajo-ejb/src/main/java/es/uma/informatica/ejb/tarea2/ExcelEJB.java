@@ -17,13 +17,13 @@ import es.uma.informatica.ejb.excepciones.AlumnoExistenteException;
 import es.uma.informatica.ejb.excepciones.ExpedientesExistenteException;
 import es.uma.informatica.ejb.excepciones.MatriculaExistenteException;
 import es.uma.informatica.jpa.tarea1.Alumno;
-import es.uma.informatica.jpa.tarea1.Expedientes;
+import es.uma.informatica.jpa.tarea1.Expediente;
 import es.uma.informatica.jpa.tarea1.Matricula;
 
 @Stateless
 public class ExcelEJB implements GestionExcel {
 	
-	private  XSSFWorkbook wB;
+	
 	private  XSSFSheet sheet;
 	
 	@PersistenceContext(name="trabajo")
@@ -32,18 +32,19 @@ public class ExcelEJB implements GestionExcel {
 	private  String nombreAux;
 	private  Alumno al;
 	private  Matricula matr;
-	private  Expedientes exp;
+	private  Expediente exp;
 	
-	public ExcelEJB() {}
+	public ExcelEJB() {
+		super();
+	}
 
 	@Override
 	public  void insertExcelData(String excelPath, String sheetName) throws MatriculaExistenteException, AlumnoExistenteException, ExpedientesExistenteException {
 		
-		try {
-			wB =  new XSSFWorkbook(excelPath);
+		try (XSSFWorkbook wB =  new XSSFWorkbook(excelPath)){
 			sheet = wB.getSheet(sheetName);
 		}catch (Exception e) {
-			e.printStackTrace();
+			System.err.println(e.getMessage());
 		}
 		
 		Iterator<Row> rowIt = sheet.iterator();
@@ -59,7 +60,7 @@ public class ExcelEJB implements GestionExcel {
 			if(!isRowEmpty(row)) {
 				
 				al = new Alumno();
-				exp = new Expedientes();
+				exp = new Expediente();
 				matr = new Matricula();
 				
 				Iterator<Cell> cellIt = row.cellIterator();
@@ -86,7 +87,7 @@ public class ExcelEJB implements GestionExcel {
 	
 	private  void insertMatricula(Matricula matr2) throws MatriculaExistenteException {
 		
-		Matricula mtrExist = em.find(Matricula.class, new Matricula.MatriculaId(matr2.getCurso_academico(),exp.getNum_Expediente()));
+		Matricula mtrExist = em.find(Matricula.class, new Matricula.MatriculaID(matr2.getCursoAcademico(),exp.getNumExpediente()));
 		
 		if(mtrExist != null)
 			throw new MatriculaExistenteException();
@@ -94,9 +95,9 @@ public class ExcelEJB implements GestionExcel {
 		em.persist(matr2);	
 	}
 
-	private  void insertExpediente(Expedientes exp2) throws ExpedientesExistenteException {
+	private  void insertExpediente(Expediente exp2) throws ExpedientesExistenteException {
 		
-		Expedientes alExist = em.find(Expedientes.class, exp2.getNum_Expediente());
+		Expediente alExist = em.find(Expediente.class, exp2.getNumExpediente());
 		
 		if(alExist != null)
 			throw new ExpedientesExistenteException();
@@ -105,7 +106,7 @@ public class ExcelEJB implements GestionExcel {
 		
 	}
 
-	private  void insertAlumno(Alumno al2) throws AlumnoExistenteException {
+	private  void insertAlumno(Alumno al2) {
 		//Como tiene como PK ID el cual es un valor autogenerado al2.getID() devuelve null
 		//Alumno alExist = em.find(Alumno.class, al2.getID());
 		//if(alExist != null) {
@@ -130,7 +131,7 @@ public class ExcelEJB implements GestionExcel {
 		
 			case 0:
 				System.out.println("DOCUMENTO: "+ cell.toString());
-				al.setDNI(cell.toString());
+				al.setDni(cell.toString());
 				break;
 				
 			case 1:
@@ -146,12 +147,12 @@ public class ExcelEJB implements GestionExcel {
 			case 3:
 				System.out.println("2º APELLIDO: "+ cell.toString());
 				nombreAux+=" "+cell.toString();
-				al.setNombre_completo(nombreAux);
+				al.setNombreCompleto(nombreAux);
 				break;
 			
 			case 4:
 				System.out.println("Nº EXPEDIENTE: "+ cell.toString());
-				exp.setNum_Expediente(Integer.valueOf(cell.toString()));
+				exp.setNumExpediente(Integer.valueOf(cell.toString()));
 				break;
 			
 			case 5:
@@ -160,7 +161,7 @@ public class ExcelEJB implements GestionExcel {
 			
 				try {
 					value = Integer.valueOf(cell.toString());
-					matr.setNum_Archivo(value);
+					matr.setNumArchivo(value);
 				} catch (NumberFormatException e) {
 					e.getMessage();
 				}
@@ -169,12 +170,12 @@ public class ExcelEJB implements GestionExcel {
 			
 			case 6:
 				System.out.println("EMAIL_INSTITUCIONAL: "+ cell.toString());
-				al.setEmail_Institucional(cell.toString());
+				al.setEmailInstitucional(cell.toString());
 				break;
 			
 			case 7:
 				System.out.println("EMAIL_PERSONAL: "+ cell.toString());
-				al.setEmail_Personal(cell.toString());
+				al.setEmailPersonal(cell.toString());
 				break;
 			
 			case 8:
@@ -211,9 +212,9 @@ public class ExcelEJB implements GestionExcel {
 				System.out.println("FECHA_MATRICULA: "+ cell.toString());
 			
 				try {
-					matr.setFecha_de_matricula(cell.toString());
+					matr.setFechaMatricula(cell.toString());
 					//Curso Academico
-					matr.setCurso_academico(cursoAcademico(cell.toString()));
+					matr.setCursoAcademico(cursoAcademico(cell.toString()));
 				
 				} catch (Exception e) {
 					System.out.println("Error en la fecha de matricula" + cell.toString());
@@ -223,58 +224,59 @@ public class ExcelEJB implements GestionExcel {
 			
 			case 15:
 				System.out.println("TURNO_PREFERENTE: "+ cell.toString());
-				matr.setTurno_Preferente(cell.toString());
+				matr.setTurnoPreferente(cell.toString());
 				break;
 			
 			case 16:
 				System.out.println("GRUPOS_ASIGNADOS: "+ cell.toString());
 			
-				List<String> aux = new ArrayList<String>();
+				List<String> aux = new ArrayList<>();
 				for (String asg : cell.toString().split(",")) {
 					aux.add(asg);
 				}
 			
-				al.setGrupos_asignados(aux);
+				al.setGruposAsignados(aux);
 				break;
 			
 			case 17:
 				System.out.println("NOTA_MEDIA: "+ cell.toString());
-				exp.setNota_Media_Provisional(Double.valueOf(cell.toString()));
+				exp.setNotaMediaProvisional(Double.valueOf(cell.toString()));
 				break;
 			
 			case 18:
 				System.out.println("CREDITOS_SUPERADOS: "+ cell.toString());
-				exp.setCreditos_superados(Double.valueOf(cell.toString()));
+				exp.setCreditosSuperados(Double.valueOf(cell.toString()));
 				break;
 			
 			case 19:
 				System.out.println("CREDITOS_FB: "+ cell.toString());
-				exp.setCreditos_FB(Double.valueOf(cell.toString()));
+				exp.setCreditosFB(Double.valueOf(cell.toString()));
 				break;
 			
 			case 20:
 				System.out.println("CREDITOS_OB: "+ cell.toString());
-				exp.setCreditos_OB(Double.valueOf(cell.toString()));
+				exp.setCreditosOB(Double.valueOf(cell.toString()));
 				break;
 			
 			case 21:
 				System.out.println("CREDITOS_OP: "+ cell.toString());
-				exp.setCreditos_OP(Double.valueOf(cell.toString()));
+				exp.setCreditosOP(Double.valueOf(cell.toString()));
 				break;
 			
 			case 22:
 				System.out.println("CREDITOS_CF: "+ cell.toString());
-				exp.setCreditos_CF(Double.valueOf(cell.toString()));
+				exp.setCreditosCF(Double.valueOf(cell.toString()));
 				break;
 			
 			case 23:
-				System.out.println("CREDITOS_PE: "+ cell.toString());Integer.valueOf(cell.toString());
-				exp.setCreditos_PE(Double.valueOf(cell.toString()));
+				System.out.println("CREDITOS_PE: "+ cell.toString());
+				//Integer.valueOf(cell.toString());
+				exp.setCreditosPE(Double.valueOf(cell.toString()));
 				break;
 			
 			case 24:
 				System.out.println("CREDITOS_TF: "+ cell.toString());
-				exp.setCreditos_TF(Double.valueOf(cell.toString()));
+				exp.setCreditosTF(Double.valueOf(cell.toString()));
 				break;		
 				
 			default:

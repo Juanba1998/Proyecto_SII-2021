@@ -19,18 +19,19 @@ public class EncuestaEJB implements GestionEncuesta {
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	public EncuestaEJB() {}
+	public EncuestaEJB() {
+		super();
+	}
 
 	@Override
 	public void aniadirEncuesta(Login login, Encuesta enc) throws PermisosInsuficientesException, EncuestaDuplicadaException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
 		
-		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
-		else {
+		if(Boolean.FALSE.equals(login.getEsAlumno())) throw new PermisosInsuficientesException();
 			
-			Encuesta EncuestaExistente = em.find(Encuesta.class, enc.getFecha_de_envio());
+		Encuesta encuestaExistente = em.find(Encuesta.class, enc.getFechaEnvio());
 			
-			if (EncuestaExistente != null) throw new EncuestaDuplicadaException();
-			em.persist(enc);
-		}	
+		if (encuestaExistente != null) throw new EncuestaDuplicadaException();
+		em.persist(enc);
+			
 	}
 }

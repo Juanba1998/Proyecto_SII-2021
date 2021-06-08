@@ -1,8 +1,6 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Date;
 
 import javax.persistence.*;
@@ -12,13 +10,13 @@ import javax.persistence.*;
 public class Solicitud implements Serializable {
  
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer Codigo;
+	private Integer codigo;
 	
 	@Column(nullable = false)
-	private String Descripcion;
+	private String descripcion;
 	
 	@Column(nullable = false)
-	private Date FechaSolicitud;
+	private Date fechaSolicitud;
 	
 	@ManyToOne(optional = false)
 	private Alumno alumno;
@@ -27,36 +25,34 @@ public class Solicitud implements Serializable {
 		super();
 	}
 
-	public Solicitud(Integer codigo, String descripcion, Date fechaSolicitud, Alumno alumno) {
-		super();
-		Codigo = codigo;
-		Descripcion = descripcion;
-		FechaSolicitud = fechaSolicitud;
-		this.alumno = alumno;
+	public Solicitud(Integer codigo, String descripcion, Date fechaSolicitud) {
+		this.codigo = codigo;
+		this.descripcion = descripcion;
+		this.fechaSolicitud = fechaSolicitud;
 	}
 
 	public Integer getCodigo() {
-		return Codigo;
+		return codigo;
 	}
 
 	public void setCodigo(Integer codigo) {
-		Codigo = codigo;
+		this.codigo = codigo;
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	public Date getFechaSolicitud() {
-		return FechaSolicitud;
+		return fechaSolicitud;
 	}
 
 	public void setFechaSolicitud(Date fechaSolicitud) {
-		FechaSolicitud = fechaSolicitud;
+		this.fechaSolicitud = fechaSolicitud;
 	}
 
 	public Alumno getAlumno() {
@@ -68,51 +64,25 @@ public class Solicitud implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
-		result = prime * result + ((Descripcion == null) ? 0 : Descripcion.hashCode());
-		result = prime * result + ((FechaSolicitud == null) ? 0 : FechaSolicitud.hashCode());
-		result = prime * result + ((alumno == null) ? 0 : alumno.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Solicitud other = (Solicitud) obj;
-		if (Codigo == null) {
-			if (other.Codigo != null)
-				return false;
-		} else if (!Codigo.equals(other.Codigo))
-			return false;
-		if (Descripcion == null) {
-			if (other.Descripcion != null)
-				return false;
-		} else if (!Descripcion.equals(other.Descripcion))
-			return false;
-		if (FechaSolicitud == null) {
-			if (other.FechaSolicitud != null)
-				return false;
-		} else if (!FechaSolicitud.equals(other.FechaSolicitud))
-			return false;
-		if (alumno == null) {
-			if (other.alumno != null)
-				return false;
-		} else if (!alumno.equals(other.alumno))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Solicitud){
+        	Solicitud sol = (Solicitud) obj;
+            ok = (codigo == sol.codigo) && descripcion.equalsIgnoreCase(sol.descripcion) && fechaSolicitud.equals(sol.fechaSolicitud);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return codigo.hashCode() + fechaSolicitud.hashCode() + descripcion.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Solicitud [Codigo=" + Codigo + ", Descripcion=" + Descripcion + ", FechaSolicitud=" + FechaSolicitud
-				+ ", alumno=" + alumno + "]";
-	}  
+		return "Solicitud [codigo=" + codigo + ", descripcion=" + descripcion + ", fechaSolicitud=" + fechaSolicitud
+				+ "]";
+	}
 }

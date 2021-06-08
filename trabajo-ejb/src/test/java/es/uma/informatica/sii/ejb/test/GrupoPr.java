@@ -40,9 +40,9 @@ public class GrupoPr {
 	public void testAniadirSuperGrupo() {
 		
 		try {
-			Grupo gr = new Grupo(454351, "Cuarto", "F", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
-			gr.setTitulacion(new Titulacion(8989, "Informática", 60, null, null, null, null));
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Grupo gr = new Grupo(454351, "Cuarto", "F", "Mañana",  true, true, "", 40);
+			gr.setTitulacion(new Titulacion(8989, "Informática", 60));
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);			
 				gestionGrupo.aniadirSuperGrupo(l, gr);
@@ -66,8 +66,8 @@ public class GrupoPr {
 	public void testPermisosInsuficientes_AniadirSuperGrupo() {
 				
 		try {
-			Grupo grupo = new Grupo(4544, "Primero", "C", "Mañana",  true, true, "", 40, null, null, null, null, null, null);
-			Login l = new Login(1238873, "juju4", "contra123", true, null);
+			Grupo grupo = new Grupo(4544, "Primero", "C", "Mañana",  true, true, "", 40);
+			Login l = new Login(1238873, "juju4", "contra123", true);
 			
 			try {
 				gestionLogin.login(l);

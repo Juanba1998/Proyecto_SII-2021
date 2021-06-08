@@ -22,12 +22,14 @@ public class SolicitudEJB implements GestionSolicitud {
 	@PersistenceContext(name= "trabajo")
 	private EntityManager em;
 	
-	public SolicitudEJB() {}
+	public SolicitudEJB() {
+		super();
+	}
 	
 	@Override
 	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
 		
-		if(login.getEsAlumno() == false) throw new PermisosInsuficientesException();
+		if(Boolean.FALSE.equals(login.getEsAlumno())) throw new PermisosInsuficientesException();
 		else {
 			
 			Solicitud solicitudExistente = em.find(Solicitud.class, solicitud.getCodigo());
@@ -49,9 +51,9 @@ public class SolicitudEJB implements GestionSolicitud {
 		
 		if (solicitudEntity == null) throw new SolicitudNoEncontradaException();
 		
-		List<Solicitud> lista_sol = getSolicitudes(login);
+		List<Solicitud> listaSol = getSolicitudes(login);
 		
-		for(Solicitud s : lista_sol) {
+		for(Solicitud s : listaSol) {
 			
 			if(s.equals(solicitudEntity)) str += "Codigo: " + s.getCodigo() + "; Fecha Solicitud: " + s.getFechaSolicitud() + "\nDescripcion:\n" + s.getDescripcion();
 			System.out.println(str);
@@ -63,16 +65,16 @@ public class SolicitudEJB implements GestionSolicitud {
 	@Override
 	public List<Solicitud> getSolicitudes(Login login) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudNoEncontradaException {
 		
-		if(login.getEsAlumno() == true) throw new PermisosInsuficientesException();
+		if(Boolean.TRUE.equals(login.getEsAlumno())) throw new PermisosInsuficientesException();
 		
 		else {
 		
 			Query query = em.createQuery("SELECT sol FROM Solicitud sol");
-			List<Solicitud> lista_solicitudes = query.getResultList();
+			List<Solicitud> listaSolicitudes = query.getResultList();
 		
-			if(lista_solicitudes == null) throw new SolicitudNoEncontradaException();
+			if(listaSolicitudes == null) throw new SolicitudNoEncontradaException();
 		
-			return lista_solicitudes;
+			return listaSolicitudes;
 		}
 	}
 }

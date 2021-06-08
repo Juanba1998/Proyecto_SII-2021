@@ -4,8 +4,6 @@
     
     <wb-module deploy-name="trabajo">
                 
-        <wb-resource deploy-path="/" source-path="/src/main/java"/>
-                
         <wb-resource deploy-path="/" source-path="/src/main/resources" tag="defaultRootSource"/>
                                 
         

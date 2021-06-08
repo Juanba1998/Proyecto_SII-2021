@@ -10,144 +10,140 @@ import javax.persistence.*;
 public class Asignatura implements Serializable {
 	 
 	@Id
-	private Integer Referencia; 
+	private Integer referencia; 
 	
 	@Column(nullable=false)
-	private Integer Codigo;
+	private Integer codigo;
 	
 	@Column(nullable=false)
-	private Integer Creditos;
+	private Integer creditos;
 	
 	@Column(nullable=false)
-	private Integer Ofertada;
+	private Integer ofertada;
 	
 	@Column(nullable=false)
-	private String Nombre;
+	private String nombre;
 	
-	private String Curso;
-	private String Caracter;
-	private String Duracion;
-	private String Cuatrimestre; 
-	private String Idiomas_de_Imparticion;
+	private String curso;
+	private String caracter;
+	private String duracion;
+	private String cuatrimestre; 
+	private String idiomasImparticion;
 	
 	@ManyToOne(optional=false)
-	private Titulacion asignaturas_titulacion;
+	private Titulacion asignaturasTitulacion;
 	
 	@OneToMany (mappedBy="asignatura")
 	private List<Clase> clase;
 	
 	@OneToMany (mappedBy="asignatura") 
-	private List<Asignaturas_Matricula> asignaturas_matricula;
+	private List<AsignaturasMatricula> asignaturasMatricula;
 
 	public Asignatura() {
 		super();
 	}
 
 	public Asignatura(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
-			String curso, String caracter, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
-			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula) {
+			String curso, String caracter, String duracion, String cuatrimestre, String idiomasImparticion) {
 		super();
-		Referencia = referencia;
-		Codigo = codigo;
-		Creditos = creditos;
-		Ofertada = ofertada;
-		Nombre = nombre;
-		Curso = curso;
-		Caracter = caracter;
-		Duracion = duracion;
-		Cuatrimestre = cuatrimestre;
-		Idiomas_de_Imparticion = idiomas_de_Imparticion;
-		this.asignaturas_titulacion = asignaturas_titulacion;
-		this.clase = clase;
-		this.asignaturas_matricula = asignaturas_matricula;
+		this.referencia = referencia;
+		this.codigo = codigo;
+		this.creditos = creditos;
+		this.ofertada = ofertada;
+		this.nombre = nombre;
+		this.curso = curso;
+		this.caracter = caracter;
+		this.duracion = duracion;
+		this.cuatrimestre = cuatrimestre;
+		this.idiomasImparticion = idiomasImparticion;
 	}
 
 	public Integer getReferencia() {
-		return Referencia;
+		return referencia;
 	}
 
 	public void setReferencia(Integer referencia) {
-		Referencia = referencia;
+		this.referencia = referencia;
 	}
 
 	public Integer getCodigo() {
-		return Codigo;
+		return codigo;
 	}
 
 	public void setCodigo(Integer codigo) {
-		Codigo = codigo;
+		this.codigo = codigo;
 	}
 
 	public Integer getCreditos() {
-		return Creditos;
+		return creditos;
 	}
 
 	public void setCreditos(Integer creditos) {
-		Creditos = creditos;
+		this.creditos = creditos;
 	}
 
 	public Integer getOfertada() {
-		return Ofertada;
+		return ofertada;
 	}
 
 	public void setOfertada(Integer ofertada) {
-		Ofertada = ofertada;
+		this.ofertada = ofertada;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public String getCurso() {
-		return Curso;
+		return curso;
 	}
 
 	public void setCurso(String curso) {
-		Curso = curso;
+		this.curso = curso;
 	}
 
 	public String getCaracter() {
-		return Caracter;
+		return caracter;
 	}
 
 	public void setCaracter(String caracter) {
-		Caracter = caracter;
+		this.caracter = caracter;
 	}
 
 	public String getDuracion() {
-		return Duracion;
+		return duracion;
 	}
 
 	public void setDuracion(String duracion) {
-		Duracion = duracion;
+		this.duracion = duracion;
 	}
 
 	public String getCuatrimestre() {
-		return Cuatrimestre;
+		return cuatrimestre;
 	}
 
 	public void setCuatrimestre(String cuatrimestre) {
-		Cuatrimestre = cuatrimestre;
+		this.cuatrimestre = cuatrimestre;
 	}
 
-	public String getIdiomas_de_Imparticion() {
-		return Idiomas_de_Imparticion;
+	public String getIdiomasImparticion() {
+		return idiomasImparticion;
 	}
 
-	public void setIdiomas_de_Imparticion(String idiomas_de_Imparticion) {
-		Idiomas_de_Imparticion = idiomas_de_Imparticion;
+	public void setIdiomasImparticion(String idiomasImparticion) {
+		this.idiomasImparticion = idiomasImparticion;
 	}
 
-	public Titulacion getAsignaturas_titulacion() {
-		return asignaturas_titulacion;
+	public Titulacion getAsignaturasTitulacion() {
+		return asignaturasTitulacion;
 	}
 
-	public void setAsignaturas_titulacion(Titulacion asignaturas_titulacion) {
-		this.asignaturas_titulacion = asignaturas_titulacion;
+	public void setAsignaturasTitulacion(Titulacion asignaturasTitulacion) {
+		this.asignaturasTitulacion = asignaturasTitulacion;
 	}
 
 	public List<Clase> getClase() {
@@ -158,118 +154,36 @@ public class Asignatura implements Serializable {
 		this.clase = clase;
 	}
 
-	public List<Asignaturas_Matricula> getAsignaturas_matricula() {
-		return asignaturas_matricula;
+	public List<AsignaturasMatricula> getAsignaturasMatricula() {
+		return asignaturasMatricula;
 	}
 
-	public void setAsignaturas_matricula(List<Asignaturas_Matricula> asignaturas_matricula) {
-		this.asignaturas_matricula = asignaturas_matricula;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Caracter == null) ? 0 : Caracter.hashCode());
-		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
-		result = prime * result + ((Creditos == null) ? 0 : Creditos.hashCode());
-		result = prime * result + ((Cuatrimestre == null) ? 0 : Cuatrimestre.hashCode());
-		result = prime * result + ((Curso == null) ? 0 : Curso.hashCode());
-		result = prime * result + ((Duracion == null) ? 0 : Duracion.hashCode());
-		result = prime * result + ((Idiomas_de_Imparticion == null) ? 0 : Idiomas_de_Imparticion.hashCode());
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((Ofertada == null) ? 0 : Ofertada.hashCode());
-		result = prime * result + ((Referencia == null) ? 0 : Referencia.hashCode());
-		result = prime * result + ((asignaturas_matricula == null) ? 0 : asignaturas_matricula.hashCode());
-		result = prime * result + ((asignaturas_titulacion == null) ? 0 : asignaturas_titulacion.hashCode());
-		result = prime * result + ((clase == null) ? 0 : clase.hashCode());
-		return result;
+	public void setAsignaturasMatricula(List<AsignaturasMatricula> asignaturasMatricula) {
+		this.asignaturasMatricula = asignaturasMatricula;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Asignatura other = (Asignatura) obj;
-		if (Caracter == null) {
-			if (other.Caracter != null)
-				return false;
-		} else if (!Caracter.equals(other.Caracter))
-			return false;
-		if (Codigo == null) {
-			if (other.Codigo != null)
-				return false;
-		} else if (!Codigo.equals(other.Codigo))
-			return false;
-		if (Creditos == null) {
-			if (other.Creditos != null)
-				return false;
-		} else if (!Creditos.equals(other.Creditos))
-			return false;
-		if (Cuatrimestre == null) {
-			if (other.Cuatrimestre != null)
-				return false;
-		} else if (!Cuatrimestre.equals(other.Cuatrimestre))
-			return false;
-		if (Curso == null) {
-			if (other.Curso != null)
-				return false;
-		} else if (!Curso.equals(other.Curso))
-			return false;
-		if (Duracion == null) {
-			if (other.Duracion != null)
-				return false;
-		} else if (!Duracion.equals(other.Duracion))
-			return false;
-		if (Idiomas_de_Imparticion == null) {
-			if (other.Idiomas_de_Imparticion != null)
-				return false;
-		} else if (!Idiomas_de_Imparticion.equals(other.Idiomas_de_Imparticion))
-			return false;
-		if (Nombre == null) {
-			if (other.Nombre != null)
-				return false;
-		} else if (!Nombre.equals(other.Nombre))
-			return false;
-		if (Ofertada == null) {
-			if (other.Ofertada != null)
-				return false;
-		} else if (!Ofertada.equals(other.Ofertada))
-			return false;
-		if (Referencia == null) {
-			if (other.Referencia != null)
-				return false;
-		} else if (!Referencia.equals(other.Referencia))
-			return false;
-		if (asignaturas_matricula == null) {
-			if (other.asignaturas_matricula != null)
-				return false;
-		} else if (!asignaturas_matricula.equals(other.asignaturas_matricula))
-			return false;
-		if (asignaturas_titulacion == null) {
-			if (other.asignaturas_titulacion != null)
-				return false;
-		} else if (!asignaturas_titulacion.equals(other.asignaturas_titulacion))
-			return false;
-		if (clase == null) {
-			if (other.clase != null)
-				return false;
-		} else if (!clase.equals(other.clase))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Asignatura){
+            Asignatura as = (Asignatura) obj;
+            ok = (referencia == as.referencia) && (codigo == as.codigo) && (creditos == as.creditos) &&
+            		ofertada == as.ofertada && nombre.equalsIgnoreCase(as.nombre);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return referencia.hashCode() + codigo.hashCode() + creditos.hashCode() + ofertada.hashCode() + nombre.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Asignatura [Referencia=" + Referencia + ", Codigo=" + Codigo + ", Creditos=" + Creditos + ", Ofertada="
-				+ Ofertada + ", Nombre=" + Nombre + ", Curso=" + Curso + ", Caracter=" + Caracter + ", Duracion="
-				+ Duracion + ", Cuatrimestre=" + Cuatrimestre + ", Idiomas_de_Imparticion=" + Idiomas_de_Imparticion
-				+ ", asignaturas_titulacion=" + asignaturas_titulacion + ", clase=" + clase + ", asignaturas_matricula="
-				+ asignaturas_matricula + "]";
+		return "Asignatura [referencia=" + referencia + ", codigo=" + codigo + ", creditos=" + creditos + ", ofertada="
+				+ ofertada + ", nombre=" + nombre + ", curso=" + curso + ", caracter=" + caracter + ", duracion="
+				+ duracion + ", cuatrimestre=" + cuatrimestre + ", idiomasImparticion=" + idiomasImparticion + "]";
 	}
-
 }

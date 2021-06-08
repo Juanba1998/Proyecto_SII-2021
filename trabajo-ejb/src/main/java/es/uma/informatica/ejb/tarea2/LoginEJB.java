@@ -23,7 +23,9 @@ public class LoginEJB implements GestionLogin{
 	@PersistenceContext(name="trabajo")
 	private EntityManager em;
 	
-	public LoginEJB() {}
+	public LoginEJB() {
+		super();
+	}
 	
 	
 	@Override
@@ -35,7 +37,7 @@ public class LoginEJB implements GestionLogin{
 	
 		if(!(actual.getUsuario().equalsIgnoreCase(l.getUsuario()))) throw new UsuarioInexistenteException();
 		
-		if(!(actual.getContrasena()==l.getContrasena())) throw new ContrasenaInvalidaException();
+		if(!actual.getContrasena().equals(l.getContrasena())) throw new ContrasenaInvalidaException();
 		
 		if(!actual.getEsAlumno()){
 			type = "secretaria";
@@ -53,8 +55,6 @@ public class LoginEJB implements GestionLogin{
 		em.refresh(l);
 		return l;
 	}
-	
-	
-
 
 }
+	

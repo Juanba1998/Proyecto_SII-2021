@@ -1,8 +1,6 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
 import javax.persistence.*;
  
 @SuppressWarnings("serial")
@@ -10,13 +8,13 @@ import javax.persistence.*;
 public class Login implements Serializable {
 
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer Codigo;
+	private Integer codigo;
 	
 	@Column(nullable = false, unique = true)
-	private String Usuario;
+	private String usuario;
 	
 	@Column(nullable = false)
-	private String Contrasena;
+	private String contrasena;
 	
 	//false indica personal de secretaria y true alumno
 	@Column(nullable = false)
@@ -29,37 +27,35 @@ public class Login implements Serializable {
 		super();
 	}
 
-	public Login(Integer codigo, String usuario, String contrasena, Boolean esAlumno, Alumno alumno) {
-		super();
-		Codigo = codigo;
-		Usuario = usuario;
-		Contrasena = contrasena;
+	public Login(Integer codigo, String usuario, String contrasena, Boolean esAlumno) {
+		this.codigo = codigo;
+		this.usuario = usuario;
+		this.contrasena = contrasena;
 		this.esAlumno = esAlumno;
-		this.alumno = alumno;
 	}
 
 	public Integer getCodigo() {
-		return Codigo;
+		return codigo;
 	}
 
 	public void setCodigo(Integer codigo) {
-		Codigo = codigo;
+		this.codigo = codigo;
 	}
 
 	public String getUsuario() {
-		return Usuario;
+		return usuario;
 	}
 
 	public void setUsuario(String usuario) {
-		Usuario = usuario;
+		this.usuario = usuario;
 	}
 
 	public String getContrasena() {
-		return Contrasena;
+		return contrasena;
 	}
 
 	public void setContrasena(String contrasena) {
-		Contrasena = contrasena;
+		this.contrasena = contrasena;
 	}
 
 	public Boolean getEsAlumno() {
@@ -79,59 +75,26 @@ public class Login implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Codigo == null) ? 0 : Codigo.hashCode());
-		result = prime * result + ((Contrasena == null) ? 0 : Contrasena.hashCode());
-		result = prime * result + ((Usuario == null) ? 0 : Usuario.hashCode());
-		result = prime * result + ((alumno == null) ? 0 : alumno.hashCode());
-		result = prime * result + ((esAlumno == null) ? 0 : esAlumno.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Login other = (Login) obj;
-		if (Codigo == null) {
-			if (other.Codigo != null)
-				return false;
-		} else if (!Codigo.equals(other.Codigo))
-			return false;
-		if (Contrasena == null) {
-			if (other.Contrasena != null)
-				return false;
-		} else if (!Contrasena.equals(other.Contrasena))
-			return false;
-		if (Usuario == null) {
-			if (other.Usuario != null)
-				return false;
-		} else if (!Usuario.equals(other.Usuario))
-			return false;
-		if (alumno == null) {
-			if (other.alumno != null)
-				return false;
-		} else if (!alumno.equals(other.alumno))
-			return false;
-		if (esAlumno == null) {
-			if (other.esAlumno != null)
-				return false;
-		} else if (!esAlumno.equals(other.esAlumno))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Login){
+        	Login log = (Login) obj;
+            ok = (codigo == log.codigo) && usuario.equalsIgnoreCase(log.usuario) &&
+            		contrasena.equalsIgnoreCase(log.contrasena) && esAlumno.equals(log.esAlumno);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return usuario.hashCode() + contrasena.hashCode() + esAlumno.hashCode() + codigo.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Login [Codigo=" + Codigo + ", Usuario=" + Usuario + ", Contrasena=" + Contrasena + ", esAlumno="
-				+ esAlumno + ", alumno=" + alumno + "]";
+		return "Login [codigo=" + codigo + ", usuario=" + usuario + ", contrasena=" + contrasena + ", esAlumno="
+				+ esAlumno + "]";
 	}
-
-	
 }

@@ -1,276 +1,199 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.lang.Boolean;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-@IdClass(Matricula.MatriculaId.class)
+@IdClass(Matricula.MatriculaID.class)
 @SuppressWarnings("serial")
 public class Matricula implements Serializable {
 
-	public static class MatriculaId implements Serializable{
+	public static class MatriculaID implements Serializable{
 		
-		private String Curso_academico;
+		private String cursoAcademico;
 		private Integer expediente;
 		
-		public MatriculaId() {
+		public MatriculaID() {
 			super();
 		}
 		
-		public MatriculaId(String curso_academico, Integer expediente) {
-			super();
-			Curso_academico = curso_academico;
+		public MatriculaID(String cursoAcademico, Integer expediente) {
+			this.cursoAcademico = cursoAcademico;
 			this.expediente = expediente;
 		}
-		 
-		public String getCurso_academico() {
-			return Curso_academico;
+			
+		public String getCursoAcademico() {
+			return cursoAcademico;
 		}
-		
-		public void setCurso_academico(String curso_academico) {
-			Curso_academico = curso_academico;
+
+		public void setCursoAcademico(String cursoAcademico) {
+			this.cursoAcademico = cursoAcademico;
 		}
-		
+
 		public Integer getExpediente() {
 			return expediente;
 		}
-		
+
 		public void setExpediente(Integer expediente) {
 			this.expediente = expediente;
 		}
 		
 		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((Curso_academico == null) ? 0 : Curso_academico.hashCode());
-			result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
-			return result;
+		public boolean equals(Object obj) {
+			boolean ok = false;
+			
+	        if(obj instanceof MatriculaID){
+	        	MatriculaID matrid = (MatriculaID) obj;
+	            ok = cursoAcademico.equalsIgnoreCase(matrid.cursoAcademico) && (expediente == matrid.expediente);
+	        }
+	        
+	        return ok;
 		}
 		
 		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			MatriculaId other = (MatriculaId) obj;
-			if (Curso_academico == null) {
-				if (other.Curso_academico != null)
-					return false;
-			} else if (!Curso_academico.equals(other.Curso_academico))
-				return false;
-			if (expediente == null) {
-				if (other.expediente != null)
-					return false;
-			} else if (!expediente.equals(other.expediente))
-				return false;
-			return true;
+		public int hashCode() {
+			return cursoAcademico.hashCode() + expediente.hashCode();
 		}
-		
+
 		@Override
 		public String toString() {
-			return "MatriculaId [Curso_academico=" + Curso_academico + ", expediente=" + expediente + "]";
+			return "MatriculaID [cursoAcademico=" + cursoAcademico + ", expediente=" + expediente + "]";
 		}
 	}
 	   
 	@Id
-	private String Curso_academico;
+	private String cursoAcademico;
 	
-	//@Column(nullable = false)
-	private String Estado;
-	
-	private Integer Num_Archivo;
-	private String Turno_Preferente;
+	private String estado;
+	private Integer numArchivo;
+	private String turnoPreferente;
 	
 	@Column(nullable = false)
-	private String Fecha_de_matricula;
+	private String fechaMatricula;
 	
-	private Boolean Nuevo_Ingreso;
-	private String Listado_Asignaturas;
+	private Boolean nuevoIngreso;
+	
+	private String listadoAsignaturas;
 
-	@Id @ManyToOne(optional=false)
-	private Expedientes expediente;
+	@Id
+	@ManyToOne(optional=false, cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
+	private Expediente expediente;
 	
 	@OneToMany (mappedBy = "matricula")
-	private List<Asignaturas_Matricula> asignatura_matricula;
+	private List<AsignaturasMatricula> asignaturasMatricula;
 
 	public Matricula() {
 		super();
 	}
 
-	public Matricula(String curso_academico, String estado, Integer num_Archivo, String turno_Preferente,
-			String fecha_de_matricula, Boolean nuevo_Ingreso, String listado_Asignaturas, Expedientes expediente,
-			List<Asignaturas_Matricula> asignatura_matricula) {
+	public Matricula(String cursoAcademico, String estado, Integer numArchivo, String turnoPreferente,
+			String fechaMatricula, Boolean nuevoIngreso, String listadoAsignaturas) {
 		super();
-		Curso_academico = curso_academico;
-		Estado = estado;
-		Num_Archivo = num_Archivo;
-		Turno_Preferente = turno_Preferente;
-		Fecha_de_matricula = fecha_de_matricula;
-		Nuevo_Ingreso = nuevo_Ingreso;
-		Listado_Asignaturas = listado_Asignaturas;
-		this.expediente = expediente;
-		this.asignatura_matricula = asignatura_matricula;
+		this.cursoAcademico = cursoAcademico;
+		this.estado = estado;
+		this.numArchivo = numArchivo;
+		this.turnoPreferente = turnoPreferente;
+		this.fechaMatricula = fechaMatricula;
+		this.nuevoIngreso = nuevoIngreso;
+		this.listadoAsignaturas = listadoAsignaturas;
 	}
 
-	public String getCurso_academico() {
-		return Curso_academico;
+	public String getCursoAcademico() {
+		return cursoAcademico;
 	}
 
-	public void setCurso_academico(String curso_academico) {
-		Curso_academico = curso_academico;
+	public void setCursoAcademico(String cursoAcademico) {
+		this.cursoAcademico = cursoAcademico;
 	}
 
 	public String getEstado() {
-		return Estado;
+		return estado;
 	}
 
 	public void setEstado(String estado) {
-		Estado = estado;
+		this.estado = estado;
 	}
 
-	public Integer getNum_Archivo() {
-		return Num_Archivo;
+	public Integer getNumArchivo() {
+		return numArchivo;
 	}
 
-	public void setNum_Archivo(Integer num_Archivo) {
-		Num_Archivo = num_Archivo;
+	public void setNumArchivo(Integer numArchivo) {
+		this.numArchivo = numArchivo;
 	}
 
-	public String getTurno_Preferente() {
-		return Turno_Preferente;
+	public String getTurnoPreferente() {
+		return turnoPreferente;
 	}
 
-	public void setTurno_Preferente(String turno_Preferente) {
-		Turno_Preferente = turno_Preferente;
+	public void setTurnoPreferente(String turnoPreferente) {
+		this.turnoPreferente = turnoPreferente;
 	}
 
-	public String getFecha_de_matricula() {
-		return Fecha_de_matricula;
+	public String getFechaMatricula() {
+		return fechaMatricula;
 	}
 
-	public void setFecha_de_matricula(String fecha_de_matricula) {
-		Fecha_de_matricula = fecha_de_matricula;
+	public void setFechaMatricula(String fechaMatricula) {
+		this.fechaMatricula = fechaMatricula;
 	}
 
-	public Boolean getNuevo_Ingreso() {
-		return Nuevo_Ingreso;
+	public Boolean getNuevoIngreso() {
+		return nuevoIngreso;
 	}
 
-	public void setNuevo_Ingreso(Boolean nuevo_Ingreso) {
-		Nuevo_Ingreso = nuevo_Ingreso;
+	public void setNuevoIngreso(Boolean nuevoIngreso) {
+		this.nuevoIngreso = nuevoIngreso;
 	}
 
-	public String getListado_Asignaturas() {
-		return Listado_Asignaturas;
+	public String getListadoAsignaturas() {
+		return listadoAsignaturas;
 	}
 
-	public void setListado_Asignaturas(String listado_Asignaturas) {
-		Listado_Asignaturas = listado_Asignaturas;
+	public void setListadoAsignaturas(String listadoAsignaturas) {
+		this.listadoAsignaturas = listadoAsignaturas;
 	}
 
-	public Expedientes getExpediente() {
+	public Expediente getExpediente() {
 		return expediente;
 	}
 
-	public void setExpediente(Expedientes expediente) {
+	public void setExpediente(Expediente expediente) {
 		this.expediente = expediente;
 	}
 
-	public List<Asignaturas_Matricula> getAsignatura_matricula() {
-		return asignatura_matricula;
+	public List<AsignaturasMatricula> getAsignaturasMatricula() {
+		return asignaturasMatricula;
 	}
 
-	public void setAsignatura_matricula(List<Asignaturas_Matricula> asignatura_matricula) {
-		this.asignatura_matricula = asignatura_matricula;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Curso_academico == null) ? 0 : Curso_academico.hashCode());
-		result = prime * result + ((Estado == null) ? 0 : Estado.hashCode());
-		result = prime * result + ((Fecha_de_matricula == null) ? 0 : Fecha_de_matricula.hashCode());
-		result = prime * result + ((Listado_Asignaturas == null) ? 0 : Listado_Asignaturas.hashCode());
-		result = prime * result + ((Nuevo_Ingreso == null) ? 0 : Nuevo_Ingreso.hashCode());
-		result = prime * result + ((Num_Archivo == null) ? 0 : Num_Archivo.hashCode());
-		result = prime * result + ((Turno_Preferente == null) ? 0 : Turno_Preferente.hashCode());
-		result = prime * result + ((asignatura_matricula == null) ? 0 : asignatura_matricula.hashCode());
-		result = prime * result + ((expediente == null) ? 0 : expediente.hashCode());
-		return result;
+	public void setAsignaturasMatricula(List<AsignaturasMatricula> asignaturasMatricula) {
+		this.asignaturasMatricula = asignaturasMatricula;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Matricula other = (Matricula) obj;
-		if (Curso_academico == null) {
-			if (other.Curso_academico != null)
-				return false;
-		} else if (!Curso_academico.equals(other.Curso_academico))
-			return false;
-		if (Estado == null) {
-			if (other.Estado != null)
-				return false;
-		} else if (!Estado.equals(other.Estado))
-			return false;
-		if (Fecha_de_matricula == null) {
-			if (other.Fecha_de_matricula != null)
-				return false;
-		} else if (!Fecha_de_matricula.equals(other.Fecha_de_matricula))
-			return false;
-		if (Listado_Asignaturas == null) {
-			if (other.Listado_Asignaturas != null)
-				return false;
-		} else if (!Listado_Asignaturas.equals(other.Listado_Asignaturas))
-			return false;
-		if (Nuevo_Ingreso == null) {
-			if (other.Nuevo_Ingreso != null)
-				return false;
-		} else if (!Nuevo_Ingreso.equals(other.Nuevo_Ingreso))
-			return false;
-		if (Num_Archivo == null) {
-			if (other.Num_Archivo != null)
-				return false;
-		} else if (!Num_Archivo.equals(other.Num_Archivo))
-			return false;
-		if (Turno_Preferente == null) {
-			if (other.Turno_Preferente != null)
-				return false;
-		} else if (!Turno_Preferente.equals(other.Turno_Preferente))
-			return false;
-		if (asignatura_matricula == null) {
-			if (other.asignatura_matricula != null)
-				return false;
-		} else if (!asignatura_matricula.equals(other.asignatura_matricula))
-			return false;
-		if (expediente == null) {
-			if (other.expediente != null)
-				return false;
-		} else if (!expediente.equals(other.expediente))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Matricula){
+        	Matricula matr = (Matricula) obj;
+            ok = cursoAcademico.equalsIgnoreCase(matr.cursoAcademico) && expediente.equals(matr.expediente)
+            		&& fechaMatricula.equalsIgnoreCase(matr.fechaMatricula);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return cursoAcademico.hashCode() + expediente.hashCode() + fechaMatricula.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Matricula [Curso_academico=" + Curso_academico + ", Estado=" + Estado + ", Num_Archivo=" + Num_Archivo
-				+ ", Turno_Preferente=" + Turno_Preferente + ", Fecha_de_matricula=" + Fecha_de_matricula
-				+ ", Nuevo_Ingreso=" + Nuevo_Ingreso + ", Listado_Asignaturas=" + Listado_Asignaturas + ", expediente="
-				+ expediente + ", asignatura_matricula=" + asignatura_matricula + "]";
+		return "Matricula [cursoAcademico=" + cursoAcademico + ", estado=" + estado + ", numArchivo=" + numArchivo
+				+ ", turnoPreferente=" + turnoPreferente + ", fechaMatricula=" + fechaMatricula + ", nuevoIngreso="
+				+ nuevoIngreso + ", listadoAsignaturas=" + listadoAsignaturas + "]";
 	}
 }

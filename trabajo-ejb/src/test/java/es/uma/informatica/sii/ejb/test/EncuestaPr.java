@@ -38,8 +38,8 @@ public class EncuestaPr {
 	public void testInsertarEncuesta() {
 
 		try {
-			Encuesta enc = new Encuesta("2021-04-19 13:00",null,null);
-			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
+			Encuesta enc = new Encuesta("2021-04-19 13:00",null);
+			Login l = new Login(1237213, "levi3", "micontraseña", true);
 			try {
 				gestionLogin.login(l);
 				gestionEncuesta.aniadirEncuesta(l,enc);
@@ -65,8 +65,8 @@ public class EncuestaPr {
 	 */
 	public void testEncuestaDuplicadaException() {
 		try {
-			Encuesta enc = new Encuesta("2021-04-12 13:00",null,null);
-			Login l = new Login(1237213, "levi3", "micontraseña", true, null);
+			Encuesta enc = new Encuesta("2021-04-12 13:00",null);
+			Login l = new Login(1237213, "levi3", "micontraseña", true);
 			try {
 				gestionLogin.login(l);
 				gestionEncuesta.aniadirEncuesta(l,enc);
@@ -92,8 +92,8 @@ public class EncuestaPr {
 	 */
 	public void testPermisosInsuficientesException_AniadirEncuesta() {
 		try {
-			Encuesta enc = new Encuesta("2021-04-12 13:00",null,null);
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Encuesta enc = new Encuesta("2021-04-12 13:00",null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
 				gestionEncuesta.aniadirEncuesta(l,enc);

@@ -18,15 +18,15 @@ public class ExpedientePr {
 	
 	private static final String UNIDAD_PERSITENCIA_PRUEBAS = "TrabajoTest";
 	private static final String LOGIN_EJB = "java:global/classes/LoginEJB";
-	private static final String EXPEDIENTES_EJB = "java:global/classes/ExpedientesEJB";
+	private static final String EXPEDIENTE_EJB = "java:global/classes/ExpedienteEJB";
 	
 	private GestionLogin gestionLogin;
-	private GestionExpedientes gestionExpedientes;
+	private GestionExpediente gestionExpedientes;
 		
 	@Before
 	public void setup() throws NamingException  {
 		gestionLogin = (GestionLogin) SuiteTest.ctx.lookup(LOGIN_EJB);
-		gestionExpedientes = (GestionExpedientes) SuiteTest.ctx.lookup(EXPEDIENTES_EJB);
+		gestionExpedientes = (GestionExpediente) SuiteTest.ctx.lookup(EXPEDIENTE_EJB);
 		BaseDatos.inicializaBaseDatos(UNIDAD_PERSITENCIA_PRUEBAS);
 	}
 		
@@ -40,11 +40,11 @@ public class ExpedientePr {
 	public void testConsultarNMPExpediente() {
 
 		try {
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
-			Expedientes exp = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
+			Expediente exp = new Expediente(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0);
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				gestionExpedientes.mostrarUnaNotaMedia(exp, l);
 				//OK
 			}  catch(PermisosInsuficientesException e) {
 				fail("Lanza PermisosInsuficientesException");
@@ -67,10 +67,10 @@ public class ExpedientePr {
 	public void testConsultarTodasNMP() {
 
 		try {
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarTodasNMP(l);
+				gestionExpedientes.mostrarTodasNotasMedias(l);
 				//OK	
 			} catch(PermisosInsuficientesException e) {
 				fail("Lanza PermisosInsuficientesException");
@@ -94,12 +94,12 @@ public class ExpedientePr {
 	public void testPermisosInsuficientes_MostrarNMPExpediente() {
 		
 		try {
-			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
-			Expedientes exp = new Expedientes(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true);
+			Expediente exp = new Expediente(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0);
 			
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				gestionExpedientes.mostrarUnaNotaMedia(exp, l);
 				fail("Debe lanzar PermisosInsuficientesException");
 			} catch(PermisosInsuficientesException e) {
 				//OK
@@ -121,10 +121,10 @@ public class ExpedientePr {
 	 */
 	public void testPermisosInsuficientes_MostrarTodasNMP() {
 		try {
-			Login l = new Login(1238630, "kaneki2", "clavesecreta", true, null);
+			Login l = new Login(1238630, "kaneki2", "clavesecreta", true);
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarTodasNMP(l);
+				gestionExpedientes.mostrarTodasNotasMedias(l);
 				fail("Debe lanzar PermisosInsuficientesException");
 			} catch(PermisosInsuficientesException e) {
 				//OK
@@ -148,11 +148,11 @@ public class ExpedientePr {
 	 */
 	public void testExpedienteNoEncontradoException_MostrarNMPExpediente() {	
 		try {
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
-			Expedientes exp = new Expedientes(11111, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
+			Expediente exp = new Expediente(11111, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0);
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarNMPExpediente(exp, l);
+				gestionExpedientes.mostrarUnaNotaMedia(exp, l);
 				fail("Debe lanzar ExpedienteNoEncontradoException");
 			}  catch(PermisosInsuficientesException e) {
 				fail("Lanza PermisosInsuficientesException");
@@ -177,10 +177,10 @@ public class ExpedientePr {
 	 */
 	public void testExpedienteNoEncontradoException_MostrarTodasNMP() {	
 		try {
-			Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+			Login l = new Login(1231213, "Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
-				gestionExpedientes.MostrarTodasNMP(l);
+				gestionExpedientes.mostrarTodasNotasMedias(l);
 				fail("Debe lanzar ExpedienteNoEncontradoException");
 			}  catch(PermisosInsuficientesException e) {
 				fail("Lanza PermisosInsuficientesException");

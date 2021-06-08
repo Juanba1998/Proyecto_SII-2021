@@ -1,8 +1,6 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
@@ -12,25 +10,25 @@ import javax.persistence.*;
 public class Titulacion implements Serializable {
  
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer CodigoTitulacion;
+	private Integer codigo;
 	
 	@Column(nullable = false)
-	private String Nombre;
+	private String nombre;
 	
 	@Column(nullable = false)
-	private Integer Creditos;
+	private Integer creditos;
 	
 	@ManyToMany
-	@JoinTable(name = "Titulacion_Centro",
+	@JoinTable(name = "TitulacionCentro",
 	joinColumns = @JoinColumn(name = "titu_fk"),
 	inverseJoinColumns = @JoinColumn(name = "cen_fk"))
-	private List<Centro> titulacion_centros;
+	private List<Centro> titulacionCentros;
 	
-	@OneToMany(mappedBy = "asignaturas_titulacion")
+	@OneToMany(mappedBy = "asignaturasTitulacion")
 	private List<Asignatura> asignaturas;
 
 	@OneToMany(mappedBy = "titulacion")
-	private List<Expedientes> expedientes_titulacion;
+	private List<Expediente> expedientesTitulacion;
 
 	@OneToMany(mappedBy = "titulacion")
 	private List<Grupo> grupos;
@@ -39,48 +37,42 @@ public class Titulacion implements Serializable {
 		super();
 	}
 
-	public Titulacion(Integer codigoTitulacion, String nombre, Integer creditos, List<Centro> titulacion_centros,
-			List<Asignatura> asignaturas, List<Expedientes> expedientes_titulacion, List<Grupo> grupos) {
-		super();
-		CodigoTitulacion = codigoTitulacion;
-		Nombre = nombre;
-		Creditos = creditos;
-		this.titulacion_centros = titulacion_centros;
-		this.asignaturas = asignaturas;
-		this.expedientes_titulacion = expedientes_titulacion;
-		this.grupos = grupos;
+	public Titulacion(Integer codigo, String nombre, Integer creditos) {
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.creditos = creditos;
+	}
+	
+	public Integer getCodigo() {
+		return codigo;
 	}
 
-	public Integer getCodigoTitulacion() {
-		return CodigoTitulacion;
-	}
-
-	public void setCodigoTitulacion(Integer codigoTitulacion) {
-		CodigoTitulacion = codigoTitulacion;
+	public void setCodigo(Integer codigo) {
+		this.codigo = codigo;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public Integer getCreditos() {
-		return Creditos;
+		return creditos;
 	}
 
 	public void setCreditos(Integer creditos) {
-		Creditos = creditos;
+		this.creditos = creditos;
 	}
 
-	public List<Centro> getTitulacion_centros() {
-		return titulacion_centros;
+	public List<Centro> getTitulacionCentros() {
+		return titulacionCentros;
 	}
 
-	public void setTitulacion_centros(List<Centro> titulacion_centros) {
-		this.titulacion_centros = titulacion_centros;
+	public void setTitulacionCentros(List<Centro> titulacionCentros) {
+		this.titulacionCentros = titulacionCentros;
 	}
 
 	public List<Asignatura> getAsignaturas() {
@@ -91,12 +83,12 @@ public class Titulacion implements Serializable {
 		this.asignaturas = asignaturas;
 	}
 
-	public List<Expedientes> getExpedientes_titulacion() {
-		return expedientes_titulacion;
+	public List<Expediente> getExpedientesTitulacion() {
+		return expedientesTitulacion;
 	}
 
-	public void setExpedientes_titulacion(List<Expedientes> expedientes_titulacion) {
-		this.expedientes_titulacion = expedientes_titulacion;
+	public void setExpedientesTitulacion(List<Expediente> expedientesTitulacion) {
+		this.expedientesTitulacion = expedientesTitulacion;
 	}
 
 	public List<Grupo> getGrupos() {
@@ -108,70 +100,25 @@ public class Titulacion implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((CodigoTitulacion == null) ? 0 : CodigoTitulacion.hashCode());
-		result = prime * result + ((Creditos == null) ? 0 : Creditos.hashCode());
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((asignaturas == null) ? 0 : asignaturas.hashCode());
-		result = prime * result + ((expedientes_titulacion == null) ? 0 : expedientes_titulacion.hashCode());
-		result = prime * result + ((grupos == null) ? 0 : grupos.hashCode());
-		result = prime * result + ((titulacion_centros == null) ? 0 : titulacion_centros.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Titulacion other = (Titulacion) obj;
-		if (CodigoTitulacion == null) {
-			if (other.CodigoTitulacion != null)
-				return false;
-		} else if (!CodigoTitulacion.equals(other.CodigoTitulacion))
-			return false;
-		if (Creditos == null) {
-			if (other.Creditos != null)
-				return false;
-		} else if (!Creditos.equals(other.Creditos))
-			return false;
-		if (Nombre == null) {
-			if (other.Nombre != null)
-				return false;
-		} else if (!Nombre.equals(other.Nombre))
-			return false;
-		if (asignaturas == null) {
-			if (other.asignaturas != null)
-				return false;
-		} else if (!asignaturas.equals(other.asignaturas))
-			return false;
-		if (expedientes_titulacion == null) {
-			if (other.expedientes_titulacion != null)
-				return false;
-		} else if (!expedientes_titulacion.equals(other.expedientes_titulacion))
-			return false;
-		if (grupos == null) {
-			if (other.grupos != null)
-				return false;
-		} else if (!grupos.equals(other.grupos))
-			return false;
-		if (titulacion_centros == null) {
-			if (other.titulacion_centros != null)
-				return false;
-		} else if (!titulacion_centros.equals(other.titulacion_centros))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Titulacion){
+        	Titulacion titul = (Titulacion) obj;
+            ok = (codigo == titul.codigo) && (creditos == titul.creditos) && nombre.equalsIgnoreCase(titul.nombre);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return codigo.hashCode() + nombre.hashCode() + creditos.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Titulacion [CodigoTitulacion=" + CodigoTitulacion + ", Nombre=" + Nombre + ", Creditos=" + Creditos
-				+ ", titulacion_centros=" + titulacion_centros + ", asignaturas=" + asignaturas
-				+ ", expedientes_titulacion=" + expedientes_titulacion + ", grupos=" + grupos + "]";
+		return "Titulacion [codigo=" + codigo + ", nombre=" + nombre + ", creditos=" + creditos
+				+ "]";
 	}
 }

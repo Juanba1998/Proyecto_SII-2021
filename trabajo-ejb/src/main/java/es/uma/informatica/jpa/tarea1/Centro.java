@@ -10,133 +10,89 @@ import javax.persistence.*;
 public class Centro implements Serializable{
 	
 	@Id @GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer ID;
+	private Integer id;
 	 
 	@Column(unique = true)
-	private String Nombre;
+	private String nombre;
 	
 	@Column(nullable = false)
-	private String Direccion;
+	private String direccion;
 	
-	private Integer TLF_Conserjeria;
+	private Integer tlfConserjeria;
 	
-	@ManyToMany(mappedBy = "titulacion_centros")
-	private List<Titulacion> centro_titulaciones;
-
-	public Centro(Integer iD, String nombre, String direccion, Integer tLF_Conserjeria) {
-		super();
-		ID = iD;
-		Nombre = nombre;
-		Direccion = direccion;
-		TLF_Conserjeria = tLF_Conserjeria;
-	}
-
+	@ManyToMany(mappedBy = "titulacionCentros")
+	private List<Titulacion> centroTitulaciones;
+	
 	public Centro() {
 		super();
 	}
-
-	public Centro(Integer iD, String nombre, String direccion, Integer tLF_Conserjeria,
-			List<Titulacion> centro_titulaciones) {
-		super();
-		ID = iD;
-		Nombre = nombre;
-		Direccion = direccion;
-		TLF_Conserjeria = tLF_Conserjeria;
-		this.centro_titulaciones = centro_titulaciones;
+	
+	public Centro(Integer id, String nombre, String direccion, Integer tlfConserjeria) {
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.tlfConserjeria = tlfConserjeria;
 	}
 
-	public Integer getID() {
-		return ID;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setID(Integer iD) {
-		ID = iD;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getNombre() {
-		return Nombre;
+		return nombre;
 	}
 
 	public void setNombre(String nombre) {
-		Nombre = nombre;
+		this.nombre = nombre;
 	}
 
 	public String getDireccion() {
-		return Direccion;
+		return direccion;
 	}
 
 	public void setDireccion(String direccion) {
-		Direccion = direccion;
+		this.direccion = direccion;
 	}
 
-	public Integer getTLF_Conserjeria() {
-		return TLF_Conserjeria;
+	public Integer getTlfConserjeria() {
+		return tlfConserjeria;
 	}
 
-	public void setTLF_Conserjeria(Integer tLF_Conserjeria) {
-		TLF_Conserjeria = tLF_Conserjeria;
+	public void setTlfConserjeria(Integer tlfConserjeria) {
+		this.tlfConserjeria = tlfConserjeria;
 	}
 
-	public List<Titulacion> getCentro_titulaciones() {
-		return centro_titulaciones;
+	public List<Titulacion> getCentroTitulaciones() {
+		return centroTitulaciones;
 	}
 
-	public void setCentro_titulaciones(List<Titulacion> centro_titulaciones) {
-		this.centro_titulaciones = centro_titulaciones;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Direccion == null) ? 0 : Direccion.hashCode());
-		result = prime * result + ((ID == null) ? 0 : ID.hashCode());
-		result = prime * result + ((Nombre == null) ? 0 : Nombre.hashCode());
-		result = prime * result + ((TLF_Conserjeria == null) ? 0 : TLF_Conserjeria.hashCode());
-		result = prime * result + ((centro_titulaciones == null) ? 0 : centro_titulaciones.hashCode());
-		return result;
+	public void setCentroTitulaciones(List<Titulacion> centroTitulaciones) {
+		this.centroTitulaciones = centroTitulaciones;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Centro other = (Centro) obj;
-		if (Direccion == null) {
-			if (other.Direccion != null)
-				return false;
-		} else if (!Direccion.equals(other.Direccion))
-			return false;
-		if (ID == null) {
-			if (other.ID != null)
-				return false;
-		} else if (!ID.equals(other.ID))
-			return false;
-		if (Nombre == null) {
-			if (other.Nombre != null)
-				return false;
-		} else if (!Nombre.equals(other.Nombre))
-			return false;
-		if (TLF_Conserjeria == null) {
-			if (other.TLF_Conserjeria != null)
-				return false;
-		} else if (!TLF_Conserjeria.equals(other.TLF_Conserjeria))
-			return false;
-		if (centro_titulaciones == null) {
-			if (other.centro_titulaciones != null)
-				return false;
-		} else if (!centro_titulaciones.equals(other.centro_titulaciones))
-			return false;
-		return true;
+		boolean ok = false;
+		
+        if(obj instanceof Centro){
+        	Centro c = (Centro) obj;
+            ok = (id == c.id) && nombre.equalsIgnoreCase(c.nombre) && direccion.equals(c.direccion);
+        }
+        
+        return ok;
+	}
+	
+	@Override
+	public int hashCode() {
+		return id.hashCode() + nombre.hashCode() + direccion.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Centro [ID=" + ID + ", Nombre=" + Nombre + ", Direccion=" + Direccion + ", TLF_Conserjeria="
-				+ TLF_Conserjeria + ", centro_titulaciones=" + centro_titulaciones + "]";
+		return "Centro [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", tlfConserjeria=" + tlfConserjeria + "]";
 	}
 }

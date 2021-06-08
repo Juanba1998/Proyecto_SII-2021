@@ -1,7 +1,6 @@
 package es.uma.informatica.jpa.tarea1;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -17,11 +16,10 @@ public class Optativas extends Asignatura implements Serializable{
 	}
 
 	public Optativas(Integer referencia, Integer codigo, Integer creditos, Integer ofertada, String nombre,
-			String curso, String caracter, String duracion, String cuatrimestre, String idiomas_de_Imparticion,
-			Titulacion asignaturas_titulacion, List<Clase> clase, List<Asignaturas_Matricula> asignaturas_matricula,
+			String curso, String caracter, String duracion, String cuatrimestre, String idiomasImparticion,
 			Integer plazas, String mencion) {
 		super(referencia, codigo, creditos, ofertada, nombre, curso, caracter, duracion, cuatrimestre,
-				idiomas_de_Imparticion, asignaturas_titulacion, clase, asignaturas_matricula);
+				idiomasImparticion);
 		this.plazas = plazas;
 		this.mencion = mencion;
 	}
@@ -43,39 +41,17 @@ public class Optativas extends Asignatura implements Serializable{
 	}
 
 	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((mencion == null) ? 0 : mencion.hashCode());
-		result = prime * result + ((plazas == null) ? 0 : plazas.hashCode());
-		return result;
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Optativas other = (Optativas) obj;
-		if (mencion == null) {
-			if (other.mencion != null)
-				return false;
-		} else if (!mencion.equals(other.mencion))
-			return false;
-		if (plazas == null) {
-			if (other.plazas != null)
-				return false;
-		} else if (!plazas.equals(other.plazas))
-			return false;
-		return true;
+		return super.equals(obj);
+	}
+	
+	@Override
+	public int hashCode() {
+		return super.hashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Optativas [plazas=" + plazas + ", mencion=" + mencion + "]";
+		return "Optativas [" + super.toString() +"plazas=" + plazas + ", mencion=" + mencion + "]";
 	}
-	
 }

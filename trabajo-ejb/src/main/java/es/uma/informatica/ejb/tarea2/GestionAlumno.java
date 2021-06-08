@@ -13,9 +13,9 @@ import es.uma.informatica.jpa.tarea1.Matricula;
 @Local
 public interface GestionAlumno {
 	
-	public void MostrarTitulacionAlumno(Titulacion titu, Login login, String curso_actual) throws TrabajoException;
+	public void mostrarTitulacionAlumno(Titulacion titu, Login login, String cursoActual) throws TrabajoException;
 		
-	public void MostrarAsignaturaAlumno(Asignatura asi, Login login, String curso_actual) throws TrabajoException;
+	public void mostrarAsignaturaAlumno(Asignatura asi, Login login, String cursoActual) throws TrabajoException;
 		
 	public List<Matricula> getListaMatricula(Login login) throws TrabajoException;
 	

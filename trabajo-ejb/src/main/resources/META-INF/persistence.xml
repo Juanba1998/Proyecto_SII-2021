@@ -7,13 +7,13 @@
 		<jta-data-source>java:jboss/datasources/sii</jta-data-source>
 		<class>es.uma.informatica.jpa.tarea1.Alumno</class>
 		<class>es.uma.informatica.jpa.tarea1.Asignatura</class>
-		<class>es.uma.informatica.jpa.tarea1.Asignaturas_Matricula</class>
+		<class>es.uma.informatica.jpa.tarea1.AsignaturasMatricula</class>
 		<class>es.uma.informatica.jpa.tarea1.Centro</class>
 		<class>es.uma.informatica.jpa.tarea1.Clase</class>
 		<class>es.uma.informatica.jpa.tarea1.Encuesta</class>
-		<class>es.uma.informatica.jpa.tarea1.Expedientes</class>
+		<class>es.uma.informatica.jpa.tarea1.Expediente</class>
 		<class>es.uma.informatica.jpa.tarea1.Grupo</class>
-		<class>es.uma.informatica.jpa.tarea1.Grupo_por_asignatura</class>
+		<class>es.uma.informatica.jpa.tarea1.GrupoPorAsignatura</class>
 		<class>es.uma.informatica.jpa.tarea1.Login</class> 
 		<class>es.uma.informatica.jpa.tarea1.Matricula</class>
 		<class>es.uma.informatica.jpa.tarea1.Optativas</class>

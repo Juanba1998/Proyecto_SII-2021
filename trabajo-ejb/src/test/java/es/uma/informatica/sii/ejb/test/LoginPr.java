@@ -36,7 +36,7 @@ public class LoginPr {
 	public void testUsuarioNoEncontrado() {
 
 		try {
-			Login l = new Login(1231213, "naruto4", "boruto123", true, null);		
+			Login l = new Login(1231213, "naruto4", "boruto123", true);		
 			gestionLogin.login(l);				
 			fail("Debe lanzar la excepcion de Usuario Inexistente");
 		} catch (UsuarioInexistenteException e) {
@@ -54,7 +54,7 @@ public class LoginPr {
 	public void testContrasenaInvalida() {
 	
 			try {
-				Login l = new Login(1231213, "Manoli1", "boruto123", true, null);
+				Login l = new Login(1231213, "Manoli1", "boruto123", true);
 				gestionLogin.login(l);
 				fail("Debe lanzar la excepcion de Contrasena Invalida");
 			} catch (UsuarioInexistenteException e) {
@@ -72,7 +72,7 @@ public class LoginPr {
 	public void testLoginCorrecto() {
 	
 			try {
-				Login l = new Login(1231213, "Manoli1", "contraseña123", false, null);
+				Login l = new Login(1231213, "Manoli1", "contraseña123", false);
 				gestionLogin.login(l);
 				//OK
 			} catch (UsuarioInexistenteException e) {

@@ -49,7 +49,7 @@ public class LoginVista {
             	dst = "secretaria";
             }
         	
-        	return dst+"Inicio.xhtml";
+        	return "";
 
         } catch (UsuarioInexistenteException e) {
             FacesMessage fm = new FacesMessage("La cuenta no existe");
