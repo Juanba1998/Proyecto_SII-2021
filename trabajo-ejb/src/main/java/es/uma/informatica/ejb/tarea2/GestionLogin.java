@@ -10,7 +10,7 @@ import es.uma.informatica.jpa.tarea1.*;
 @Local
 public interface GestionLogin {
 	
-	public void login (Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException;
+	public String login (Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException;
 	
 	public Login refrescarLogin (Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException;
 }

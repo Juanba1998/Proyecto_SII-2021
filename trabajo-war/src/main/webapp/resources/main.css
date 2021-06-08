@@ -1,0 +1,105 @@
+html,
+body{
+   height:100%;
+   
+}
+
+body{
+   background-image: url("./img/bcRegister.jpg");
+   list-style: none;
+   text-decoration: none;
+   font-size: 18px;
+   margin: 0;
+   padding: 0;
+   
+}
+.content{
+   height:80vh;
+   display: flex;
+   align-items: center;
+   justify-content:center;
+}
+.container{
+    width: 400px;
+    min-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0,0,0,1);
+    background: white;
+    border-radius: 5px;
+}
+
+.container,
+.formInput,
+.formButton{
+    font: 500 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.formTitle{
+    text-align: center;
+    margin-bottom: 2rem; 
+}
+
+.formMenssageError{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.formMenssageError--success{
+    color:green
+}
+.formMenssageError{
+    color:red
+}
+
+.formInputGroup{
+    margin-bottom: 1rem;
+}
+
+.formInput{
+    display: box;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius:4px;
+    border: 2px solid black;
+    outline: none;  
+}
+.formInput:focus{
+    border-color: #01ACC8;
+}
+.formInputError{
+    color:red;
+}
+
+.formInputErrorMsg{
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color:red;
+}
+
+.formButton{
+    width: 100%;
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    font-weight: 3rem;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #01ACC8 
+}
+
+.formButton:hover{
+    background-color: #356094; 
+}
+
+.form_button:active{
+    transform: scale(0.9);
+}
+
+.formText{
+    text-align: center;
+}
+
+

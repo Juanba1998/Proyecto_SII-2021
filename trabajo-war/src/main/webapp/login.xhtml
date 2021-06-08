@@ -1,0 +1,52 @@
+<!DOCTYPE xhtml>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Login</title>
+         <link rel="stylesheet" href="./resources/main.css"/>
+    </h:head>
+    
+    <h:body>
+   
+    <div class="content">
+    
+            <div class="container">
+                
+                <h:form id="login">
+                    
+                    <h1 class="formTitle">Login</h1> 
+                    
+          
+                    <div class="formInputGroup">
+                        <h:outputLabel class= "formText" for="user">Nombre Usuario</h:outputLabel>
+                        <h:inputText id="user" class="formInput" name="userName" 
+                        autofocus="autofocus"  
+                        value="#{loginVista.log.Usuario}"/>
+                        
+                       <h:message for="user" class=" formInputError formInputErrorMsg"/>
+                    </div>
+                        
+                    <div class="formInputGroup">
+                     	<h:outputLabel class= "formText" for="psw">Contraseña</h:outputLabel>
+                        <h:inputSecret  id="psw" required="true" 
+                        name="psw" class="formInput" autofocus="autofocus" placeholder="Password"
+                        value="#{loginVista.log.Contrasena}"/>
+                        
+                        <h:message for="pass" class="formInputErrorMsg"/>
+                    </div>
+
+                    <h:commandButton value="Entrar" class="formButton" action="#{loginVista.entrar()}"/>
+                    
+                        
+                    
+                </h:form>
+
+            </div>
+      
+        
+        
+        </div>
+        
+    </h:body>
+</html>

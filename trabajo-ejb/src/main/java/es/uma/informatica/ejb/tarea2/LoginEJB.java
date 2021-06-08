@@ -1,17 +1,19 @@
 package es.uma.informatica.ejb.tarea2;
 
+import java.net.URI;
 import java.util.logging.Logger;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.core.UriBuilder;
 
 import es.uma.informatica.jpa.tarea1.*;
-
 import es.uma.informatica.ejb.excepciones.ContrasenaInvalidaException;
 import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 
+/*Añadidos registrarUsuario a LoginEJB*/
 @Stateless
 public class LoginEJB implements GestionLogin{
  
@@ -23,14 +25,23 @@ public class LoginEJB implements GestionLogin{
 	
 	public LoginEJB() {}
 	
+	
 	@Override
-	public void login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
+	public String login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException{
 		
+		String type = "alumno";
 		Login actual = em.find(Login.class, l.getCodigo());
 		
+	
 		if(!(actual.getUsuario().equalsIgnoreCase(l.getUsuario()))) throw new UsuarioInexistenteException();
 		
 		if(!(actual.getContrasena()==l.getContrasena())) throw new ContrasenaInvalidaException();
+		
+		if(!actual.getEsAlumno()){
+			type = "secretaria";
+		}
+		
+		return type;
 	}
 	
 	@SuppressWarnings("unused")
@@ -42,4 +53,8 @@ public class LoginEJB implements GestionLogin{
 		em.refresh(l);
 		return l;
 	}
+	
+	
+
+
 }
