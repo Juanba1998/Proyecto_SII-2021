@@ -22,16 +22,16 @@
                         <h:outputLabel class= "formText" for="user">Nombre Usuario</h:outputLabel>
                         <h:inputText id="user" class="formInput" name="userName" 
                         autofocus="autofocus"  
-                        value="#{loginVista.log.Usuario}"/>
+                        />
                         
                        <h:message for="user" class=" formInputError formInputErrorMsg"/>
                     </div>
                         
                     <div class="formInputGroup">
                      	<h:outputLabel class= "formText" for="psw">Contraseña</h:outputLabel>
-                        <h:inputSecret  id="psw" required="true" 
+                        <h:inputSecret  id="psw"  
                         name="psw" class="formInput" autofocus="autofocus" placeholder="Password"
-                        value="#{loginVista.log.Contrasena}"/>
+                        />
                         
                         <h:message for="pass" class="formInputErrorMsg"/>
                     </div>
