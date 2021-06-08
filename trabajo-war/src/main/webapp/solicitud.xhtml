@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<?xml-stylesheet href="estilos.xsl" type="text/xsl"?>
+		<title>Solicitud cambio grupo</title>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr>
+					<td><img src="logouma.jpg" width="256" height="98" /></td>
+					<td><h1>SOLICITUD CAMBIO DE GRUPO</h1></td>
+					<td><input type="button" value="Cerrar Sesion" /></td>
+				</tr>
+			</thead>
+			<tbody>
+				<form method="post">
+					<p>Asunto: </p>
+					<input type="text" name="nombre" value="" size="100"/>
+					<br/>
+					<textarea id="descripcion" name="descripcion" cols="82" rows="10" />
+					<br/>
+					<input type="submit" value="Enviar" />
+					<input type="button" value="Cancelar" />
+				</form>
+			</tbody>
+		</table>
+	</body>
+</html>
