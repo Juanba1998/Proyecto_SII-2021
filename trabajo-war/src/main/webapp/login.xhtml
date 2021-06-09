@@ -25,7 +25,7 @@
                         value="#{loginVista.log.codigo}" 
                         />
                         
-                       <h:message for="user" class=" formInputError formInputErrorMsg"/>
+                       <h:message id="mensajeusr" for="user" class=" formInputError formInputErrorMsg"/>
                     </div>
                         
                     <div class="formInputGroup">
@@ -35,7 +35,7 @@
                         value="#{loginVista.log.contrasena}"
                         />
                         
-                        <h:message for="pass" class="formInputErrorMsg"/>
+                        <h:message id="mensajecon" for="pass" class="formInputErrorMsg"/>
                     </div>
 
                     <h:commandButton value="Entrar" class="formButton" action="#{loginVista.entrar()}"/>
