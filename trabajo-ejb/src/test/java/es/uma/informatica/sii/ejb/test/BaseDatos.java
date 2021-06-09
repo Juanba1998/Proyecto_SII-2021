@@ -147,10 +147,10 @@ public class BaseDatos {
 		
 		//LOGIN
 		
-		Login login1 = new Login( "Manoli1", "contraseña123", false);
-		Login login2 = new Login( "kaneki2", "clavesecreta", true);
-		Login login3 = new Login( "levi3", "micontraseña", true);
-		Login login4 = new Login( "juju4", "contra123", true);
+		Login login1 = new Login( 12345,"Manoli1", "contraseña123", false);
+		Login login2 = new Login(12346, "kaneki2", "clavesecreta", true);
+		Login login3 = new Login( 12347,"levi3", "micontraseña", true);
+		Login login4 = new Login( 12348,"juju4", "contra123", true);
 				
 		for (Login logins: new Login [] {login1,login2,login3,login4}){
 			em.persist(logins);

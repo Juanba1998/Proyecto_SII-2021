@@ -41,7 +41,7 @@ public class AlumnoPr {
 		try {
 			Titulacion titu = new Titulacion(1111, "Informática", 60);
 			String curso_actual = "2003";
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(12345,"Manoli1", "contraseña123", false);
 			
 			try {
 				gestionLogin.login(l);
@@ -69,7 +69,7 @@ public class AlumnoPr {
 		try {
 			Titulacion titu = new Titulacion(8989, "Informática", 60);
 			String cursoActual = "2003";
-			Login l = new Login("kaneki2", "clavesecreta", true);
+			Login l = new Login(12346,"kaneki2", "clavesecreta", true);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarTitulacionAlumno(titu,l, cursoActual);
@@ -101,7 +101,7 @@ public class AlumnoPr {
 			Expediente exp1 = new Expediente(12345, true, 4.0, 20.0, 10.0, 10.0, 0.0, 0.0, 0.0, 0.0);
 			exp1.setTitulacion(titu);
 			String curso_actual = "2003/2004";
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(123457,"Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarTitulacionAlumno(titu,l, curso_actual);
@@ -127,7 +127,7 @@ public class AlumnoPr {
 		try {
 			Titulacion titu = new Titulacion(8989, "Informática", 60);
 			String curso_actual = "2003";
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(123458,"Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarTitulacionAlumno(titu,l, curso_actual);
@@ -153,7 +153,7 @@ public class AlumnoPr {
 		try {
 			Asignatura asi = new Asignatura (001, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
 					"2 meses", "Primero", "Español, Chino");
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(123459,"Manoli1", "contraseña123", false);
 			
 			String curso_actual = "2003";
 			try {
@@ -183,7 +183,7 @@ public class AlumnoPr {
 			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
 					"2 meses", "Primero", "Español, Chino");
 			String curso_actual = "2003";
-			Login l = new Login("kaneki2", "clavesecreta", true);
+			Login l = new Login(123460,"kaneki2", "clavesecreta", true);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarAsignaturaAlumno(asi,l, curso_actual);
@@ -214,7 +214,7 @@ public class AlumnoPr {
 			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
 					"2 meses", "Primero", "Español, Chino");
 			String curso_actual = "2003";
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(123461,"Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarAsignaturaAlumno(asi,l, curso_actual);
@@ -241,7 +241,7 @@ public class AlumnoPr {
 			Asignatura asi = new Asignatura (101, 223, 6, 40, "Lengua", "Tercero", "Obligatoria",
 					"2 meses", "Primero", "Español, Chino");
 			String curso_actual = "2003";
-			Login l = new Login("Manoli1", "contraseña123", false);
+			Login l = new Login(12363,"Manoli1", "contraseña123", false);
 			try {
 				gestionLogin.login(l);
 				gestionAlumno.mostrarAsignaturaAlumno(asi,l, curso_actual);

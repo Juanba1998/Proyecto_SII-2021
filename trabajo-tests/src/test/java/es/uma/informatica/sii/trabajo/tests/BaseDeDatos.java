@@ -22,7 +22,8 @@ public class BaseDeDatos {
 
 	public static void datos(EntityManager em) {
 		Login usuario = new Login();
-		usuario.setnombreUsuario("Dio");
+		usuario.setCodigo(12345);
+		usuario.setUsuario("Dio");
 		usuario.setContrasena("123");
 		usuario.setAlumno(null);
 		usuario.setEsAlumno(false);

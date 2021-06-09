@@ -51,18 +51,18 @@ public class LoginEJB implements GestionLogin{
 	   @Override
 	    public void compruebaLogin(Login u) throws Exception {
 		   
-		   try{
-			   Login user = em.find(Login.class, "a");
-			}catch (PersistenceException e) {
+		  
+			   Login user = em.find(Login.class, 1234);
 			
-				   throw new PersistenceException();
-		}
-		   //throw new UsuarioInexistenteException();
-	        /*if (user == null) {
+			
+				   
+		
+		   
+	        if (user == null) {
 	            throw new UsuarioInexistenteException();
 	        }
 
-
+/*
 	        if (!user.getContrasena().equals(u.getContrasena())) {
 	            throw new ContrasenaInvalidaException();
 	        }*/
@@ -76,9 +76,10 @@ public class LoginEJB implements GestionLogin{
 	public Login refrescarLogin(Login l) throws Exception  {
 		compruebaLogin(l);
 		
-		Login actual = em.find(Login.class, l.getnombreUsuario());
-		em.refresh(actual);
-		return actual;
+		//Login actual = em.find(Login.class, l.getnombreUsuario());
+		//em.refresh(actual);
+		//return actual;
+		return null;
 	}
 
 	@Override
