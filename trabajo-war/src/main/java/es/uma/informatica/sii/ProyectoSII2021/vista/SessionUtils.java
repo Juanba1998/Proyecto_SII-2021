@@ -10,7 +10,7 @@ import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.ejb.tarea2.GestionLogin;
-
+import es.uma.informatica.jpa.tarea1.Alumno;
 import es.uma.informatica.jpa.tarea1.Login;
 
 @Named(value = "sessionUtils")
@@ -36,6 +36,10 @@ public class SessionUtils implements Serializable{
 
     public synchronized Login getLog() {
         return log;
+    }
+    
+    public synchronized Alumno getAlumno() {
+    	return log.getAlumno();
     }
     
    

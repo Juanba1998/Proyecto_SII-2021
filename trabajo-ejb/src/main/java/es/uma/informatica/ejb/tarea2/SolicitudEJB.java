@@ -19,15 +19,14 @@ import es.uma.informatica.jpa.tarea1.Solicitud;
 @Stateless
 public class SolicitudEJB implements GestionSolicitud {
 
-	@PersistenceContext(name= "trabajo")
+	@PersistenceContext(name= "TrabajoTest")
 	private EntityManager em;
 	
 	public SolicitudEJB() {
 		super();
 	}
 	
-	@Override
-	public void aniadirSolicitud(Login login, Solicitud solicitud) throws PermisosInsuficientesException, LoginException, UsuarioInexistenteException, ContrasenaInvalidaException, SolicitudDuplicadaException {
+	public void aniadirSolicitud(Login login, Solicitud solicitud) throws SolicitudDuplicadaException, PermisosInsuficientesException {
 		
 		if(Boolean.FALSE.equals(login.getEsAlumno())) throw new PermisosInsuficientesException();
 		else {
