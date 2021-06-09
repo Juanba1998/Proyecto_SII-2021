@@ -10,7 +10,7 @@ import es.uma.informatica.ejb.excepciones.LoginException;
 import es.uma.informatica.ejb.excepciones.TrabajoException;
 import es.uma.informatica.ejb.excepciones.UsuarioInexistenteException;
 import es.uma.informatica.ejb.tarea2.GestionLogin;
-import es.uma.informatica.ejb.tarea2.LoginEJB;
+
 import es.uma.informatica.jpa.tarea1.Login;
 
 @Named(value = "sessionUtils")
