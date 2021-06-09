@@ -49,23 +49,21 @@ public class LoginEJB implements GestionLogin{
     }
     */
 	   @Override
-	    public void compruebaLogin(Login u) throws Exception {
+	    public void compruebaLogin(Login u) throws TrabajoException {
 		   
 		  
-			   Login user = em.find(Login.class, 1234);
+			   Login user = em.find(Login.class, u.getCodigo());
 			
-			
-				   
-		
+	
 		   
 	        if (user == null) {
 	            throw new UsuarioInexistenteException();
 	        }
 
-/*
+
 	        if (!user.getContrasena().equals(u.getContrasena())) {
 	            throw new ContrasenaInvalidaException();
-	        }*/
+	        }
 
 	    }
 	
@@ -73,20 +71,18 @@ public class LoginEJB implements GestionLogin{
 	
 	
 	@Override
-	public Login refrescarLogin(Login l) throws Exception  {
+	public Login refrescarLogin(Login l) throws TrabajoException {
 		compruebaLogin(l);
 		
-		//Login actual = em.find(Login.class, l.getnombreUsuario());
-		//em.refresh(actual);
-		//return actual;
-		return null;
+		Login actual = em.find(Login.class, l.getCodigo());
+		em.refresh(actual);
+		return actual;
+		
 	}
 
-	@Override
-	public String login(Login l) throws LoginException, UsuarioInexistenteException, ContrasenaInvalidaException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+
+
 
 }
 	

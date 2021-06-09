@@ -44,15 +44,16 @@ public class LoginVista {
     public String entrar() {
     	
     	try {
-            String type = logEjb.login(log);
-            String dst = "alumno";
-            session.setLog(logEjb.refrescarLogin(log));
+    	   Login aux =  logEjb.refrescarLogin(log);
+           Boolean type = aux.getEsAlumno();
+           String dst =  "alumno";
+           session.setLog(aux);
 
-            if(!type.equals("alumno")) {
+           if(!type) {
                 dst = "secretaria";
             }
 
-            return "secretariaInicio.xhtml";
+            return dst+"Inicio.xhtml";
 
         } catch (UsuarioInexistenteException e) {
             FacesMessage fm = new FacesMessage("La cuenta no existe");
@@ -64,10 +65,7 @@ public class LoginVista {
         } catch (TrabajoException e) {
             FacesMessage fm = new FacesMessage("Error: " + e);
             FacesContext.getCurrentInstance().addMessage(null, fm);
-        }catch (Exception e) {
-        	 FacesMessage fm = new FacesMessage("Error:" + e);
-             FacesContext.getCurrentInstance().addMessage("login:user", fm);
-		}
+        }
         return null;
         
     }

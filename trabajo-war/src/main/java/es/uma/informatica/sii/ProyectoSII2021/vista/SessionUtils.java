@@ -50,7 +50,7 @@ public class SessionUtils implements Serializable{
         return "login.xhtml";
     }
     
-    public synchronized void refrescarUsuario() throws Exception
+    public synchronized void refrescarUsuario() throws TrabajoException
     {
         
         if (log != null)

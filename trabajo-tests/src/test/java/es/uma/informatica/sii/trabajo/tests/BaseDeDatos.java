@@ -13,7 +13,7 @@ public class BaseDeDatos {
 		EntityManager em = emf.createEntityManager();
 		
 		/* Comentar la línea de abajo si los datos se incluyen en un script de SQL */
-		//datos(em); 
+		datos(em); 
 		
 		em.close();
 		emf.close();
@@ -26,7 +26,7 @@ public class BaseDeDatos {
 		usuario.setUsuario("Dio");
 		usuario.setContrasena("123");
 		usuario.setAlumno(null);
-		usuario.setEsAlumno(false);
+		usuario.setEsAlumno(true);
 		
 		em.getTransaction().begin();
 		em.persist(usuario);
