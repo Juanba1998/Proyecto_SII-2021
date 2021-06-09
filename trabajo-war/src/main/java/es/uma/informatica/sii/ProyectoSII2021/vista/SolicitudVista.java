@@ -48,12 +48,12 @@ public class SolicitudVista {
 	
 
 	public String enviar() throws TrabajoException {
-        
+		/*
 		sol.setCodigo(123);
 		sol.setFechaSolicitud(new Date());
 		sol.setAlumno(alu);
         solEJB.aniadirSolicitud(log,sol);
-        
+        */
         return "alumnoInicio.xhtml";
         
     }

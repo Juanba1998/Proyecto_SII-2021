@@ -7,15 +7,16 @@
     xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<?xml-stylesheet href="estilos.xsl" type="text/xsl"?>
 		<title>Solicitud cambio grupo</title>
 	</h:head>
 	<h:body>
+	
+	     <h1>SOLICITUD</h1>
 		<h:form>
 			<h:inputText id="dsc" class="formInput" name="dsc" 
                 autofocus="autofocus" value=""/>
             <br/>
+             
             <h:commandButton value="Enviar" action="#{solicitud.enviar()}" />
 			<h:commandButton value="Cancelar" action="alumnoInicio.xhtml" />
 		</h:form>

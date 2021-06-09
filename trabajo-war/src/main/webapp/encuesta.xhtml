@@ -8,13 +8,63 @@
  
 
 	<h:head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<?xml-stylesheet href="estilos.xsl" type="text/xsl"?>
 		<title>encuesta</title>
 	</h:head>
 	<h:body>
 		<h:form>
             <br/>
+      <h1>ENCUESTA</h1>
+
+    
+    <h3>PRIMERO</h3>
+        <p>¿CURSAS ASIGNATURAS? </p>
+    <table>
+        <tr>
+            <td><input type="radio" name="curso1" value="1"/> NO</td>
+            <td><input type="radio" name="curso1" value="2"/>SI</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="opcion1" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
+            <td><input type="checkbox" name="opcion2" value="1"/>QUIERO POR LA <B>TARDE</B></td>
+        </tr>
+    </table>
+    
+    
+    <h3>SEGUNDO</h3>
+        <p>¿CURSAS ASIGNATURAS? </p>
+    <table>
+        <tr>
+            <td><input type="radio" name="curso2" value="1"/> NO</td>
+            <td><input type="radio" name="curso2" value="2"/>SI</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" name="opcion3" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
+            <td><input type="checkbox" name="opcion4" value="1"/>QUIERO POR LA <B>TARDE</B></td>
+        </tr>
+    </table>
+    
+    
+    <h3>TERCERO</h3>
+        <p>¿CURSAS ASIGNATURAS? </p>
+    <table>
+        <tr>
+            <td><input type="radio" name="curso3" value="1"/> NO</td>
+            <td><input type="radio" name="curso3" value="2"/>SI</td>
+        </tr>
+    </table>
+    
+    
+    <h3>CUARTO</h3>
+        <p>¿CURSAS ASIGNATURAS? </p>
+    <table>
+        <tr>
+            <td><input type="radio" name="curso4" value="1"/> NO</td>
+            <td><input type="radio" name="curso4" value="2"/>SI</td>
+        </tr>
+    </table>       
+            
+            
+            
             <h:commandButton value="Enviar" action="#{encuesta.enviar()}" />
 			<h:commandButton value="Cancelar" action="alumnoInicio.xhtml" />
 		</h:form>

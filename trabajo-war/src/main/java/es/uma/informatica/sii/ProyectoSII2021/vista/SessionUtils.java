@@ -25,7 +25,9 @@ public class SessionUtils implements Serializable{
 	@Inject
 	private GestionLogin logEjb;
     private Login log;
-	
+	private Alumno alu;
+    
+    
 	
 	public SessionUtils() {
     }
