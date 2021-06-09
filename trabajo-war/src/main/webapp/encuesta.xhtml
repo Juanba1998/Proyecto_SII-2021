@@ -20,12 +20,12 @@
         <p>¿CURSAS ASIGNATURAS? </p>
     <table>
         <tr>
-            <td><input type="radio" name="curso1" value="1"/> NO</td>
-            <td><input type="radio" name="curso1" value="2"/>SI</td>
+            <td><input id = "c11" type="radio" name="curso1" value="1"/> NO</td>
+            <td><input id = "c12" type="radio" name="curso1" value="2"/>SI</td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="opcion1" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
-            <td><input type="checkbox" name="opcion2" value="1"/>QUIERO POR LA <B>TARDE</B></td>
+            <td><input id = "c13" type="checkbox" name="opcion1" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
+            <td><input id = "c14" type="checkbox" name="opcion2" value="1"/>QUIERO POR LA <B>TARDE</B></td>
         </tr>
     </table>
     
@@ -34,12 +34,12 @@
         <p>¿CURSAS ASIGNATURAS? </p>
     <table>
         <tr>
-            <td><input type="radio" name="curso2" value="1"/> NO</td>
-            <td><input type="radio" name="curso2" value="2"/>SI</td>
+            <td><input id = "c21" type="radio" name="curso2" value="1"/> NO</td>
+            <td><input id = "c22" type="radio" name="curso2" value="2"/>SI</td>
         </tr>
         <tr>
-            <td><input type="checkbox" name="opcion3" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
-            <td><input type="checkbox" name="opcion4" value="1"/>QUIERO POR LA <B>TARDE</B></td>
+            <td><input id = "c23" type="checkbox" name="opcion3" value="1"/>CURSO ALGUNA EN <B>INGLES</B></td>
+            <td><input id = "c24" type="checkbox" name="opcion4" value="1"/>QUIERO POR LA <B>TARDE</B></td>
         </tr>
     </table>
     
@@ -48,8 +48,8 @@
         <p>¿CURSAS ASIGNATURAS? </p>
     <table>
         <tr>
-            <td><input type="radio" name="curso3" value="1"/> NO</td>
-            <td><input type="radio" name="curso3" value="2"/>SI</td>
+            <td><input id = "c31" type="radio" name="curso3" value="1"/> NO</td>
+            <td><input id = "c32" type="radio" name="curso3" value="2"/>SI</td>
         </tr>
     </table>
     
@@ -58,15 +58,15 @@
         <p>¿CURSAS ASIGNATURAS? </p>
     <table>
         <tr>
-            <td><input type="radio" name="curso4" value="1"/> NO</td>
-            <td><input type="radio" name="curso4" value="2"/>SI</td>
+            <td><input id = "c41" type="radio" name="curso4" value="1"/> NO</td>
+            <td><input id = "c42" type="radio" name="curso4" value="2"/>SI</td>
         </tr>
     </table>       
             
             
             
-            <h:commandButton value="Enviar" action="#{encuesta.enviar()}" />
-			<h:commandButton value="Cancelar" action="alumnoInicio.xhtml" />
+            <h:commandButton id = "envenc" value="Enviar" action="#{encuesta.enviar()}" />
+			<h:commandButton id = "canenc" value="Cancelar" action="alumnoInicio.xhtml" />
 		</h:form>
 	</h:body>
 </html>
