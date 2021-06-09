@@ -27,7 +27,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class VerSolicitudIT {
+public class NotaMediaIT {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -41,15 +41,15 @@ public class VerSolicitudIT {
   public void tearDown() {
     driver.quit();
   }
+  
+  @Requisitos({"RF2"})
   @Test
-  @Requisitos({"RF8"})
-  public void solic() {
-    driver.get("http://0.0.0.0:8080/trabajo-war/versolicitud.xhtml");
-    driver.manage().window().setSize(new Dimension(550, 544));
-    //driver.findElement(By.id("j_idt6")).click();
-    //driver.findElement(By.cssSelector("tr:nth-child(1) > th:nth-child(3)")).click();
-    //driver.findElement(By.cssSelector("tr:nth-child(1) > th:nth-child(2)")).click();
-    //driver.findElement(By.id("j_idt6")).click();
-    driver.findElement(By.id("j_idt6:versolivolver")).click();
+  public void notaMediaIT() {
+    driver.get("http://0.0.0.0:8080/trabajo-war/faces/notamedia.xhtml");
+    driver.manage().window().setSize(new Dimension(682, 706));
+    driver.findElement(By.name("j_idt5:j_idt7")).click();
+    driver.findElement(By.name("j_idt5:j_idt7")).sendKeys("10410008");
+    driver.findElement(By.id("j_idt5:bVer")).click();
+    driver.findElement(By.name("j_idt5:j_idt7")).click();
   }
 }
