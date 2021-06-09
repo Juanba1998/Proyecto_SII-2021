@@ -12,24 +12,12 @@
 		<title>Solicitud cambio grupo</title>
 	</h:head>
 	<h:body>
-		<table>
-			<thead>
-				<tr>
-					<td><img src="logouma.jpg" width="256" height="98" /></td>
-					<td><h1>SOLICITUD CAMBIO DE GRUPO</h1></td>
-					<td><h:commandButton value="Cerrar Sesion" type="button" onclick="alumnoInicio.xhtml" /></td>
-				</tr>
-			</thead>
-			<tbody>
-				<h:form method="post">
-					<h:inputText id="descripcion" class="formInput" name="descripcion" 
-                        autofocus="autofocus"  
-                        value="#{SolicitudVista.sol.descripcion}"/>
-					<br/>
-					<h:commandButton value="Enviar" type="button" />
-					<h:commandButton value="Cancelar" type="button" onclick="alumnoInicio.xhtml" />
-				</h:form>
-			</tbody>
-		</table>
+		<h:form>
+			<h:inputText id="descripcion" class="formInput" name="descripcion" 
+                autofocus="autofocus" value="#{solicitud.sol.descripcion}"/>
+            <br/>
+            <h:commandButton value="Enviar" action="#{solicitud.enviar()}" />
+			<h:commandButton value="Cancelar" action="alumnoInicio.xhtml" />
+		</h:form>
 	</h:body>
 </html>

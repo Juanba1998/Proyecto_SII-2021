@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Entity
 public class Solicitud implements Serializable {
  
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id //@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer codigo;
 	
 	@Column(nullable = false)
